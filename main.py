@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from fetcher import fetch_all_news
-from insights import summarize_article
+from insights import summarize_article, classify_article
 from email_sender import send_email
 from utils import setup_logger, now_str
 
@@ -18,16 +18,19 @@ def run():
         logger.error("抓取失败，流程终止")
         return
 
-    # 2) 生成洞察
-    logger.info("开始生成洞察…")
+    # 2) 生成洞察 + 分类
+    logger.info("开始生成洞察与分类…")
     results = []
     for item in news_list:
         insight = summarize_article(item)
+        category = classify_article(item)  # ← 新增分类
+
         results.append({
             "title": item["title"],
             "source": item["source"],
             "link": item["link"],
-            "insight": insight
+            "insight": insight,
+            "category": category  # ← 新增字段
         })
 
     # 3) 发送邮件

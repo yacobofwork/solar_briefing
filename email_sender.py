@@ -27,11 +27,11 @@ def build_email_html(results):
 
     grouped = {}
     for item in results:
-        grouped.setdefault(item["source"], []).append(item)
+        grouped.setdefault(item["category"], []).append(item)
 
-    for source, items in grouped.items():
+    for category, items in grouped.items():
         html += f"""
-        <h2 style="color:#1A73E8; margin-top:30px;">{source}</h2>
+        <h2 style="color:#1A73E8; margin-top:30px;">{category}</h2>
         """
 
         for item in items:

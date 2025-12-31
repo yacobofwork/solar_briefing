@@ -46,3 +46,25 @@ Generate a bilingual intelligence brief for our UK-based team working on Nigeria
 
     resp = safe_request(prompt)
     return clean_html(resp.choices[0].message.content)
+
+def classify_article(article):
+    """自动分类：PV / BESS / Inverter / Policy / Supply Chain"""
+    prompt = f"""
+You are an expert in China's PV and BESS industries.
+Classify the following news into ONE category:
+
+Categories:
+1. PV (solar modules, wafers, cells, mounting, trackers)
+2. BESS (battery cells, PACK, BMS, energy storage systems)
+3. Inverter (PV inverter, hybrid inverter, PCS)
+4. Policy (government policy, regulation, subsidy, export rule)
+5. Supply Chain (price, capacity, export, logistics, risk)
+
+Return ONLY the category name.
+
+News:
+{article['summary']}
+"""
+
+    resp = safe_request(prompt)
+    return resp.choices[0].message.content.strip()
