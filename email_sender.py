@@ -3,30 +3,32 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from utils import setup_logger
 import os
+import re
 from datetime import datetime
+
 logger = setup_logger("email")
 
+def extract_section(text, keyword):
+    """从模型输出中提取指定段落"""
+    pattern = rf"{keyword}[:：]\s*(.*?)(?=\n[A-Za-z\u4e00-\u9fa5]|$)"
+    match = re.search(pattern, text, re.S)
+    return match.group(1).strip() if match else text
 
 def build_email_html(results):
-    """专业日报级 HTML 模板"""
-
     today = datetime.now().strftime("%Y-%m-%d")
 
     html = f"""
     <div style="font-family: Arial, sans-serif; padding: 20px;">
 
-        <!-- 标题栏 -->
         <h1 style="color: #2A4E8A; border-bottom: 2px solid #2A4E8A; padding-bottom: 10px;">
-            新能源日报 <span style="font-size:16px; color:#666;">{today}</span>
+            新能源日报（中英双语版） <span style="font-size:16px; color:#666;">{today}</span>
         </h1>
     """
 
-    # 自动按 source 分组
     grouped = {}
     for item in results:
         grouped.setdefault(item["source"], []).append(item)
 
-    # 每个来源一个分区
     for source, items in grouped.items():
         html += f"""
         <h2 style="color:#1A73E8; margin-top:30px;">{source}</h2>
@@ -43,13 +45,26 @@ def build_email_html(results):
             ">
                 <h3 style="margin:0; color:#333;">{item['title']}</h3>
                 <p style="margin:5px 0;">
-                    <a href=" 'link']}" style="color:#1A73E8;">原文链接</a >
+                    <a href=" 'link']" style="color:#1A73E8;">原文链接</a >
                 </p >
-                <p style="color:#555; line-height:1.6;">
-                    {item['insight']}
-                </p >
+
+                <div style="margin-top:10px; line-height:1.6;">
+
+                    <b>【中文摘要】</b><br>
+                    {extract_section(item['insight'], "中文摘要")}
+
+                    <br><b>【English Summary】</b><br>
+                    {extract_section(item['insight'], "英文摘要")}
+
+                    <br><b>【中文洞察】</b><br>
+                    {extract_section(item['insight'], "中文关键洞察")}
+
+                    <br><b>【English Insights】</b><br>
+                    {extract_section(item['insight'], "英文关键洞察")}
+                </div>
             </div>
             """
+
     html += "</div>"
     return html
 
