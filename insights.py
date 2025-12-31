@@ -68,3 +68,49 @@ News:
 
     resp = safe_request(prompt)
     return resp.choices[0].message.content.strip()
+
+
+def build_email_html(results, price_list):
+    html = """
+    <h1>China PV & BESS Supply Chain Daily Briefing</h1>
+    """
+
+    # === 新增：供应链价格趋势 ===
+    html += """
+    <h2>📊 Supply Chain Price Trends</h2>
+    <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+        <tr><th>Item</th><th>Price</th><th>Change</th><th>Source</th></tr>
+    """
+
+    for p in price_list:
+        html += f"""
+        <tr>
+            <td>{p['item']}</td>
+            <td>{p['price']}</td>
+            <td>{p['change']}</td>
+            <td>{p['source']}</td>
+        </tr>
+        """
+
+    html += "</table><br>"
+
+def analyze_price_impact(price_list):
+    """根据价格数据生成英文供应链影响分析"""
+    prompt = f"""
+You are an energy supply chain analyst specializing in China's PV and BESS industries.
+Based on the following price data, generate a concise intelligence brief.
+
+【Output Requirements — English Only】
+1. Key price trends (3–5 bullet points)
+2. Impact on PV/BESS supply chain (2–4 bullet points)
+3. Impact on Nigeria microgrid projects (2–4 bullet points)
+4. Procurement recommendations (2–4 bullet points)
+
+【Price Data】
+{price_list}
+
+Make the output structured, concise, and suitable for an international engineering team.
+"""
+
+    resp = safe_request(prompt)
+    return resp.choices[0].message.content.strip()

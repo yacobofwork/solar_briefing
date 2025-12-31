@@ -1,3 +1,5 @@
+from  fetch_prices import fetch_all_prices
+from  insights import analyze_price_impact
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -11,6 +13,11 @@ logger = setup_logger("main")
 
 def run():
     logger.info("=== 新能源日报开始执行 ===")
+
+    # 0) 抓取供应链价格
+    logger.info("开始抓取供应链价格…")
+    price_list = fetch_all_prices()
+    price_insight = analyze_price_impact(price_list)
 
     # 1) 抓取新闻
     news_list = fetch_all_news()
@@ -35,7 +42,7 @@ def run():
 
     # 3) 发送邮件
     logger.info("开始发送邮件…")
-    send_email(results)
+    send_email(results,price_list,price_insight)
 
     logger.info("=== 新能源日报执行完毕 ===")
 
