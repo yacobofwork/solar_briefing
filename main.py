@@ -2,6 +2,8 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+import os
+import shutil
 from fetch_prices import fetch_all_prices
 from fetcher import fetch_all_news
 from insights import summarize_article, classify_article, analyze_price_impact
@@ -69,6 +71,12 @@ def run():
     with open("daily_report.html", "w", encoding="utf-8") as f:
         f.write(pdf_html)
 
+    archive_dir = "archive_pdf"
+    os.makedirs(archive_dir, exist_ok=True)
+
+    archive_path = os.path.join(archive_dir, f"daily_report_{date}.pdf")
+    shutil.copy(pdf_path, archive_path)
+    logger.info(f"PDF 已归档：{archive_path}")
 
     # 6) 发送邮件（仍然使用 HTML 邮件）
     send_email(results, price_list, price_insight,pdf_path)
