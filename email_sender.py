@@ -3,24 +3,54 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from utils import setup_logger
 import os
-
+from datetime import datetime
 logger = setup_logger("email")
 
 
 def build_email_html(results):
-    html = "<h2>新能源日报</h2><br>"
+    """专业日报级 HTML 模板"""
 
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    html = f"""
+    <div style="font-family: Arial, sans-serif; padding: 20px;">
+
+        <!-- 标题栏 -->
+        <h1 style="color: #2A4E8A; border-bottom: 2px solid #2A4E8A; padding-bottom: 10px;">
+            新能源日报 <span style="font-size:16px; color:#666;">{today}</span>
+        </h1>
+    """
+
+    # 自动按 source 分组
+    grouped = {}
     for item in results:
+        grouped.setdefault(item["source"], []).append(item)
+
+    # 每个来源一个分区
+    for source, items in grouped.items():
         html += f"""
-        <div style="margin-bottom:20px;">
-            <b>{item['title']}</b><br>
-            <i>{item['source']}</i><br>
-            <a href=" 'link']">原文链接</a ><br>
-            <p>{item['insight']}</p >
-        </div>
-        <hr>
+        <h2 style="color:#1A73E8; margin-top:30px;">{source}</h2>
         """
 
+        for item in items:
+            html += f"""
+            <div style="
+                border:1px solid #ddd;
+                border-radius:8px;
+                padding:15px;
+                margin-bottom:15px;
+                background:#fafafa;
+            ">
+                <h3 style="margin:0; color:#333;">{item['title']}</h3>
+                <p style="margin:5px 0;">
+                    <a href=" 'link']}" style="color:#1A73E8;">原文链接</a >
+                </p >
+                <p style="color:#555; line-height:1.6;">
+                    {item['insight']}
+                </p >
+            </div>
+            """
+    html += "</div>"
     return html
 
 
