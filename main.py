@@ -71,7 +71,7 @@ def run():
 
 
     # 6) 发送邮件（仍然使用 HTML 邮件）
-    send_email(results, price_list, price_insight)
+    send_email(results, price_list, price_insight,pdf_path)
 
 
 if __name__ == "__main__":

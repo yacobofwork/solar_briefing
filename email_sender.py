@@ -1,5 +1,6 @@
 import os
 import smtplib
+from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from utils import setup_logger
@@ -86,7 +87,7 @@ def send_with_smtp(host, port, user, password, recipients, msg):
 
 
 
-def send_email(results, price_list=None, price_insight=None):
+def send_email(results, price_list=None, price_insight=None,pdf_path=None):
     """支持主备邮箱自动切换的邮件发送"""
 
     # === 主邮箱配置 ===
@@ -119,6 +120,13 @@ def send_email(results, price_list=None, price_insight=None):
 
     html_content = build_email_html(results, price_list, price_insight)
     msg.attach(MIMEText(html_content, "html", "utf-8"))
+
+    # 添加pdf附件
+    if pdf_path:
+        with open(pdf_path, "rb") as f:
+            part = MIMEApplication(f.read(), Name=os.path.basename(pdf_path))
+        part["Content-Disposition"] = f'attachment; filename="{os.path.basename(pdf_path)}"'
+        msg.attach(part)
 
     # === 1) 尝试主邮箱发送 ===
     logger.info("优先使用主邮箱发送…")
