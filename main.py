@@ -1,8 +1,9 @@
-from  fetch_prices import fetch_all_prices
-from  insights import analyze_price_impact
+
 from dotenv import load_dotenv
 load_dotenv()
 
+from fetch_prices import fetch_all_prices
+from insights import analyze_price_impact
 from fetcher import fetch_all_news
 from insights import summarize_article, classify_article
 from email_sender import send_email
