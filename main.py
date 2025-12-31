@@ -4,6 +4,8 @@ load_dotenv()
 
 import os
 import shutil
+import csv
+from chart_builder import build_price_chart
 from fetch_prices import fetch_all_prices
 from fetcher import fetch_all_news
 from insights import summarize_article, classify_article, analyze_price_impact
@@ -15,6 +17,9 @@ from pdf_builder import html_to_pdf
 
 
 logger = setup_logger("main")
+
+history_file = "price_history.csv"
+file_exists = os.path.exists(history_file)
 
 
 def run():
@@ -55,11 +60,24 @@ def run():
     for r in results:
         grouped.setdefault(r["category"], []).append(r)
 
+
+    # 1.创建历史价格文件
+    with open(history_file, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        if not file_exists:
+            writer.writerow(["date", "item", "price"])
+        for p in price_list:
+            writer.writerow([date, p["item"], p["price"]])
+    # 3.生成图表
+    chart_path = f"price_chart_{date}.png"
+    build_price_chart("price_history.csv", chart_path)
+
     pdf_html = build_pdf_html(
         date=date,
         price_insight=price_insight,
         price_list=price_list,
-        news_grouped=grouped
+        news_grouped=grouped,
+        chart_path=chart_path
     )
 
     # 生成 PDF 文件

@@ -9,7 +9,7 @@ def html_to_pdf(html_content, output_path):
 
 
 
-def build_pdf_html(date, price_insight, price_list, news_grouped):
+def build_pdf_html(date, price_insight, price_list, news_grouped,chart_path):
     """生成 PDF 用的 HTML 模板"""
 
     # 1) 生成价格表 rows
@@ -150,6 +150,9 @@ def build_pdf_html(date, price_insight, price_list, news_grouped):
 
     <h2>📰 Industry News</h2>
     {news_sections}
+    
+    <h2>📈 Price Trend Chart</h2>
+    < img src="{chart_path}" style="width:100%; margin-top:20px;">
 
     <div class="footer">
         Generated automatically by the China PV & BESS Intelligence System
