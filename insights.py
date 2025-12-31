@@ -26,15 +26,21 @@ def safe_request(prompt, retries=3):
 
 def summarize_article(article):
     prompt = f"""
-你是一名新能源光伏和储能行业分析师，请对以下文章生成中英双语内容：
+You are an energy supply chain analyst specializing in China's PV and BESS industries.
+Generate a bilingual intelligence brief for our UK-based team working on Nigeria microgrid projects.
 
-【要求】
-1. 中文摘要（50 字以内）
-2. 英文摘要（50 words）
-3. 中文关键洞察（3 条，每条 20 字以内）
-4. 英文关键洞察（3 条，每条 20 words）
+【Content Requirements】
+1. Chinese Summary (50 characters)
+2. English Summary (50 words)
+3. Chinese Key Insights (3 bullet points)
+4. English Key Insights (3 bullet points)
 
-【文章内容】
+【Supply Chain Impact – English Only】
+5. Impact on PV/BESS supply chain (price, lead time, capacity, export)
+6. Impact on our Nigeria microgrid projects (CAPEX, delivery, risk)
+7. Procurement recommendation (actionable, concise)
+
+【Article】
 {article['summary']}
 """
 

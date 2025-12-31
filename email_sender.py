@@ -61,6 +61,15 @@ def build_email_html(results):
 
                     <br><b>【English Insights】</b><br>
                     {extract_section(item['insight'], "英文关键洞察")}
+                    
+                    <br><b>【Supply Chain Impact】</b><br>
+                    {extract_section(item['insight'], "Impact on PV/BESS supply chain")}
+
+                    <br><b>【Impact on Nigeria Projects】</b><br>
+                    {extract_section(item['insight'], "Impact on our Nigeria microgrid projects")}
+
+                    <br><b>【Procurement Recommendation】</b><br>
+                    {extract_section(item['insight'], "Procurement recommendation")}
                 </div>
             </div>
             """
