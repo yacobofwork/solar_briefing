@@ -58,7 +58,7 @@ def build_email_html(results, price_list=None, price_insight=None):
             html += f"""
             <div style="border:1px solid #ddd; padding:12px; border-radius:6px; margin-bottom:12px;">
                 <b>{item['title']}</b><br>
-                <a href=" 'link']" style="color:#1A73E8;">Original Link</a ><br><br>
+                <a href="{item['link']}" style="color:#1A73E8;">Original Link</a ><br><br>
 
                 <div style="line-height:1.6;">
                     {item['insight']}
