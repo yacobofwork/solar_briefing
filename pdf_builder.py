@@ -7,7 +7,7 @@ def load_template():
     with open(template_path, "r", encoding="utf-8") as f:
         return f.read()
 
-def build_pdf(news_html, price_html, chart_path, date, output_path):
+def build_pdf(news_html, price_html, chart_path, date, price_insight, output_path):
     """构建 PDF 报告"""
     template = load_template()
 
@@ -16,7 +16,8 @@ def build_pdf(news_html, price_html, chart_path, date, output_path):
         news_html=news_html,
         price_html=price_html,
         chart_path=chart_path,
-        date=date
+        date=date,
+        price_insight=price_insight
     )
 
     # 生成 PDF

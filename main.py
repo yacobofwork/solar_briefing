@@ -133,6 +133,7 @@ def run():
         price_html=price_html,
         chart_path=chart_path,
         date=date,
+        price_insight=price_insight,
         output_path=pdf_path
     )
 
