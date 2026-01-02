@@ -34,7 +34,8 @@ def fetch_price_table(url, source):
                     "item": item,
                     "price": price,
                     "change": change,
-                    "source": source
+                    "source": source,
+                    "type": detect_price_type(item)
                 })
 
         # ============================
@@ -159,3 +160,34 @@ def fetch_all_prices():
             print(f"[WARN] 价格模块失败：{func.__name__} - {e}")
 
     return prices
+
+# 自动识别价格类型
+def detect_price_type(item_text):
+    """根据 item 文本自动识别价格类型"""
+
+    text = item_text.lower()
+
+    # PV
+    if any(k in text for k in ["硅料", "致密料", "单晶料", "多晶料"]):
+        return "Silicon Material"
+
+    if any(k in text for k in ["硅片", "182", "210", "m10", "g12"]):
+        return "Wafer"
+
+    if any(k in text for k in ["电池片", "perc", "topcon", "hjt"]):
+        return "Cell"
+
+    if any(k in text for k in ["组件", "模组", "550w", "600w"]):
+        return "Module"
+
+    # BESS
+    if any(k in text for k in ["电芯", "lfp", "ncm", "磷酸铁锂"]):
+        return "Battery Cell"
+
+    if "pack" in text:
+        return "Pack"
+
+    if any(k in text for k in ["储能系统", "1c", "2c", "集装箱"]):
+        return "System"
+
+    return "Unknown"
