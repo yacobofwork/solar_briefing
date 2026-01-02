@@ -6,12 +6,13 @@ import re
 def now_str():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+
 def setup_logger(name="app"):
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
 
-    # 避免重复添加 handler
     if not logger.handlers:
+        # 控制台输出
         ch = logging.StreamHandler()
         ch.setLevel(logging.INFO)
 
@@ -21,6 +22,16 @@ def setup_logger(name="app"):
         )
         ch.setFormatter(formatter)
         logger.addHandler(ch)
+
+        # 文件日志（可选）
+        log_dir = "logs"
+        os.makedirs(log_dir, exist_ok=True)
+        log_path = os.path.join(log_dir, f"{datetime.now().strftime('%Y-%m-%d')}.log")
+
+        fh = logging.FileHandler(log_path, encoding="utf-8")
+        fh.setLevel(logging.INFO)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
 
     return logger
 
