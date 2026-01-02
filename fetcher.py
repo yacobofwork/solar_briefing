@@ -4,18 +4,16 @@ from utils import setup_logger
 
 logger = setup_logger("fetcher")
 
-headers = {"User-Agent": "Mozilla/5.0"}
 
-
-# =========================
+# ============================
 # 通用抓取器（增强版）
-# =========================
-def fetch_from_urls(urls, source):
+# ============================
+def fetch_from_urls(urls, source, limit=30):
     results = []
 
     for url in urls:
         try:
-            resp = requests.get(url, headers=headers, timeout=10)
+            resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
             resp.encoding = resp.apparent_encoding
             soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -23,21 +21,31 @@ def fetch_from_urls(urls, source):
                 title = a.get_text(strip=True)
                 link = a.get("href")
 
+                # 基础过滤
                 if not title or not link:
                     continue
-                if len(title) < 6:
+                if len(title) < 8:
+                    continue
+                if any(k in title for k in ["广告", "推广", "热门", "专题", "视频", "直播"]):
                     continue
 
                 # 修复相对链接
                 if link.startswith("/"):
                     link = url.rstrip("/") + link
 
+                # 过滤非 http 链接
+                if not link.startswith("http"):
+                    continue
+
                 results.append({
                     "title": title,
+                    "summary": title,
                     "link": link,
-                    "summary": title,   # 默认 summary
                     "source": source
                 })
+
+                if len(results) >= limit:
+                    break
 
         except Exception as e:
             logger.warning(f"抓取失败：{url} - {e}")
@@ -45,9 +53,9 @@ def fetch_from_urls(urls, source):
     return results
 
 
-# =========================
+# ============================
 # PV 新闻
-# =========================
+# ============================
 def fetch_pv_news():
     urls = [
         "https://guangfu.bjx.com.cn/",
@@ -55,42 +63,42 @@ def fetch_pv_news():
         "https://www.pv-tech.org/category/china/",
         "https://www.pvmen.com/"
     ]
-    return fetch_from_urls(urls, source="PV")
+    return fetch_from_urls(urls, source="PV", limit=30)
 
 
-# =========================
+# ============================
 # BESS 新闻
-# =========================
+# ============================
 def fetch_bess_news():
     urls = [
         "https://chuneng.bjx.com.cn/",
         "https://www.escn.com.cn/",
         "https://www.eesa.org.cn/"
     ]
-    return fetch_from_urls(urls, source="BESS")
+    return fetch_from_urls(urls, source="BESS", limit=30)
 
 
-# =========================
+# ============================
 # Policy 新闻
-# =========================
+# ============================
 def fetch_policy_news():
     urls = [
         "https://www.nea.gov.cn/",
         "https://www.cls.cn/energy",
         "https://www.stcn.com/energy/"
     ]
-    return fetch_from_urls(urls, source="Policy")
+    return fetch_from_urls(urls, source="Policy", limit=30)
 
 
-# =========================
+# ============================
 # 高质量来源：财联社
-# =========================
+# ============================
 def fetch_cailian():
     url = "https://www.cls.cn/theme/1033"
     items = []
 
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         resp.encoding = "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -112,15 +120,15 @@ def fetch_cailian():
     return items
 
 
-# =========================
+# ============================
 # 高质量来源：36Kr
-# =========================
+# ============================
 def fetch_36kr():
     url = "https://36kr.com/information/web_news/energy"
     items = []
 
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         soup = BeautifulSoup(resp.text, "html.parser")
 
         for div in soup.select(".information-flow-item")[:10]:
@@ -145,15 +153,15 @@ def fetch_36kr():
     return items
 
 
-# =========================
+# ============================
 # 高质量来源：搜狐能源
-# =========================
+# ============================
 def fetch_sohu_energy():
     url = "https://business.sohu.com/energy/"
     items = []
 
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         resp.encoding = "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -179,9 +187,9 @@ def fetch_sohu_energy():
     return items
 
 
-# =========================
+# ============================
 # 合并所有新闻（最终接口）
-# =========================
+# ============================
 def fetch_all_news():
     logger.info("开始抓取新闻…")
 
