@@ -32,7 +32,7 @@ def build_pdf_html(date, price_insight, price_list, news_grouped,chart_path):
             news_sections += f"""
             <div class="news-card">
                 <div class="news-title">{item['title']}</div>
-                <a class="news-link" href=" 'link']">Original Link</a >
+                <a class="news-link" href="{item['link']}">Original Link</a >
                 <div>{item['insight']}</div>
             </div>
             """
@@ -152,7 +152,7 @@ def build_pdf_html(date, price_insight, price_list, news_grouped,chart_path):
     {news_sections}
     
     <h2>📈 Price Trend Chart</h2>
-    < img src="{chart_path}" style="width:100%; margin-top:20px;">
+    <img src="{chart_path}" style="width:100%; margin-top:20px;">
 
     <div class="footer">
         Generated automatically by the China PV & BESS Intelligence System
