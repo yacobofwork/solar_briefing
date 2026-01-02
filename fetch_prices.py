@@ -1,56 +1,108 @@
 import requests
 from bs4 import BeautifulSoup
 
-# def fetch_price_table(url, selector, source):
-#     """通用价格抓取函数"""
-#     headers = {"User-Agent": "Mozilla/5.0"}
-#     resp = requests.get(url, headers=headers, timeout=10)
-#     resp.encoding = resp.apparent_encoding
-#     soup = BeautifulSoup(resp.text, "html.parser")
-#
-#     rows = soup.select(selector)
-#     results = []
-#
-#     for row in rows:
-#         cols = [c.get_text(strip=True) for c in row.select("td")]
-#         if len(cols) >= 3:
-#             results.append({
-#                 "item": cols[0],
-#                 "price": cols[1],
-#                 "change": cols[2],
-#                 "source": source
-#             })
-#
-#     return results
 
-
-def fetch_price_table(url, selector, source):
-    """通用价格抓取函数（支持失败自动跳过）"""
+def fetch_price_table(url, source):
     headers = {"User-Agent": "Mozilla/5.0"}
+
+    """智能价格抓取器：自动识别 table / ul / div 列表结构"""
+    results = []
 
     try:
         resp = requests.get(url, headers=headers, timeout=10)
         resp.encoding = resp.apparent_encoding
         soup = BeautifulSoup(resp.text, "html.parser")
 
-        rows = soup.select(selector)
-        results = []
+        # ============================
+        # 1) 优先识别 <table>
+        # ============================
+        tables = soup.find_all("table")
+        for table in tables:
+            for tr in table.find_all("tr"):
+                tds = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
+                if len(tds) < 2:
+                    continue
 
-        for row in rows:
-            cols = [c.get_text(strip=True) for c in row.select("td")]
-            if len(cols) >= 3:
+                item = tds[0]
+                price = tds[1]
+                change = tds[2] if len(tds) > 2 else ""
+
+                if not item or not price:
+                    continue
+
                 results.append({
-                    "item": cols[0],
-                    "price": cols[1],
-                    "change": cols[2],
+                    "item": item,
+                    "price": price,
+                    "change": change,
                     "source": source
                 })
 
-        return results
+        # ============================
+        # 2) 识别 <ul><li> 列表结构
+        # ============================
+        for ul in soup.find_all("ul"):
+            for li in ul.find_all("li"):
+                text = li.get_text(strip=True)
+                if not text or len(text) < 6:
+                    continue
+
+                # 简单分割：硅料 56 元/kg +0.5%
+                parts = text.split()
+                if len(parts) < 2:
+                    continue
+
+                item = parts[0]
+                price = parts[1]
+                change = parts[2] if len(parts) > 2 else ""
+
+                results.append({
+                    "item": item,
+                    "price": price,
+                    "change": change,
+                    "source": source
+                })
+
+        # ============================
+        # 3) 识别 <div class="xxx"> 列表结构
+        # ============================
+        for div in soup.find_all("div"):
+            text = div.get_text(strip=True)
+            if not text or len(text) < 6:
+                continue
+
+            # 过滤非价格类文本
+            if "元" not in text and "￥" not in text:
+                continue
+
+            parts = text.split()
+            if len(parts) < 2:
+                continue
+
+            item = parts[0]
+            price = parts[1]
+            change = parts[2] if len(parts) > 2 else ""
+
+            results.append({
+                "item": item,
+                "price": price,
+                "change": change,
+                "source": source
+            })
 
     except Exception as e:
-        print(f"[WARN] 价格源抓取失败：{url} - {e}")
-        return []   # ← 关键：失败时返回空列表，不中断系统
+        print(f"[WARN] 价格抓取失败：{url} - {e}")
+
+    # 去重
+    unique = []
+    seen = set()
+    for r in results:
+        key = (r["item"], r["price"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(r)
+
+    return unique
+
 
 def fetch_pv_prices():
     """光伏价格：硅料 / 硅片 / 电池片 / 组件（主源 + 备用源）"""
@@ -58,7 +110,6 @@ def fetch_pv_prices():
     # 主源：Solarzoom
     primary = fetch_price_table(
         url="https://www.solarzoom.com/price/",
-        selector="table tr",
         source="PV"
     )
 
@@ -70,7 +121,6 @@ def fetch_pv_prices():
     # 备用源：北极星光伏
     fallback = fetch_price_table(
         url="https://guangfu.bjx.com.cn/price/",
-        selector="table tr",
         source="PV"
     )
 
@@ -83,7 +133,6 @@ def fetch_bess_prices():
     # 主源：ESCN
     primary = fetch_price_table(
         url="https://www.escn.com.cn/price/",
-        selector="table tr",
         source="BESS"
     )
 
@@ -95,7 +144,6 @@ def fetch_bess_prices():
     # 备用源：北极星储能
     fallback = fetch_price_table(
         url="https://chuneng.bjx.com.cn/price/",
-        selector="table tr",
         source="BESS"
     )
     return fallback
