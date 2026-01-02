@@ -1,11 +1,17 @@
 import logging
 from datetime import datetime
 import re
+import os
 
 
 def now_str():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+def get_env(key, default=None, required=False):
+    value = os.getenv(key, default)
+    if required and not value:
+        raise RuntimeError(f"Missing required environment variable: {key}")
+    return value
 
 def setup_logger(name="app"):
     logger = logging.getLogger(name)

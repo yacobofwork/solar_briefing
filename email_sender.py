@@ -4,6 +4,7 @@ from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from utils import setup_logger
+from utils import get_env
 
 logger = setup_logger("email_sender")
 
@@ -92,21 +93,21 @@ def send_email(results, price_list=None, price_insight=None,pdf_path=None):
 
     # === 主邮箱配置 ===
     primary = {
-        "host": os.getenv("PRIMARY_EMAIL_HOST"),
-        "port": int(os.getenv("PRIMARY_EMAIL_PORT", 465)),
-        "user": os.getenv("PRIMARY_EMAIL_USER"),
-        "password": os.getenv("PRIMARY_EMAIL_PASS")
+        "host": get_env("PRIMARY_EMAIL_HOST"),
+        "port": int(get_env("PRIMARY_EMAIL_PORT",default=465)),
+        "user": get_env("PRIMARY_EMAIL_USER"),
+        "password": get_env("PRIMARY_EMAIL_PASS"),
     }
 
     # === 备用邮箱配置 ===
     backup = {
-        "host": os.getenv("BACKUP_EMAIL_HOST"),
-        "port": int(os.getenv("BACKUP_EMAIL_PORT", 465)),
-        "user": os.getenv("BACKUP_EMAIL_USER"),
-        "password": os.getenv("BACKUP_EMAIL_PASS")
+        "host": get_env("BACKUP_EMAIL_HOST"),
+        "port": int(get_env("BACKUP_EMAIL_PORT",default=465)),
+        "user": get_env("BACKUP_EMAIL_USER"),
+        "password": get_env("BACKUP_EMAIL_PASS"),
     }
 
-    recipients = os.getenv("RECEIVERS", "").split(",")
+    recipients = get_env("RECEIVERS", "").split(",")
 
     if not recipients:
         logger.error("未配置收件人 RECEIVERS")

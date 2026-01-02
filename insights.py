@@ -2,9 +2,10 @@ import os
 import time
 from openai import OpenAI
 from utils import clean_html
+from utils import get_env
 
 client = OpenAI(
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
+    api_key=get_env("DEEPSEEK_API_KEY",required=True),
     base_url="https://api.deepseek.com",
     timeout=30  # 国内网络必须加长超时
 )
