@@ -140,8 +140,8 @@ def run():
     logger.info(f"PDF 已生成：{pdf_path}")
 
     # 保存 HTML（可选）
-    with open("daily_report.html", "w", encoding="utf-8") as f:
-        f.write(news_html + price_html)
+    # with open("daily_report.html", "w", encoding="utf-8") as f:
+    #     f.write(news_html + price_html)
 
     # 归档 PDF
     archive_dir = "archive_pdf"
