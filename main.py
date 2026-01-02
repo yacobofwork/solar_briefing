@@ -57,19 +57,19 @@ def run():
     for r in results:
         grouped.setdefault(r["category"], []).append(r)
 
-
+    # ===价格相关流程
     if price_list:
-        # 创建历史价格文件
+        # 1. 写入历史价格
         with open(history_file, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             if not file_exists:
                 writer.writerow(["date", "item", "price"])
             for p in price_list:
                 writer.writerow([date, p["item"], p["price"]])
-        # 生成图表
+        # 2. 生成图表
         chart_path = f"price_chart_{date}.png"
         build_price_chart("price_history.csv", chart_path)
-        # 价格影响分析
+        # 3. 价格影响分析
         price_insight = analyze_price_impact(price_list)
     else:
         logger.warning("今日未获取到价格数据，跳过价格相关流程")
