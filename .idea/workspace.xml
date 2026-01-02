@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fetcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive_pdf/daily_report_2026-01-02.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/archive_pdf/daily_report_2026-01-02.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/daily_report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pdf_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/pdf_builder.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -37,6 +40,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.email_sender.executor": "Run",
     "Python.fetcher.executor": "Run",
