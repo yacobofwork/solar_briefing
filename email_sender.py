@@ -3,77 +3,26 @@ import smtplib
 from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from utils import setup_logger
-from utils import get_env
+from email.mime.image import MIMEImage
+
+from utils import setup_logger, get_env
 
 logger = setup_logger("email_sender")
 
 
-def build_email_html(results, price_list=None, price_insight=None):
-    """构建 HTML 邮件内容（包含价格趋势 + 价格影响分析 + 分类新闻）"""
-
-    html = """
-    <div style="font-family: Arial, sans-serif; padding: 20px;">
-        <h1 style="color:#2A4E8A;">China PV & BESS Supply Chain Daily Briefing</h1>
-    """
-
-    # === 供应链价格影响分析 ===
-    if price_insight:
-        html += f"""
-        <h2 style="color:#1A73E8;">📌 Price Impact Analysis</h2>
-        <div style="line-height:1.6; margin-bottom:20px;">
-            {price_insight}
-        </div>
-        """
-
-    # === 供应链价格趋势 ===
-    if price_list:
-        html += """
-        <h2 style="color:#1A73E8;">📊 Supply Chain Price Trends</h2>
-        <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
-            <tr><th>Item</th><th>Price</th><th>Change</th><th>Source</th></tr>
-        """
-        for p in price_list:
-            html += f"""
-            <tr>
-                <td>{p['item']}</td>
-                <td>{p['price']}</td>
-                <td>{p['change']}</td>
-                <td>{p['source']}</td>
-            </tr>
-            """
-        html += "</table><br>"
-
-    # === 新闻按分类展示 ===
-    html += "<h2 style='color:#1A73E8;'>📰 Industry News</h2>"
-
-    # 按 category 分组
-    grouped = {}
-    for item in results:
-        grouped.setdefault(item["category"], []).append(item)
-
-    for category, items in grouped.items():
-        html += f"<h3 style='color:#2A4E8A; margin-top:25px;'>{category}</h3>"
-
-        for item in items:
-            html += f"""
-            <div style="border:1px solid #ddd; padding:12px; border-radius:6px; margin-bottom:12px;">
-                <b>{item['title']}</b><br>
-                <a href="{item['link']}" style="color:#1A73E8;">Original Link</a ><br><br>
-
-                <div style="line-height:1.6;">
-                    {item['insight']}
-                </div>
-            </div>
-            """
-
-    html += "</div>"
-    return html
+# ============================
+# 读取邮件 HTML 模板
+# ============================
+def load_email_template():
+    template_path = os.path.join(os.path.dirname(__file__), "templates", "email_template.html")
+    with open(template_path, "r", encoding="utf-8") as f:
+        return f.read()
 
 
-
+# ============================
+# 内部函数：尝试使用某个 SMTP 发送
+# ============================
 def send_with_smtp(host, port, user, password, recipients, msg):
-    """内部函数：尝试使用某个 SMTP 发送"""
     try:
         logger.info(f"尝试 SMTP 发送：{host}:{port} 用户={user}")
         server = smtplib.SMTP_SSL(host, port)
@@ -87,14 +36,24 @@ def send_with_smtp(host, port, user, password, recipients, msg):
         return False
 
 
-
-def send_email(results, price_list=None, price_insight=None,pdf_path=None):
-    """支持主备邮箱自动切换的邮件发送"""
+# ============================
+# 主函数：支持主备邮箱自动切换
+# ============================
+def send_email(
+    news_html,
+    price_html,
+    price_insight,
+    daily_insight,
+    chart_path,
+    date,
+    pdf_path=None
+):
+    """发送日报邮件（支持主备邮箱自动切换 + HTML 模板 + 图表嵌入 + PDF 附件）"""
 
     # === 主邮箱配置 ===
     primary = {
         "host": get_env("PRIMARY_EMAIL_HOST"),
-        "port": int(get_env("PRIMARY_EMAIL_PORT",default=465)),
+        "port": int(get_env("PRIMARY_EMAIL_PORT", default=465)),
         "user": get_env("PRIMARY_EMAIL_USER"),
         "password": get_env("PRIMARY_EMAIL_PASS"),
     }
@@ -102,32 +61,56 @@ def send_email(results, price_list=None, price_insight=None,pdf_path=None):
     # === 备用邮箱配置 ===
     backup = {
         "host": get_env("BACKUP_EMAIL_HOST"),
-        "port": int(get_env("BACKUP_EMAIL_PORT",default=465)),
+        "port": int(get_env("BACKUP_EMAIL_PORT", default=465)),
         "user": get_env("BACKUP_EMAIL_USER"),
         "password": get_env("BACKUP_EMAIL_PASS"),
     }
 
+    # === 收件人 ===
     recipients = get_env("RECEIVERS", "").split(",")
-
     if not recipients:
         logger.error("未配置收件人 RECEIVERS")
-        return
+        return False
+
+    # === 读取 HTML 模板 ===
+    template = load_email_template()
+
+    html_content = template.format(
+        news_html=news_html,
+        price_html=price_html,
+        price_insight=price_insight,
+        daily_insight=daily_insight,
+        date=date
+    )
 
     # === 构建邮件 ===
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = "China PV & BESS Supply Chain Daily Briefing"
+    msg = MIMEMultipart("related")
+    msg["Subject"] = f"Daily Solar & Storage Intelligence - {date}"
     msg["From"] = primary["user"]
     msg["To"] = ", ".join(recipients)
 
-    html_content = build_email_html(results, price_list, price_insight)
-    msg.attach(MIMEText(html_content, "html", "utf-8"))
+    # HTML 部分
+    msg_alt = MIMEMultipart("alternative")
+    msg.attach(msg_alt)
+    msg_alt.attach(MIMEText(html_content, "html", "utf-8"))
 
-    # 添加pdf附件
-    if pdf_path:
+    # === 图表嵌入（cid:price_chart） ===
+    if chart_path and os.path.exists(chart_path):
+        with open(chart_path, "rb") as f:
+            img = MIMEImage(f.read())
+            img.add_header("Content-ID", "<price_chart>")
+            msg.attach(img)
+    else:
+        logger.warning("图表文件不存在，跳过嵌入图表")
+
+    # === PDF 附件 ===
+    if pdf_path and os.path.exists(pdf_path):
         with open(pdf_path, "rb") as f:
             part = MIMEApplication(f.read(), Name=os.path.basename(pdf_path))
         part["Content-Disposition"] = f'attachment; filename="{os.path.basename(pdf_path)}"'
         msg.attach(part)
+    else:
+        logger.warning("PDF 文件不存在，跳过附件")
 
     # === 1) 尝试主邮箱发送 ===
     logger.info("优先使用主邮箱发送…")
@@ -139,4 +122,5 @@ def send_email(results, price_list=None, price_insight=None,pdf_path=None):
     if send_with_smtp(backup["host"], backup["port"], backup["user"], backup["password"], recipients, msg):
         return True
 
+    logger.error("主备邮箱均发送失败")
     return False
