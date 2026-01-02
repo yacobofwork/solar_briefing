@@ -36,7 +36,7 @@ def run():
     for item in news_list:
         # 构造 summarize_article 所需的 article 对象
         article_obj = {
-            "summary": item["title"] + "\n" + item["link"]
+            "summary": item.get("summary", item["title"])
         }
 
         summary = summarize_article(article_obj)
