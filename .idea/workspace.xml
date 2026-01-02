@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="" />
+    <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/fetch_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_prices.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

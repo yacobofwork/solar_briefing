@@ -53,28 +53,53 @@ def fetch_price_table(url, selector, source):
         return []   # ← 关键：失败时返回空列表，不中断系统
 
 def fetch_pv_prices():
-    """光伏价格：硅料 / 硅片 / 电池片 / 组件"""
-    return fetch_price_table(
+    """光伏价格：硅料 / 硅片 / 电池片 / 组件（主源 + 备用源）"""
+
+    # 主源：Solarzoom
+    primary = fetch_price_table(
         url="https://www.solarzoom.com/price/",
         selector="table tr",
         source="PV"
     )
 
+    if primary:
+        return primary
+
+    print("[WARN] Solarzoom 无数据，切换到北极星光伏价格…")
+
+    # 备用源：北极星光伏
+    fallback = fetch_price_table(
+        url="https://guangfu.bjx.com.cn/price/",
+        selector="table tr",
+        source="PV"
+    )
+
+    return fallback
+
 
 def fetch_bess_prices():
-    """储能价格：电芯 / PACK / 系统"""
-    return fetch_price_table(
+    """储能价格：电芯 / PACK / 系统（主源 + 备用源）"""
+
+    # 主源：ESCN
+    primary = fetch_price_table(
         url="https://www.escn.com.cn/price/",
         selector="table tr",
         source="BESS"
     )
 
+    if primary:
+        return primary
 
-# def fetch_all_prices():
-#     prices = []
-#     prices.extend(fetch_pv_prices())
-#     prices.extend(fetch_bess_prices())
-#     return prices
+    print("[WARN] ESCN 无数据，切换到北极星储能价格…")
+
+    # 备用源：北极星储能
+    fallback = fetch_price_table(
+        url="https://chuneng.bjx.com.cn/price/",
+        selector="table tr",
+        source="BESS"
+    )
+    return fallback
+
 
 def fetch_all_prices():
     prices = []
