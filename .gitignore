@@ -1,0 +1,42 @@
+# --- Python 缓存 ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- 虚拟环境 ---
+.venv/
+venv/
+
+# --- IDE 配置 ---
+.idea/
+.vscode/
+
+# --- 系统文件 ---
+.DS_Store
+
+# --- 日志文件 ---
+*.log
+
+# --- PDF 归档目录（如果你不想提交历史 PDF）---
+archive_pdf/
+*.pdf
+
+# --- 临时文件 ---
+*.tmp
+*.temp
+
+# --- 环境变量文件（敏感信息）---
+.env
+
+# --- WeasyPrint 临时文件 ---
+*.png
+*.svg
+
+# --- 价格历史（如果你不想提交 CSV）---
+# price_history.csv
+
+# --- 依赖锁定文件（你可以选择是否提交）---
+# requirements.txt
+
+*.html

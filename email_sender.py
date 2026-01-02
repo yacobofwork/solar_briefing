@@ -131,8 +131,11 @@ def send_email(results, price_list=None, price_insight=None,pdf_path=None):
     # === 1) 尝试主邮箱发送 ===
     logger.info("优先使用主邮箱发送…")
     if send_with_smtp(primary["host"], primary["port"], primary["user"], primary["password"], recipients, msg):
-        return
+        return True
 
     # === 2) 主邮箱失败 → 自动切换备用邮箱 ===
     logger.warning("主邮箱发送失败，切换备用邮箱…")
-    send_with_smtp(backup["host"], backup["port"], backup["user"], backup["password"], recipients, msg)
+    if send_with_smtp(backup["host"], backup["port"], backup["user"], backup["password"], recipients, msg):
+        return True
+
+    return False

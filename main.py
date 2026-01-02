@@ -97,7 +97,11 @@ def run():
     logger.info(f"PDF 已归档：{archive_path}")
 
     # 6) 发送邮件（仍然使用 HTML 邮件）
-    send_email(results, price_list, price_insight,pdf_path)
+    ok = send_email(results, price_list, price_insight,pdf_path)
+    if ok:
+        logger.info("邮件发送成功")
+    else:
+        logger.info("邮件发送失败")
 
 
 if __name__ == "__main__":
