@@ -19,11 +19,11 @@ from pdf_builder import html_to_pdf
 logger = setup_logger("main")
 
 history_file = "price_history.csv"
-file_exists = os.path.exists(history_file)
 
 
 def run():
     logger.info("=== 新能源日报开始执行 ===")
+    file_exists = os.path.exists(history_file)
 
     # 1) 抓取供应链价格
     price_list = fetch_all_prices()
