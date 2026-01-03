@@ -1,6 +1,9 @@
 import os
 import json
+import shutil
 from datetime import datetime, date
+
+import timedelta
 
 
 def make_json_safe(obj):
@@ -44,3 +47,27 @@ class DailyCache:
         safe_data = make_json_safe(data)
         with open(self._file(name), "w", encoding="utf-8") as f:
             json.dump(safe_data, f, ensure_ascii=False, indent=2)
+
+
+    def clean_old_cache(self, keep_days=7):
+        """自动清理超过 keep_days 的缓存目录"""
+        cutoff = datetime.now() - timedelta(days=keep_days)
+
+        for folder in os.listdir(self.base_path):
+            folder_path = os.path.join(self.base_path, folder)
+
+            # 跳过非目录
+            if not os.path.isdir(folder_path):
+                continue
+
+            # 目录名必须是 YYYY-MM-DD
+            try:
+                folder_date = datetime.strptime(folder, "%Y-%m-%d")
+            except ValueError:
+                continue
+
+            # 判断是否过期
+            if folder_date < cutoff:
+                shutil.rmtree(folder_path)
+                if self.logger:
+                    self.logger.info(f"[Cache] Removed old cache folder: {folder}")

@@ -25,6 +25,7 @@ archive_pdf/
 # --- 临时文件 ---
 *.tmp
 *.temp
+*.json
 
 # --- 环境变量文件（敏感信息）---
 .env

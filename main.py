@@ -35,6 +35,10 @@ config = yaml.safe_load(open("config.yaml"))
 cache_enabled = config["cache"]["enabled"]
 cache = DailyCache(config["cache"]["path"])
 
+# 自动清理缓存
+keep_days = config["cache"]["keep_days"]
+cache.clean_old_cache(keep_days)
+
 
 # ============================================================
 # 1. 数据抓取层
