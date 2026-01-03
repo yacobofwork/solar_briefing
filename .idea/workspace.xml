@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/prompts/summarize_article.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/renderers/article_renderer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/renderers/insight_renderer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/renderers/price_renderer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_prompt_path.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insights.py" beforeDir="false" afterPath="$PROJECT_DIR$/insights.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/price_history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/price_history.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +62,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
   <component name="RunManager">

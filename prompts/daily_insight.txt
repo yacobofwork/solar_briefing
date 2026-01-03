@@ -1,0 +1,17 @@
+Generate a concise strategic insight in clean HTML format.
+
+<h2>Daily Strategic Insight</h2>
+<p><strong>1.</strong> ...</p >
+<p><strong>2.</strong> ...</p >
+
+<h2>Key Takeaways</h2>
+<ol>
+  <li>...</li>
+  <li>...</li>
+  <li>...</li>
+</ol>
+
+Rules:
+- HTML only.
+- No Markdown.
+- No "*" bullets.

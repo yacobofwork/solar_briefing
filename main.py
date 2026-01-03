@@ -9,30 +9,25 @@ import datetime
 from chart_builder import build_price_chart
 from fetch_prices import fetch_all_prices
 from fetcher import fetch_all_news
-from insights import summarize_article, classify_article, analyze_price_impact
+
+from insights import (
+    summarize_article,
+    analyze_price_impact,
+    generate_daily_insight
+)
+
+from renderers.article_renderer import render_article
+from renderers.price_renderer import render_price_insight
+from renderers.insight_renderer import render_daily_insight
+
 from pdf_builder import build_pdf
 from email_sender import send_email
 from utils import setup_logger
 
+# 该模块只负责orchestrate
 logger = setup_logger("main")
 
 history_file = "price_history.csv"
-
-def generate_daily_insight(price_insight, news_html):
-    return f"""
-    <p><strong>Overall Insight:</strong></p >
-    <p>
-        Today's market signals indicate continued competitiveness in the solar and storage supply chain.
-        Price movements and industry news suggest stable upstream costs and favorable procurement conditions.
-    </p >
-
-    <p><strong>Key Takeaways:</strong></p >
-    <ul>
-        <li>PV and BESS components remain in a buyer-friendly environment.</li>
-        <li>Oversupply continues to pressure upstream pricing.</li>
-        <li>Developers should leverage current conditions to secure long-term agreements.</li>
-    </ul>
-    """
 
 
 def run():
@@ -50,7 +45,7 @@ def run():
     news_list = fetch_all_news()
 
     # ============================
-    # 3) 分类 + 洞察
+    # 3) 分类 + AI 洞察
     # ============================
     results = []
     for item in news_list:
@@ -58,14 +53,13 @@ def run():
             "summary": item.get("summary", item["title"])
         }
 
-        summary = summarize_article(article_obj)
-        category = classify_article(article_obj)
+        ai_html = summarize_article(article_obj)
 
         results.append({
             "title": item["title"],
             "link": item["link"],
-            "category": category,
-            "insight": summary
+            "category": item.get("category", "General"),
+            "html": ai_html
         })
 
     # ============================
@@ -96,18 +90,18 @@ def run():
         chart_path = f"price_chart_{date}.png"
         build_price_chart("price_history.csv", chart_path)
 
-        # 价格影响分析
-        price_insight = analyze_price_impact(price_list)
+        # AI 生成价格影响分析（HTML）
+        raw_price_insight = analyze_price_impact(price_list)
+        price_insight = render_price_insight(raw_price_insight)
+
     else:
         logger.warning("今日未获取到价格数据，跳过价格相关流程")
         chart_path = None
-        price_insight = "No price data available today."
+        price_insight = "<p>No price data available today.</p >"
 
     # ============================
-    # 7) 构建 PDF 所需 HTML 片段
+    # 7) 构建价格表格 HTML（结构化）
     # ============================
-
-    # ---- 价格表格 HTML ----
     if price_list:
         price_html = """
         <table>
@@ -126,25 +120,27 @@ def run():
     else:
         price_html = "<p>No price data available today.</p >"
 
-    # ---- 新闻 HTML ----
+    # ============================
+    # 8) 构建新闻 HTML（结构化）
+    # ============================
     news_html = ""
     for category, items in grouped.items():
         news_html += f"<h2>{category}</h2>"
-        for item in items:
-            news_html += f"""
-            <div class="news-item">
-                <div class="news-title">{item['title']}</div>
-                <div class="news-summary">{item['insight']}</div>
-                <a class="news-link" href="{item['link']}">Original link</a >
-            </div>
-            """
+        for i, item in enumerate(items, 1):
+            rendered = render_article(item["html"])
+            news_html += rendered
 
     # ============================
-    # 8) 生成 PDF
+    # 9) 生成 Daily Insight（AI + Renderer）
+    # ============================
+    raw_daily_insight = generate_daily_insight()
+    daily_insight = render_daily_insight(raw_daily_insight)
+
+    # ============================
+    # 10) 生成 PDF
     # ============================
     pdf_path = f"daily_report_{date}.pdf"
 
-    daily_insight = generate_daily_insight(price_insight,news_html)
     build_pdf(
         news_html=news_html,
         price_html=price_html,
@@ -157,10 +153,6 @@ def run():
 
     logger.info(f"PDF 已生成：{pdf_path}")
 
-    # 保存 HTML（可选）
-    # with open("daily_report.html", "w", encoding="utf-8") as f:
-    #     f.write(news_html + price_html)
-
     # 归档 PDF
     archive_dir = "archive_pdf"
     os.makedirs(archive_dir, exist_ok=True)
@@ -169,7 +161,7 @@ def run():
     logger.info(f"PDF 已归档：{archive_path}")
 
     # ============================
-    # 9) 发送邮件
+    # 11) 发送邮件
     # ============================
     ok = send_email(
         news_html=news_html,
