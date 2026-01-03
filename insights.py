@@ -56,6 +56,14 @@ def summarize_article(article):
     # ❗ 不再使用 .format()，避免破坏 JSON
     prompt = load_prompt("summarize_article")
     prompt = prompt.replace("{summary}", article["summary"])
+    prompt = prompt.replace("{source}",article.get("source", "Unknown"))
+
+    link = article.get("link", "") or ""
+    pub_date = article.get("pub_date", "") or ""
+    if hasattr(pub_date,"isoformat"):
+        pub_date = pub_date.isoformat()
+    prompt = prompt.replace("{link}",str(link))
+    prompt = prompt.replace("{pub_date}",str(pub_date))
 
     resp = safe_request(prompt)
     raw = resp.choices[0].message.content
@@ -65,6 +73,9 @@ def summarize_article(article):
     except Exception:
         return {
             "title": "News Summary",
+            "source": article.get("source", "Unknown"),
+            "link": str(link),
+            "pub_date": str(pub_date),
             "cn_summary": article["summary"],
             "en_summary": article["summary"],
             "cn_insights": [],

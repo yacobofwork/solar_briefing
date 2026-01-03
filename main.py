@@ -43,7 +43,10 @@ def run():
     results = []
     for item in news_list:
         article_obj = {
-            "summary": item.get("summary", item["title"])
+            "summary": item.get("summary", item["title"]),
+            "source": item.get("source", "Unknown"),
+            "link": item.get("link", None),
+            "pub_date": item.get("pub_date", None)
         }
         ai_html = summarize_article(article_obj)
         results.append({

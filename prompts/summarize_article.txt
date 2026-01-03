@@ -5,30 +5,48 @@ Your task is to analyze the following news article summary and produce a structu
 ARTICLE SUMMARY:
 {summary}
 
+SOURCE:
+{source}
+
+ORIGINAL LINK:
+{link}
+
+PUBLISH DATE:
+{pub_date}
+
 OUTPUT REQUIREMENTS:
 Return ONLY valid JSON. No explanations, no markdown, no commentary.
+Do not include any text outside the JSON object.
+Do not add fields that are not listed.
+Do not hallucinate missing information.
+Do not escape characters unnecessarily.
+Ensure the JSON is syntactically valid with no trailing commas.
 
 JSON STRUCTURE:
 {
-  "title": "Short English title summarizing the news",
+  "title": "Short English title summarizing the news (concise, factual, non-promotional)",
+  "source": "Original news source (same as input)",
+  "link": "Original article URL (same as input)",
+  "pub_date": "Publish date in YYYY-MM-DD format (same as input)",
   "cn_summary": "Chinese summary of the article",
   "en_summary": "English summary of the article",
   "cn_insights": [
-    "Chinese insight 1",
+    "Chinese insight 1 (concise, factual)",
     "Chinese insight 2"
   ],
   "en_insights": [
-    "English insight 1",
+    "English insight 1 (concise, factual)",
     "English insight 2"
   ],
-  "supply_chain": "Impact on global solar/storage supply chain",
-  "nigeria_impact": "Impact on Nigeria distributed solar/microgrid projects",
-  "recommendation": "Procurement recommendation"
+  "supply_chain": "Impact on global solar/storage supply chain (price, capacity, lead time, export, logistics, risk)",
+  "nigeria_impact": "Impact on Nigeria distributed solar/microgrid projects (CAPEX, delivery, risk)",
+  "recommendation": "Procurement recommendation (actionable, concise, risk-aware)"
 }
 
 RULES:
 - All fields must be present.
 - Keep insights concise and actionable.
+- Title must be short, factual, and not promotional.
 - Do NOT include markdown.
 - Do NOT include commentary outside JSON.
 - Output must be valid JSON.
