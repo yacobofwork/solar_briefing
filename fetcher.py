@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from dateutil import parser
 from utils import setup_logger
 from config_loader import load_config
+from urllib.parse import quote_plus
 
 logger = setup_logger("fetcher")
 config = load_config()
@@ -135,6 +136,37 @@ def fetch_html(url, selectors):
 
     return items
 
+# ============================================================
+# Google 抓取函数
+# ============================================================
+def fetch_google_news(base_url, keywords):
+    items = []
+
+    for kw in keywords:
+        # 关键：对关键词做 URL 编码，空格等会变成 +
+        encoded_kw = quote_plus(kw)
+        url = base_url.format(keyword=encoded_kw)
+
+        try:
+            feed = feedparser.parse(url)
+
+            for entry in feed.entries:
+                try:
+                    pub = parser.parse(entry.published).date()
+                except:
+                    pub = datetime.date.today()
+
+                items.append({
+                    "title": entry.title,
+                    "link": entry.link,
+                    "summary": entry.get("summary", ""),
+                    "pub_date": pub
+                })
+
+        except Exception as e:
+            logger.error(f"Google News 抓取失败：{kw} | {e}")
+
+    return items
 
 # ============================================================
 # 主函数：根据 config.yaml 自动抓取所有新闻
@@ -148,12 +180,7 @@ def fetch_all_news():
     for source_name in config.get("fetch_order", []):
         src_cfg = config["news_sources"].get(source_name)
 
-        if not src_cfg:
-            logger.warning(f"配置中找不到新闻源：{source_name}")
-            continue
-
-        if not src_cfg.get("enabled", False):
-            logger.info(f"新闻源已禁用：{source_name}")
+        if not src_cfg or not src_cfg.get("enabled", False):
             continue
 
         logger.info(f"抓取新闻源：{source_name}")
@@ -164,6 +191,12 @@ def fetch_all_news():
 
             elif src_cfg["type"] == "html":
                 items += fetch_html(src_cfg["url"], src_cfg["selectors"])
+
+            elif src_cfg["type"] == "google":
+                items += fetch_google_news(
+                    src_cfg["base_url"],
+                    src_cfg["keywords"]
+                )
 
             else:
                 logger.warning(f"未知新闻源类型：{source_name}")

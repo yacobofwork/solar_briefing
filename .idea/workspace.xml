@@ -7,7 +7,7 @@
     <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fetch_prices.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_prices.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/price_history.csv" beforeDir="false" afterPath="$PROJECT_DIR$/price_history.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -1,4 +1,19 @@
 news_sources:
+  google_news:
+    enabled: true
+    type: google
+    base_url: "https://news.google.com/rss/search?q={keyword}&hl=en-US&gl=US&ceid=US:en"
+    keywords:
+      - "solar energy"
+      - "energy storage"
+      - "photovoltaic"
+      - "光伏"
+      - "储能"
+      - "逆变器"
+      - "Nigeria electricity"
+      - "NERC"
+      - "Nigeria solar"
+
   pv_tech:
     enabled: true
     type: rss
@@ -46,6 +61,7 @@ news_sources:
 
 # 会按照如下顺序进行抓取
 fetch_order:
+  - google_news
   - pv_tech
   - bess
   - policy
