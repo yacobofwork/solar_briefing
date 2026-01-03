@@ -1,193 +1,151 @@
 import requests
 from bs4 import BeautifulSoup
+from utils import setup_logger
+from config_loader import load_config
+
+logger = setup_logger("prices")
+config = load_config()
 
 
-def fetch_price_table(url, source):
-    headers = {"User-Agent": "Mozilla/5.0"}
-
-    """智能价格抓取器：自动识别 table / ul / div 列表结构"""
-    results = []
+# ============================================================
+# HTML 通用抓取器
+# ============================================================
+def fetch_html_price(url, selectors):
+    items = []
 
     try:
-        resp = requests.get(url, headers=headers, timeout=10)
-        resp.encoding = resp.apparent_encoding
+        resp = requests.get(url, timeout=10)
         soup = BeautifulSoup(resp.text, "html.parser")
 
-        # ============================
-        # 1) 优先识别 <table>
-        # ============================
-        tables = soup.find_all("table")
-        for table in tables:
-            for tr in table.find_all("tr"):
-                tds = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
-                if len(tds) < 2:
-                    continue
+        for row in soup.select(selectors["item"]):
+            try:
+                name = row.select_one(selectors["name"]).get_text(strip=True)
+                price = row.select_one(selectors["price"]).get_text(strip=True)
 
-                item = tds[0]
-                price = tds[1]
-                change = tds[2] if len(tds) > 2 else ""
+                if selectors.get("change"):
+                    change = row.select_one(selectors["change"]).get_text(strip=True)
+                else:
+                    change = ""
 
-                if not item or not price:
-                    continue
-
-                results.append({
-                    "item": item,
+                items.append({
+                    "item": name,
                     "price": price,
                     "change": change,
-                    "source": source,
-                    "type": detect_price_type(item)
+                    "source": url
                 })
 
-        # ============================
-        # 2) 识别 <ul><li> 列表结构
-        # ============================
-        for ul in soup.find_all("ul"):
-            for li in ul.find_all("li"):
-                text = li.get_text(strip=True)
-                if not text or len(text) < 6:
-                    continue
-
-                # 简单分割：硅料 56 元/kg +0.5%
-                parts = text.split()
-                if len(parts) < 2:
-                    continue
-
-                item = parts[0]
-                price = parts[1]
-                change = parts[2] if len(parts) > 2 else ""
-
-                results.append({
-                    "item": item,
-                    "price": price,
-                    "change": change,
-                    "source": source
-                })
-
-        # ============================
-        # 3) 识别 <div class="xxx"> 列表结构
-        # ============================
-        for div in soup.find_all("div"):
-            text = div.get_text(strip=True)
-            if not text or len(text) < 6:
-                continue
-
-            # 过滤非价格类文本
-            if "元" not in text and "￥" not in text:
-                continue
-
-            parts = text.split()
-            if len(parts) < 2:
-                continue
-
-            item = parts[0]
-            price = parts[1]
-            change = parts[2] if len(parts) > 2 else ""
-
-            results.append({
-                "item": item,
-                "price": price,
-                "change": change,
-                "source": source
-            })
+            except Exception as e:
+                logger.warning(f"单条价格解析失败：{e}")
 
     except Exception as e:
-        print(f"[WARN] 价格抓取失败：{url} - {e}")
+        logger.error(f"HTML 价格抓取失败：{url} | {e}")
 
-    # 去重
-    unique = []
-    seen = set()
-    for r in results:
-        key = (r["item"], r["price"])
-        if key not in seen:
-            seen.add(key)
-            unique.append(r)
-
-    return unique
+    return items
 
 
-def fetch_pv_prices():
-    """光伏价格：硅料 / 硅片 / 电池片 / 组件（主源 + 备用源）"""
+# ============================================================
+# TradingEconomics 抓取器
+# ============================================================
+def fetch_te_price(url, item_name):
+    items = []
 
-    # 主源：Solarzoom
-    primary = fetch_price_table(
-        url="https://www.solarzoom.com/price/",
-        source="PV"
-    )
+    try:
+        resp = requests.get(url, timeout=10)
+        soup = BeautifulSoup(resp.text, "html.parser")
 
-    if primary:
-        return primary
+        price_cell = soup.select_one(".table .datatable-row .datatable-cell:nth-child(2)")
+        if not price_cell:
+            logger.warning(f"TE 未找到价格：{url}")
+            return []
 
-    print("[WARN] Solarzoom 无数据，切换到北极星光伏价格…")
+        price = price_cell.get_text(strip=True)
 
-    # 备用源：北极星光伏
-    fallback = fetch_price_table(
-        url="https://guangfu.bjx.com.cn/price/",
-        source="PV"
-    )
+        items.append({
+            "item": item_name.capitalize(),
+            "price": price,
+            "change": "",
+            "source": "TradingEconomics"
+        })
 
-    return fallback
+    except Exception as e:
+        logger.error(f"TradingEconomics 抓取失败：{url} | {e}")
 
-
-def fetch_bess_prices():
-    """储能价格：电芯 / PACK / 系统（主源 + 备用源）"""
-
-    # 主源：ESCN
-    primary = fetch_price_table(
-        url="https://www.escn.com.cn/price/",
-        source="BESS"
-    )
-
-    if primary:
-        return primary
-
-    print("[WARN] ESCN 无数据，切换到北极星储能价格…")
-
-    # 备用源：北极星储能
-    fallback = fetch_price_table(
-        url="https://chuneng.bjx.com.cn/price/",
-        source="BESS"
-    )
-    return fallback
+    return items
 
 
+# ============================================================
+# Google Finance 抓取器
+# ============================================================
+def fetch_google_finance(url, ticker):
+    items = []
+
+    try:
+        resp = requests.get(url, timeout=10)
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        price = soup.select_one(".YMlKec")
+        if not price:
+            logger.warning(f"Google Finance 未找到价格：{url}")
+            return []
+
+        price = price.get_text(strip=True)
+
+        items.append({
+            "item": ticker,
+            "price": price,
+            "change": "",
+            "source": "Google Finance"
+        })
+
+    except Exception as e:
+        logger.error(f"Google Finance 抓取失败：{url} | {e}")
+
+    return items
+
+
+# ============================================================
+# 主函数：抓取所有价格
+# ============================================================
 def fetch_all_prices():
-    prices = []
+    logger.info("开始抓取价格数据…")
 
-    for func in [fetch_pv_prices, fetch_bess_prices]:
-        try:
-            prices.extend(func())
-        except Exception as e:
-            print(f"[WARN] 价格模块失败：{func.__name__} - {e}")
+    price_list = []
 
-    return prices
+    # -------------------------
+    # 国内价格
+    # -------------------------
+    domestic_cfg = config["prices"]["domestic"]
 
-# 自动识别价格类型
-def detect_price_type(item_text):
-    """根据 item 文本自动识别价格类型"""
+    for name, cfg in domestic_cfg.items():
+        if not cfg.get("enabled", False):
+            continue
 
-    text = item_text.lower()
+        logger.info(f"抓取国内价格源：{name}")
 
-    # PV
-    if any(k in text for k in ["硅料", "致密料", "单晶料", "多晶料"]):
-        return "Silicon Material"
+        items = fetch_html_price(cfg["url"], cfg["selectors"])
+        price_list += items
 
-    if any(k in text for k in ["硅片", "182", "210", "m10", "g12"]):
-        return "Wafer"
+    # -------------------------
+    # 国际价格：TradingEconomics
+    # -------------------------
+    te_cfg = config["prices"]["international"]["tradingeconomics"]
+    if te_cfg.get("enabled", False):
+        base = te_cfg["base_url"]
+        for item in te_cfg["commodities"]:
+            url = base.format(item=item)
+            logger.info(f"抓取 TE 价格：{item}")
+            price_list += fetch_te_price(url, item)
 
-    if any(k in text for k in ["电池片", "perc", "topcon", "hjt"]):
-        return "Cell"
+    # -------------------------
+    # 国际价格：Google Finance
+    # -------------------------
+    gf_cfg = config["prices"]["international"]["google_finance"]
+    if gf_cfg.get("enabled", False):
+        base = gf_cfg["base_url"]
+        for ticker in gf_cfg["tickers"]:
+            url = base.format(ticker=ticker)
+            logger.info(f"抓取 Google Finance：{ticker}")
+            price_list += fetch_google_finance(url, ticker)
 
-    if any(k in text for k in ["组件", "模组", "550w", "600w"]):
-        return "Module"
-
-    # BESS
-    if any(k in text for k in ["电芯", "lfp", "ncm", "磷酸铁锂"]):
-        return "Battery Cell"
-
-    if "pack" in text:
-        return "Pack"
-
-    if any(k in text for k in ["储能系统", "1c", "2c", "集装箱"]):
-        return "System"
-
-    return "Unknown"
+    logger.info(f"成功抓取 {len(price_list)} 条价格数据")
+    return price_list
