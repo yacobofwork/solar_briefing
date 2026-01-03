@@ -18,6 +18,22 @@ logger = setup_logger("main")
 
 history_file = "price_history.csv"
 
+def generate_daily_insight(price_insight, news_html):
+    return f"""
+    <p><strong>Overall Insight:</strong></p >
+    <p>
+        Today's market signals indicate continued competitiveness in the solar and storage supply chain.
+        Price movements and industry news suggest stable upstream costs and favorable procurement conditions.
+    </p >
+
+    <p><strong>Key Takeaways:</strong></p >
+    <ul>
+        <li>PV and BESS components remain in a buyer-friendly environment.</li>
+        <li>Oversupply continues to pressure upstream pricing.</li>
+        <li>Developers should leverage current conditions to secure long-term agreements.</li>
+    </ul>
+    """
+
 
 def run():
     logger.info("=== 新能源日报开始执行 ===")
@@ -119,7 +135,7 @@ def run():
             <div class="news-item">
                 <div class="news-title">{item['title']}</div>
                 <div class="news-summary">{item['insight']}</div>
-                <a class="news-link" href=" 'link']">Original link</a >
+                <a class="news-link" href="{item['link']}">Original link</a >
             </div>
             """
 
@@ -128,12 +144,14 @@ def run():
     # ============================
     pdf_path = f"daily_report_{date}.pdf"
 
+    daily_insight = generate_daily_insight(price_insight,news_html)
     build_pdf(
         news_html=news_html,
         price_html=price_html,
         chart_path=chart_path,
         date=date,
         price_insight=price_insight,
+        daily_insight=daily_insight,
         output_path=pdf_path
     )
 
@@ -157,7 +175,7 @@ def run():
         news_html=news_html,
         price_html=price_html,
         price_insight=price_insight,
-        daily_insight="",
+        daily_insight=daily_insight,
         chart_path=chart_path,
         date=date,
         pdf_path=pdf_path

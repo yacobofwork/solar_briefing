@@ -76,11 +76,12 @@ def send_email(
     template = load_email_template()
 
     html_content = template.format(
-        news_html=news_html,
-        price_html=price_html,
+        date=date,
         price_insight=price_insight,
+        price_html=price_html,
+        news_html=news_html,
         daily_insight=daily_insight,
-        date=date
+        chart_path="cid:price_chart"
     )
 
     # === 构建邮件 ===
