@@ -21,4 +21,6 @@ def build_pdf(**kwargs):
     html_content = template.render(**kwargs)
 
     # 4. 生成 PDF
-    HTML(string=html_content).write_pdf(kwargs["output_path"])
+    (HTML(string=html_content,
+         base_url=".") # WeasyPrint 会使用base_url作为根目录
+     .write_pdf(kwargs["output_path"]))

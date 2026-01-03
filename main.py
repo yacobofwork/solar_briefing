@@ -108,7 +108,9 @@ def process_price_ai(price_list, date):
             cache.save("price_insight", price_insight)
 
     # ---- Chart Cache ----
-    chart_path = f"{cache.day_path}/chart.png"
+    charts_dir = "output/charts"
+    os.makedirs(charts_dir, exist_ok=True)
+    chart_path = os.path.abspath(f"{charts_dir}/price_chart_{date}.png")
     if cache_enabled and os.path.exists(chart_path):
         logger.info("Using cached chart...")
     else:
@@ -211,6 +213,8 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
     os.makedirs(pdf_dir,exist_ok=True)
     pdf_path = os.path.abspath(f"{pdf_dir}/daily_report_{date}.pdf")
 
+    logo_path = os.path.abspath("company_logo.png")
+
     build_pdf(
         news_html=news_html,
         news_china=news_china,
@@ -221,7 +225,7 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
         date=date,
         price_insight=price_insight,
         daily_insight=daily_insight,
-        logo_path=os.path.abspath("company_logo.png"),
+        logo_path=logo_path,
         output_path=pdf_path
     )
 
