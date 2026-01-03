@@ -1,0 +1,54 @@
+news_sources:
+  pv_tech:
+    enabled: true
+    type: rss
+    url: "https://www.pv-tech.org/feed/"
+
+  bess:
+    enabled: true
+    type: rss
+    url: "https://www.energy-storage.news/feed/"
+
+  policy:
+    enabled: true
+    type: rss
+    url: "https://www.ne21.com/rss/"
+
+  cailian:
+    enabled: true
+    type: html
+    url: "https://www.cls.cn/v/energy"
+    selectors:
+      item: ".timeline-item"
+      title: ".title"
+      link: "a"
+      time: ".time"
+
+  kr36:
+    enabled: true
+    type: html
+    url: "https://36kr.com/information/web_news"
+    selectors:
+      item: ".kr-flow-feed"
+      title: ".title"
+      link: "a"
+      time: ".time"
+
+  sohu_energy:
+    enabled: true
+    type: html
+    url: "https://www.sohu.com/c/8/1460"
+    selectors:
+      item: ".news-box"
+      title: "h4"
+      link: "a"
+      time: ".time"
+
+# 会按照如下顺序进行抓取
+fetch_order:
+  - pv_tech
+  - bess
+  - policy
+  - cailian
+  - kr36
+  - sohu_energy

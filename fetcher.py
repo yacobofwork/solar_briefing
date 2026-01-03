@@ -5,8 +5,10 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser
 from utils import setup_logger
+from config_loader import load_config
 
 logger = setup_logger("fetcher")
+config = load_config()
 
 
 # ============================================================
@@ -16,15 +18,13 @@ def parse_date(text):
     """统一解析各种新闻日期格式，返回 datetime.date"""
 
     if not text:
-        return datetime.date.today()  # fallback：没有日期 → 默认今天
+        return datetime.date.today()
 
     text = text.strip()
     today = datetime.date.today()
     now = datetime.datetime.now()
 
-    # -------------------------
     # 相对时间
-    # -------------------------
     if text in ["刚刚", "刚刚发布"]:
         return today
 
@@ -46,32 +46,23 @@ def parse_date(text):
     if text == "前天":
         return today - datetime.timedelta(days=2)
 
-    # -------------------------
     # 财联社格式：10:33 → 默认今天
-    # -------------------------
     if re.match(r"^\d{1,2}:\d{2}$", text):
         return today
 
-    # -------------------------
     # 中文日期：2025年01月02日
-    # -------------------------
     m = re.match(r"(\d{4})年(\d{1,2})月(\d{1,2})日", text)
     if m:
         y, mth, d = map(int, m.groups())
         return datetime.date(y, mth, d)
 
-    # -------------------------
     # 常见格式：2025-01-02 / 2025/01/02 / 2025-01-02 10:33
-    # -------------------------
     try:
         dt = parser.parse(text)
         return dt.date()
     except:
         pass
 
-    # -------------------------
-    # fallback：无法解析 → 默认今天
-    # -------------------------
     return today
 
 
@@ -84,67 +75,12 @@ def filter_today(news_list):
 
 
 # ============================================================
-# 新闻源 1：PV-Tech（RSS）
+# RSS 抓取通用函数
 # ============================================================
-def fetch_pv_news():
-    url = "https://www.pv-tech.org/feed/"
+def fetch_rss(url):
     items = []
-
     try:
         feed = feedparser.parse(url)
-        for entry in feed.entries:
-            pub = parser.parse(entry.published).date()
-
-            items.append({
-                "title": entry.title,
-                "link": entry.link,
-                "summary": entry.get("summary", ""),
-                "pub_date": pub
-            })
-    except Exception as e:
-        logger.error(f"PV-Tech 抓取失败：{e}")
-
-    return items
-
-
-# ============================================================
-# 新闻源 2：Energy-Storage（RSS）
-# ============================================================
-def fetch_bess_news():
-    url = "https://www.energy-storage.news/feed/"
-    items = []
-
-    try:
-        feed = feedparser.parse(url)
-        for entry in feed.entries:
-            pub = parser.parse(entry.published).date()
-
-            items.append({
-                "title": entry.title,
-                "link": entry.link,
-                "summary": entry.get("summary", ""),
-                "pub_date": pub
-            })
-    except Exception as e:
-        logger.error(f"BESS 新闻抓取失败：{e}")
-
-    return items
-
-
-# ============================================================
-# 新闻源 3：北极星政策（RSS）
-# ============================================================
-def fetch_policy_news():
-    url = "https://www.ne21.com/rss/"
-    items = []
-
-    try:
-        feed = feedparser.parse(url)
-
-        if not feed.entries:
-            logger.warning("政策 RSS 无数据，可能被阻断")
-            return []
-
         for entry in feed.entries:
             try:
                 pub = parser.parse(entry.published).date()
@@ -157,120 +93,83 @@ def fetch_policy_news():
                 "summary": entry.get("summary", ""),
                 "pub_date": pub
             })
-
     except Exception as e:
-        logger.error(f"政策 RSS 抓取失败：{e}")
+        logger.error(f"RSS 抓取失败：{url} | {e}")
 
     return items
 
 
 # ============================================================
-# 新闻源 4：财联社（HTML）
+# HTML 抓取通用函数
 # ============================================================
-def fetch_cailian():
-    url = "https://www.cls.cn/v/energy"
+def fetch_html(url, selectors):
     items = []
 
     try:
         resp = requests.get(url, timeout=10)
         soup = BeautifulSoup(resp.text, "html.parser")
 
-        for div in soup.select(".timeline-item"):
-            title = div.select_one(".title").get_text(strip=True)
-            link = div.select_one("a")["href"]
-            time_text = div.select_one(".time").get_text(strip=True)
+        for div in soup.select(selectors["item"]):
+            try:
+                title = div.select_one(selectors["title"]).get_text(strip=True)
+                link = div.select_one(selectors["link"])["href"]
+                time_text = div.select_one(selectors["time"]).get_text(strip=True)
+                pub = parse_date(time_text)
 
-            pub = parse_date(time_text)
+                # 修复相对链接
+                if link.startswith("/"):
+                    from urllib.parse import urljoin
+                    link = urljoin(url, link)
 
-            items.append({
-                "title": title,
-                "link": link,
-                "summary": "",
-                "pub_date": pub
-            })
+                items.append({
+                    "title": title,
+                    "link": link,
+                    "summary": "",
+                    "pub_date": pub
+                })
+            except Exception as e:
+                logger.warning(f"HTML 单条解析失败：{e}")
 
     except Exception as e:
-        logger.error(f"财联社抓取失败：{e}")
+        logger.error(f"HTML 抓取失败：{url} | {e}")
 
     return items
 
 
 # ============================================================
-# 新闻源 5：36Kr（HTML）
-# ============================================================
-def fetch_36kr():
-    url = "https://36kr.com/information/web_news"
-    items = []
-
-    try:
-        resp = requests.get(url, timeout=10)
-        soup = BeautifulSoup(resp.text, "html.parser")
-
-        for div in soup.select(".kr-flow-feed"):
-            title = div.select_one(".title").get_text(strip=True)
-            link = "https://36kr.com" + div.select_one("a")["href"]
-            time_text = div.select_one(".time").get_text(strip=True)
-
-            pub = parse_date(time_text)
-
-            items.append({
-                "title": title,
-                "link": link,
-                "summary": "",
-                "pub_date": pub
-            })
-
-    except Exception as e:
-        logger.error(f"36Kr 抓取失败：{e}")
-
-    return items
-
-
-# ============================================================
-# 新闻源 6：搜狐能源（HTML）
-# ============================================================
-def fetch_sohu_energy():
-    url = "https://www.sohu.com/c/8/1460"
-    items = []
-
-    try:
-        resp = requests.get(url, timeout=10)
-        soup = BeautifulSoup(resp.text, "html.parser")
-
-        for div in soup.select(".news-box"):
-            title = div.select_one("h4").get_text(strip=True)
-            link = "https://www.sohu.com" + div.select_one("a")["href"]
-            time_text = div.select_one(".time").get_text(strip=True)
-
-            pub = parse_date(time_text)
-
-            items.append({
-                "title": title,
-                "link": link,
-                "summary": "",
-                "pub_date": pub
-            })
-
-    except Exception as e:
-        logger.error(f"搜狐能源抓取失败：{e}")
-
-    return items
-
-
-# ============================================================
-# 主函数：抓取所有新闻 + 去重 + 当天过滤
+# 主函数：根据 config.yaml 自动抓取所有新闻
 # ============================================================
 def fetch_all_news():
     logger.info("开始抓取新闻…")
 
     items = []
-    items += fetch_pv_news()
-    items += fetch_bess_news()
-    items += fetch_policy_news()
 
-    items += fetch_cailian()
-    items += fetch_36kr()
-    items += fetch_sohu_energy()
+    # 按配置文件中的顺序抓取
+    for source_name in config.get("fetch_order", []):
+        src_cfg = config["news_sources"].get(source_name)
+
+        if not src_cfg:
+            logger.warning(f"配置中找不到新闻源：{source_name}")
+            continue
+
+        if not src_cfg.get("enabled", False):
+            logger.info(f"新闻源已禁用：{source_name}")
+            continue
+
+        logger.info(f"抓取新闻源：{source_name}")
+
+        try:
+            if src_cfg["type"] == "rss":
+                items += fetch_rss(src_cfg["url"])
+
+            elif src_cfg["type"] == "html":
+                items += fetch_html(src_cfg["url"], src_cfg["selectors"])
+
+            else:
+                logger.warning(f"未知新闻源类型：{source_name}")
+
+        except Exception as e:
+            logger.error(f"抓取 {source_name} 失败：{e}")
 
     # 去重（按标题）
     unique = {}
