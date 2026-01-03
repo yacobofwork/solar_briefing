@@ -82,7 +82,9 @@ def process_price_ai(price_list, date):
             writer.writerow([date, p["item"], p["price"]])
 
     # 图表
-    chart_path = f"price_chart_{date}.png"
+    chart_dir = "output/charts"
+    os.makedirs(chart_dir,exist_ok=True)
+    chart_path = os.path.abspath(f"{chart_dir}/price_chart_{date}.png")
     build_price_chart(history_file, chart_path)
 
     # AI 价格洞察
@@ -169,7 +171,9 @@ def render_price_table(price_list):
 def export_pdf(date, news_html, news_china, news_nigeria, news_global,
                price_html, chart_path, price_insight, daily_insight):
 
-    pdf_path = f"daily_report_{date}.pdf"
+    pdf_dir = "output/pdf"
+    os.makedirs(pdf_dir,exist_ok=True)
+    pdf_path = os.path.abspath(f"{pdf_dir}/daily_report_{date}.pdf")
 
     build_pdf(
         news_html=news_html,
@@ -188,7 +192,7 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
     logger.info(f"PDF 已生成：{pdf_path}")
 
     # 归档
-    archive_dir = "archive_pdf"
+    archive_dir = "output/archive"
     os.makedirs(archive_dir, exist_ok=True)
     shutil.copy(pdf_path, os.path.join(archive_dir, f"daily_report_{date}.pdf"))
 
