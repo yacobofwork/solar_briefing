@@ -39,4 +39,4 @@ archive_pdf/
 # --- 依赖锁定文件（你可以选择是否提交）---
 # requirements.txt
 
-*.html
+#*.html

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <style>
+
+    /* ===========================
+       Global Styles
+       =========================== */
+
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    @page {
+        size: A4;
+        margin: 80px 40px;
+
+        @bottom-left {
+            content: "Prepared by Yacob — ywang@saba.energy";
+            font-size: 11px;
+            color: #666;
+        }
+
+        @bottom-center {
+            content: "Page " counter(page) " of " counter(pages);
+            font-size: 12px;
+            color: #666;
+        }
+
+        @bottom-right {
+            content: "www.saba.energy";
+            font-size: 11px;
+            color: #666;
+        }
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #00334E;
+    }
+
+    h2 {
+        font-size: 22px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        color: #007A6F;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* ===========================
+       Cover Page (Version D)
+       =========================== */
+
+    .cover {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: linear-gradient(135deg, #00334E 0%, #007A6F 50%, #00A89C 100%);
+        color: white;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .cover-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cover-logo img {
+        width: 220px;
+        margin-bottom: 50px;
+    }
+
+    .cover-title {
+        font-size: 46px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .cover-date {
+        font-size: 22px;
+        opacity: 0.9;
+        margin-bottom: 60px;
+    }
+
+    .cover-author {
+        font-size: 18px;
+        line-height: 1.6;
+        opacity: 0.95;
+        margin-top: 40px;
+    }
+
+    /* ===========================
+       Table of Contents (Auto Page Numbers)
+       =========================== */
+
+    .toc-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .toc-item {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .toc-item a {
+        color: #333;
+        text-decoration: none;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .toc-text {
+        flex: 1;
+    }
+
+    .toc-dots {
+        flex: 1;
+        border-bottom: 1px dotted #999;
+        margin: 0 10px;
+    }
+
+    .toc-page {
+        width: 40px;
+        text-align: right;
+    }
+
+    /* ===========================
+       News Cards
+       =========================== */
+
+    .news-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        background: #fafafa;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 25px;
+    }
+
+    table th, table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- ===========================
+     Cover Page
+     =========================== -->
+<div class="cover">
+    <div class="cover-content">
+        <div class="cover-logo">
+            <img src="{{ logo_path }}" class="logo">
+        </div>
+
+        <div class="cover-title">Daily Solar & Storage Intelligence</div>
+        <div class="cover-date">{{ date }}</div>
+
+        <div class="cover-author">
+            <div>Prepared by: Yacob</div>
+            <div>Email: ywang@saba.energy</div>
+        </div>
+    </div>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+
+<!-- ===========================
+     Table of Contents
+     =========================== -->
+
+<h1 class="toc-title">Table of Contents</h1>
+
+<div class="toc-item">
+    <a href=" ">
+        <span class="toc-text">1. Price Impact Analysis</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec1, page)</span>
+    </a >
+</div>
+
+<div class="toc-item">
+    <a href="#sec2">
+        <span class="toc-text">2. Market Prices</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec2, page)</span>
+    </a >
+</div>
+
+<div class="toc-item">
+    <a href="#sec3">
+        <span class="toc-text">3. Industry News</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec3, page)</span>
+    </a >
+</div>
+
+<div class="toc-item" style="margin-left: 20px;">
+    <a href="#sec31">
+        <span class="toc-text">3.1 China Supply Chain 🇨🇳</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec31, page)</span>
+    </a >
+</div>
+
+<div class="toc-item" style="margin-left: 20px;">
+    <a href="#sec32">
+        <span class="toc-text">3.2 Nigeria Market 🇳🇬</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec32, page)</span>
+    </a >
+</div>
+
+<div class="toc-item" style="margin-left: 20px;">
+    <a href="#sec33">
+        <span class="toc-text">3.3 Global Solar & Storage 🌍</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec33, page)</span>
+    </a >
+</div>
+
+<div class="toc-item">
+    <a href="#sec4">
+        <span class="toc-text">4. Daily Insight</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec4, page)</span>
+    </a >
+</div>
+
+<div class="toc-item">
+    <a href="#sec5">
+        <span class="toc-text">5. Price Trend Chart</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">target-counter(#sec5, page)</span>
+    </a >
+</div>
+
+<div style="page-break-after: always;"></div>
+
+
+<!-- ===========================
+     Section 1: Price Impact Analysis
+     =========================== -->
+
+<h1 id="sec1">1. Price Impact Analysis</h1>
+{{ price_insight | safe }}
+
+<div style="page-break-after: always;"></div>
+
+
+<!-- ===========================
+     Section 2: Market Prices
+     =========================== -->
+
+<h1 id="sec2">2. Market Prices</h1>
+{{ price_html | safe }}
+
+<div style="page-break-after: always;"></div>
+
+
+<!-- ===========================
+     Section 3: Industry News
+     =========================== -->
+
+<h1 id="sec3">3. Industry News</h1>
+
+<h2 id="sec31">3.1 China Supply Chain 🇨🇳</h2>
+{{ news_china | safe }}
+
+<h2 id="sec32">3.2 Nigeria Market 🇳🇬</h2>
+{{ news_nigeria | safe }}
+
+<h2 id="sec33">3.3 Global Solar & Storage 🌍</h2>
+{{ news_global | safe }}
+
+<div style="page-break-after: always;"></div>
+
+
+<!-- ===========================
+     Section 4: Daily Insight
+     =========================== -->
+
+<h1 id="sec4">4. Daily Insight</h1>
+{{ daily_insight | safe }}
+
+<div style="page-break-after: always;"></div>
+
+
+<!-- ===========================
+     Section 5: Price Trend Chart
+     =========================== -->
+
+<h1 id="sec5">5. Price Trend Chart</h1>
+
+<img src="{{ chart_path }}" width="600">
+
+</body>
+</html>
