@@ -24,7 +24,6 @@ from pdf_builder import build_pdf
 from email_sender import send_email
 from utils import setup_logger
 
-# 该模块只负责orchestrate
 logger = setup_logger("main")
 
 history_file = "price_history.csv"
@@ -34,27 +33,19 @@ def run():
     logger.info("=== 新能源日报开始执行 ===")
     file_exists = os.path.exists(history_file)
 
-    # ============================
-    # 1) 抓取供应链价格
-    # ============================
+    # 1) 抓取价格
     price_list = fetch_all_prices()
 
-    # ============================
     # 2) 抓取新闻
-    # ============================
     news_list = fetch_all_news()
 
-    # ============================
-    # 3) 分类 + AI 洞察
-    # ============================
+    # 3) AI 生成新闻洞察
     results = []
     for item in news_list:
         article_obj = {
             "summary": item.get("summary", item["title"])
         }
-
         ai_html = summarize_article(article_obj)
-
         results.append({
             "title": item["title"],
             "link": item["link"],
@@ -62,23 +53,16 @@ def run():
             "html": ai_html
         })
 
-    # ============================
     # 4) 日期
-    # ============================
     date = datetime.date.today().strftime("%Y-%m-%d")
 
-    # ============================
-    # 5) 新闻按分类分组
-    # ============================
+    # 5) 新闻分组
     grouped = {}
     for r in results:
         grouped.setdefault(r["category"], []).append(r)
 
-    # ============================
-    # 6) 价格相关流程
-    # ============================
+    # 6) 价格处理
     if price_list:
-        # 写入历史价格
         with open(history_file, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             if not file_exists:
@@ -86,22 +70,16 @@ def run():
             for p in price_list:
                 writer.writerow([date, p["item"], p["price"]])
 
-        # 生成图表
         chart_path = f"price_chart_{date}.png"
         build_price_chart("price_history.csv", chart_path)
 
-        # AI 生成价格影响分析（HTML）
         raw_price_insight = analyze_price_impact(price_list)
         price_insight = render_price_insight(raw_price_insight)
-
     else:
-        logger.warning("今日未获取到价格数据，跳过价格相关流程")
         chart_path = None
         price_insight = "<p>No price data available today.</p >"
 
-    # ============================
-    # 7) 构建价格表格 HTML（结构化）
-    # ============================
+    # 7) 价格表 HTML
     if price_list:
         price_html = """
         <table>
@@ -120,25 +98,18 @@ def run():
     else:
         price_html = "<p>No price data available today.</p >"
 
-    # ============================
-    # 8) 构建新闻 HTML（结构化）
-    # ============================
+    # 8) 新闻 HTML
     news_html = ""
     for category, items in grouped.items():
         news_html += f"<h2>{category}</h2>"
-        for i, item in enumerate(items, 1):
-            rendered = render_article(item["html"])
-            news_html += rendered
+        for item in items:
+            news_html += render_article(item["html"])
 
-    # ============================
-    # 9) 生成 Daily Insight（AI + Renderer）
-    # ============================
+    # 9) Daily Insight
     raw_daily_insight = generate_daily_insight()
     daily_insight = render_daily_insight(raw_daily_insight)
 
-    # ============================
-    # 10) 生成 PDF
-    # ============================
+    # 10) PDF
     pdf_path = f"daily_report_{date}.pdf"
 
     build_pdf(
@@ -148,21 +119,18 @@ def run():
         date=date,
         price_insight=price_insight,
         daily_insight=daily_insight,
+        logo_path=os.path.abspath("company_logo.png"),
         output_path=pdf_path
     )
 
     logger.info(f"PDF 已生成：{pdf_path}")
 
-    # 归档 PDF
+    # 归档
     archive_dir = "archive_pdf"
     os.makedirs(archive_dir, exist_ok=True)
-    archive_path = os.path.join(archive_dir, f"daily_report_{date}.pdf")
-    shutil.copy(pdf_path, archive_path)
-    logger.info(f"PDF 已归档：{archive_path}")
+    shutil.copy(pdf_path, os.path.join(archive_dir, f"daily_report_{date}.pdf"))
 
-    # ============================
-    # 11) 发送邮件
-    # ============================
+    # 11) 邮件
     ok = send_email(
         news_html=news_html,
         price_html=price_html,

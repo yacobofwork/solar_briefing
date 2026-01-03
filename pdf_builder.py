@@ -1,25 +1,24 @@
-import os
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from weasyprint import HTML
 
-def load_template():
-    """读取 PDF HTML 模板文件"""
-    template_path = os.path.join(os.path.dirname(__file__), "templates", "pdf_template.html")
-    with open(template_path, "r", encoding="utf-8") as f:
-        return f.read()
 
-def build_pdf(news_html, price_html, chart_path, date, price_insight, daily_insight, output_path):
-    """构建 PDF 报告"""
-    template = load_template()
+def build_pdf(**kwargs):
+    """
+    使用 Jinja2 渲染 PDF 模板，彻底避免 .format() 与 CSS 冲突。
+    支持自动目录页、Logo、咨询公司级排版。
+    """
 
-    # 将变量注入 HTML 模板
-    html_content = template.format(
-        date=date,
-        price_insight=price_insight,
-        price_html=price_html,
-        news_html=news_html,
-        daily_insight=daily_insight,
-        chart_path=chart_path
+    # 1. 加载 templates 目录
+    env = Environment(
+        loader=FileSystemLoader("templates"),
+        autoescape=select_autoescape(["html", "xml"])
     )
 
-    # 生成 PDF
-    HTML(string=html_content).write_pdf(output_path)
+    # 2. 加载 pdf_template.html
+    template = env.get_template("pdf_template.html")
+
+    # 3. 渲染 HTML
+    html_content = template.render(**kwargs)
+
+    # 4. 生成 PDF
+    HTML(string=html_content).write_pdf(kwargs["output_path"])

@@ -1,10 +1,19 @@
+# renderers/insight_renderer.py
 
-
-
-# 负责把 AI输出包装成 HTML
-def render_daily_insight(html_fragment):
-    return f"""
-    <div class="daily-insight">
-        {html_fragment}
-    </div>
+def render_daily_insight(data):
     """
+    输入：AI 输出的 JSON dict
+    输出：HTML 字符串（Daily Insight）
+    """
+
+    title = data.get("title", "Daily Insight")
+    points = data.get("points", [])
+
+    html = f"<h2>{title}</h2><ul>"
+
+    for p in points:
+        html += f"<li>{p}</li>"
+
+    html += "</ul>"
+
+    return html

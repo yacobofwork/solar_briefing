@@ -1,19 +1,22 @@
 import time
 import os
 import inspect
+import json
 from openai import OpenAI
 from utils import clean_html, get_env
 
-# 该模块负责 AI
+# DeepSeek API client
 client = OpenAI(
     api_key=get_env("DEEPSEEK_API_KEY", required=True),
     base_url="https://api.deepseek.com",
     timeout=30
 )
 
-BASE_DIR = os.path.dirname(__file__)
 
 def safe_request(prompt):
+    """
+    DeepSeek API 自动重试封装
+    """
     for _ in range(3):
         try:
             return client.chat.completions.create(
@@ -21,16 +24,17 @@ def safe_request(prompt):
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3
             )
-        except:
+        except Exception:
             time.sleep(2)
-    raise RuntimeError("DeepSeek failed")
+    raise RuntimeError("DeepSeek API failed after 3 retries")
 
 
 def load_prompt(name):
-    # 获取 insights.py 的真实路径（无论从哪里运行 main.py）
+    """
+    从 prompts/ 目录加载 prompt 文件
+    """
     current_file = inspect.getfile(inspect.currentframe())
     base_dir = os.path.dirname(os.path.abspath(current_file))
-
     prompt_path = os.path.join(base_dir, "prompts", f"{name}.txt")
 
     if not os.path.exists(prompt_path):
@@ -40,17 +44,85 @@ def load_prompt(name):
         return f.read()
 
 
+# ============================================================
+# 1) 新闻总结（结构化 JSON）
+# ============================================================
 def summarize_article(article):
-    prompt = load_prompt("summarize_article").format(article=article["summary"])
-    resp = safe_request(prompt)
-    return clean_html(resp.choices[0].message.content)
+    """
+    输入: {"summary": "..."}
+    输出: JSON dict（由 renderer 转成 HTML）
+    """
 
+    # ❗ 不再使用 .format()，避免破坏 JSON
+    prompt = load_prompt("summarize_article")
+    prompt = prompt.replace("{summary}", article["summary"])
+
+    resp = safe_request(prompt)
+    raw = resp.choices[0].message.content
+
+    try:
+        return json.loads(raw)
+    except Exception:
+        return {
+            "title": "News Summary",
+            "cn_summary": article["summary"],
+            "en_summary": article["summary"],
+            "cn_insights": [],
+            "en_insights": [],
+            "supply_chain": "",
+            "nigeria_impact": "",
+            "recommendation": ""
+        }
+
+
+# ============================================================
+# 2) 价格影响分析（结构化 JSON）
+# ============================================================
 def analyze_price_impact(price_list):
-    prompt = load_prompt("analyze_price_impact").format(price_list=price_list)
-    resp = safe_request(prompt)
-    return clean_html(resp.choices[0].message.content)
+    """
+    输入: price_list
+    输出: JSON dict（由 renderer 转成 HTML）
+    """
 
-def generate_daily_insight():
-    prompt = load_prompt("daily_insight")
+    # ❗ 不再使用 .format()
+    prompt = load_prompt("analyze_price_impact")
+    prompt = prompt.replace("{price_list}", json.dumps(price_list, ensure_ascii=False))
+
     resp = safe_request(prompt)
-    return clean_html(resp.choices[0].message.content)
+    raw = resp.choices[0].message.content
+
+    try:
+        return json.loads(raw)
+    except Exception:
+        return {
+            "title": "Price Impact Analysis",
+            "sections": [
+                {
+                    "subtitle": "Error",
+                    "content": "AI output could not be parsed."
+                }
+            ]
+        }
+
+
+# ============================================================
+# 3) Daily Insight（结构化 JSON）
+# ============================================================
+def generate_daily_insight():
+    """
+    输出: JSON dict（由 renderer 转成 HTML）
+    """
+    prompt = load_prompt("daily_insight")
+
+    resp = safe_request(prompt)
+    raw = resp.choices[0].message.content
+
+    try:
+        return json.loads(raw)
+    except Exception:
+        return {
+            "title": "Daily Insight",
+            "points": [
+                "AI output could not be parsed."
+            ]
+        }

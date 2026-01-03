@@ -5,18 +5,22 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from utils import setup_logger, get_env
 
 logger = setup_logger("email_sender")
 
 
 # ============================
-# 读取邮件 HTML 模板
+# 使用 Jinja2 渲染 HTML 模板
 # ============================
-def load_email_template():
-    template_path = os.path.join(os.path.dirname(__file__), "templates", "email_template.html")
-    with open(template_path, "r", encoding="utf-8") as f:
-        return f.read()
+def render_email_html(**kwargs):
+    env = Environment(
+        loader=FileSystemLoader("templates"),
+        autoescape=select_autoescape(["html", "xml"])
+    )
+    template = env.get_template("email_template.html")
+    return template.render(**kwargs)
 
 
 # ============================
@@ -72,16 +76,13 @@ def send_email(
         logger.error("未配置收件人 RECEIVERS")
         return False
 
-    # === 读取 HTML 模板 ===
-    template = load_email_template()
-
-    html_content = template.format(
+    # === 使用 Jinja2 渲染 HTML ===
+    html_content = render_email_html(
         date=date,
         price_insight=price_insight,
         price_html=price_html,
         news_html=news_html,
-        daily_insight=daily_insight,
-        chart_path="cid:price_chart"
+        daily_insight=daily_insight
     )
 
     # === 构建邮件 ===
@@ -100,6 +101,7 @@ def send_email(
         with open(chart_path, "rb") as f:
             img = MIMEImage(f.read())
             img.add_header("Content-ID", "<price_chart>")
+            img.add_header("Content-Disposition", "inline", filename=os.path.basename(chart_path))
             msg.attach(img)
     else:
         logger.warning("图表文件不存在，跳过嵌入图表")

@@ -1,41 +1,34 @@
-You are an energy supply chain analyst specializing in China's PV and BESS industries.
-Generate a bilingual intelligence brief in clean HTML format.
+You are an energy industry analyst specializing in solar, storage, and global supply chains.
 
-【STRICT OUTPUT FORMAT — HTML ONLY】
+Your task is to analyze the following news article summary and produce a structured JSON output.
 
-<h2>1. 中文摘要</h2>
-<p>（50字以内）</p >
+ARTICLE SUMMARY:
+{summary}
 
-<h2>2. English Summary</h2>
-<p>(50 words)</p >
+OUTPUT REQUIREMENTS:
+Return ONLY valid JSON. No explanations, no markdown, no commentary.
 
-<h2>3. 中文核心洞察</h2>
-<p><strong>3.1</strong> ...</p >
-<p><strong>3.2</strong> ...</p >
-<p><strong>3.3</strong> ...</p >
+JSON STRUCTURE:
+{
+  "title": "Short English title summarizing the news",
+  "cn_summary": "Chinese summary of the article",
+  "en_summary": "English summary of the article",
+  "cn_insights": [
+    "Chinese insight 1",
+    "Chinese insight 2"
+  ],
+  "en_insights": [
+    "English insight 1",
+    "English insight 2"
+  ],
+  "supply_chain": "Impact on global solar/storage supply chain",
+  "nigeria_impact": "Impact on Nigeria distributed solar/microgrid projects",
+  "recommendation": "Procurement recommendation"
+}
 
-<h2>4. English Key Insights</h2>
-<p><strong>4.1</strong> ...</p >
-<p><strong>4.2</strong> ...</p >
-<p><strong>4.3</strong> ...</p >
-
-<h2>5. Supply Chain Impact (English)</h2>
-<p>...</p >
-
-<h2>6. Impact on Nigeria Microgrid Projects (English)</h2>
-<p>...</p >
-
-<h2>7. Procurement Recommendation (English)</h2>
-<ol>
-  <li>...</li>
-  <li>...</li>
-  <li>...</li>
-</ol>
-
-【Rules】
-- DO NOT use "*" or "-" bullet points.
-- DO NOT output Markdown.
-- Only output clean HTML fragments.
-
-【Article】
-{article}
+RULES:
+- All fields must be present.
+- Keep insights concise and actionable.
+- Do NOT include markdown.
+- Do NOT include commentary outside JSON.
+- Output must be valid JSON.
