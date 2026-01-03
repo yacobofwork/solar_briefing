@@ -109,5 +109,5 @@ prices:
 
 cache:
   enabled: true
-  path: "./cache"
+  path: "./output/cache"
   keep_days: 2

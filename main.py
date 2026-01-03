@@ -243,7 +243,7 @@ def send_daily_email(news_china,news_nigeria,news_global,
                      news_html, price_html, price_insight,
                      daily_insight,chart_path, date, pdf_path):
 
-    ok = send_email(
+    success = send_email(
         news_china = news_china,
         news_nigeria = news_nigeria,
         news_global = news_global,
@@ -256,11 +256,21 @@ def send_daily_email(news_china,news_nigeria,news_global,
         pdf_path=pdf_path
     )
 
-    if ok:
+    if success :
+        safe_delete(pdf_path)
         logger.info("邮件发送成功")
     else:
         logger.error("邮件发送失败")
 
+
+def safe_delete(path):
+    try:
+        if os.path.exists(path):
+            os.remove(path)
+            return True
+    except Exception as e:
+        print(f"Failed to delete {path}: {e}")
+    return False
 
 # ============================================================
 # 主流程（Pipeline）
