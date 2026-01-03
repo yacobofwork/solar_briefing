@@ -5,10 +5,6 @@
 
     <style>
 
-    /* ===========================
-       Global Styles
-       =========================== */
-
     body {
         font-family: sans-serif;
         margin: 0;
@@ -62,7 +58,7 @@
     }
 
     /* ===========================
-       Cover Page (Version D)
+       Cover Page
        =========================== */
 
     .cover {
@@ -110,7 +106,7 @@
     }
 
     /* ===========================
-       Table of Contents (Auto Page Numbers)
+       Table of Contents (Working)
        =========================== */
 
     .toc-title {
@@ -121,12 +117,6 @@
     .toc-item {
         font-size: 16px;
         margin-bottom: 10px;
-    }
-
-    .toc-item a {
-        color: #333;
-        text-decoration: none;
-        width: 100%;
         display: flex;
         justify-content: space-between;
     }
@@ -141,9 +131,8 @@
         margin: 0 10px;
     }
 
-    .toc-page {
-        width: 40px;
-        text-align: right;
+    .toc-page::after {
+        content: target-counter(attr(data-target url), page);
     }
 
     /* ===========================
@@ -204,74 +193,58 @@
 <h1 class="toc-title">Table of Contents</h1>
 
 <div class="toc-item">
-    <a href=" ">
-        <span class="toc-text">1. Price Impact Analysis</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec1, page)</span>
-    </a >
+    <span class="toc-text">1. Price Impact Analysis</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec1"></span>
 </div>
 
 <div class="toc-item">
-    <a href="#sec2">
-        <span class="toc-text">2. Market Prices</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec2, page)</span>
-    </a >
+    <span class="toc-text">2. Market Prices</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec2"></span>
 </div>
 
 <div class="toc-item">
-    <a href="#sec3">
-        <span class="toc-text">3. Industry News</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec3, page)</span>
-    </a >
+    <span class="toc-text">3. Industry News</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec3"></span>
 </div>
 
 <div class="toc-item" style="margin-left: 20px;">
-    <a href="#sec31">
-        <span class="toc-text">3.1 China Supply Chain 🇨🇳</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec31, page)</span>
-    </a >
+    <span class="toc-text">3.1 China Supply Chain 🇨🇳</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec31"></span>
 </div>
 
 <div class="toc-item" style="margin-left: 20px;">
-    <a href="#sec32">
-        <span class="toc-text">3.2 Nigeria Market 🇳🇬</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec32, page)</span>
-    </a >
+    <span class="toc-text">3.2 Nigeria Market 🇳🇬</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec32"></span>
 </div>
 
 <div class="toc-item" style="margin-left: 20px;">
-    <a href="#sec33">
-        <span class="toc-text">3.3 Global Solar & Storage 🌍</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec33, page)</span>
-    </a >
+    <span class="toc-text">3.3 Global Solar & Storage 🌍</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec33"></span>
 </div>
 
 <div class="toc-item">
-    <a href="#sec4">
-        <span class="toc-text">4. Daily Insight</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec4, page)</span>
-    </a >
+    <span class="toc-text">4. Daily Insight</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec4"></span>
 </div>
 
 <div class="toc-item">
-    <a href="#sec5">
-        <span class="toc-text">5. Price Trend Chart</span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">target-counter(#sec5, page)</span>
-    </a >
+    <span class="toc-text">5. Price Trend Chart</span>
+    <span class="toc-dots"></span>
+    <span class="toc-page" data-target="#sec5"></span>
 </div>
 
 <div style="page-break-after: always;"></div>
 
 
 <!-- ===========================
-     Section 1: Price Impact Analysis
+     Section 1
      =========================== -->
 
 <h1 id="sec1">1. Price Impact Analysis</h1>
@@ -281,7 +254,7 @@
 
 
 <!-- ===========================
-     Section 2: Market Prices
+     Section 2
      =========================== -->
 
 <h1 id="sec2">2. Market Prices</h1>
@@ -291,25 +264,25 @@
 
 
 <!-- ===========================
-     Section 3: Industry News
+     Section 3
      =========================== -->
 
 <h1 id="sec3">3. Industry News</h1>
 
-<h2 id="sec31">3.1 China Supply Chain 🇨🇳</h2>
+<h2 id="sec31">3.1🇨🇳China Supply Chain</h2>
 {{ news_china | safe }}
 
-<h2 id="sec32">3.2 Nigeria Market 🇳🇬</h2>
+<h2 id="sec32">3.2🇳🇬Nigeria Market</h2>
 {{ news_nigeria | safe }}
 
-<h2 id="sec33">3.3 Global Solar & Storage 🌍</h2>
+<h2 id="sec33">3.3🌍Global Solar & Storage</h2>
 {{ news_global | safe }}
 
 <div style="page-break-after: always;"></div>
 
 
 <!-- ===========================
-     Section 4: Daily Insight
+     Section 4
      =========================== -->
 
 <h1 id="sec4">4. Daily Insight</h1>
@@ -319,7 +292,7 @@
 
 
 <!-- ===========================
-     Section 5: Price Trend Chart
+     Section 5
      =========================== -->
 
 <h1 id="sec5">5. Price Trend Chart</h1>
