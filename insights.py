@@ -62,6 +62,7 @@ def summarize_article(article):
     pub_date = article.get("pub_date", "") or ""
     if hasattr(pub_date,"isoformat"):
         pub_date = pub_date.isoformat()
+
     prompt = prompt.replace("{link}",str(link))
     prompt = prompt.replace("{pub_date}",str(pub_date))
 
@@ -76,6 +77,7 @@ def summarize_article(article):
             "source": article.get("source", "Unknown"),
             "link": str(link),
             "pub_date": str(pub_date),
+            "region": "global",
             "cn_summary": article["summary"],
             "en_summary": article["summary"],
             "cn_insights": [],

@@ -7,6 +7,7 @@ def render_article(data):
     source = data.get("source", "Unknown")
     link = data.get("link", "")
     pub_date = data.get("pub_date", "")
+    region = data.get("region", "global")
 
     cn_summary = data.get("cn_summary", "")
     en_summary = data.get("en_summary", "")
@@ -16,6 +17,14 @@ def render_article(data):
     nigeria_impact = data.get("nigeria_impact", "")
     recommendation = data.get("recommendation", "")
 
+    # Region icon mapping
+    region_icons = {
+        "china": "🇨🇳 China",
+        "nigeria": "🇳🇬 Nigeria",
+        "global": "🌍 Global"
+    }
+    region_label = region_icons.get(region, "🌍 Global")
+
     # Correct clickable link
     link_html = f'<a href="{link}" target="_blank">Read Original Article</a >' if link else ""
 
@@ -23,12 +32,13 @@ def render_article(data):
     <div class="news-item">
         <h3>{title}</h3>
 
+        <p><strong>Region:</strong> {region_label}</p>
         <p><strong>Source:</strong> {source}</p>
         <p><strong>Published:</strong> {pub_date}</p>
-        <p>{link_html}</p >
+        <p>{link_html}</p>
 
         <p><strong>Chinese Summary:</strong></p>
-        <p>{cn_summary}</p >
+        <p>{cn_summary}</p>
 
         <p><strong>English Summary:</strong></p>
         <p>{en_summary}</p >
