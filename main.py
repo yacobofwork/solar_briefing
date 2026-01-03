@@ -23,10 +23,17 @@ from renderers.insight_renderer import render_daily_insight
 from pdf_builder import build_pdf
 from email_sender import send_email
 from utils import setup_logger
+from cache_manager import DailyCache
+import yaml
 
 logger = setup_logger("main")
 
 history_file = "price_history.csv"
+
+# 初始化天缓存，可在配置文件当中关闭
+config = yaml.safe_load(open("config.yaml"))
+cache_enabled = config["cache"]["enabled"]
+cache = DailyCache(config["cache"]["path"])
 
 
 # ============================================================
@@ -34,13 +41,26 @@ history_file = "price_history.csv"
 # ============================================================
 
 def fetch_data():
-    """抓取价格与新闻"""
-    logger.info("Fetching price data...")
-    price_list = fetch_all_prices()
+    """抓取价格与新闻（带缓存）"""
+    # ---- Price Cache ----
+    if cache_enabled and cache.exists("prices"):
+        logger.info("Loading prices from cache...")
+        price_list = cache.load("prices")
+    else:
+        logger.info("Fetching price data...")
+        price_list = fetch_all_prices()
+        if cache_enabled:
+            cache.save("prices", price_list)
 
-    logger.info("Fetching news data...")
-    news_list = fetch_all_news()
-
+    # ---- News Cache ----
+    if cache_enabled and cache.exists("news_raw"):
+        logger.info("Loading raw news from cache...")
+        news_list = cache.load("news_raw")
+    else:
+        logger.info("Fetching news data...")
+        news_list = fetch_all_news()
+        if cache_enabled:
+            cache.save("news_raw", news_list)
     return price_list, news_list
 
 
@@ -49,9 +69,12 @@ def fetch_data():
 # ============================================================
 
 def process_news_ai(news_list):
-    """对每条新闻调用 summarize_article()，生成结构化 JSON"""
-    logger.info("Processing news with AI...")
+    """AI 处理新闻（带缓存）"""
+    if cache_enabled and cache.exists("news_ai"):
+        logger.info("Loading AI-processed news from cache...")
+        return cache.load("news_ai")
 
+    logger.info("Processing news with AI...")
     results = []
     for item in news_list:
         article_obj = {
@@ -63,49 +86,58 @@ def process_news_ai(news_list):
         ai_json = summarize_article(article_obj)
         results.append(ai_json)
 
+    if cache_enabled:
+        cache.save("news_ai", results)
+
     return results
 
-
 def process_price_ai(price_list, date):
-    """价格历史记录、图表生成、价格洞察"""
-    if not price_list:
-        return None, "<p>No price data available today.</p >"
+    """价格历史记录、图表生成、价格洞察（带缓存）"""
+    # ---- Price Insight Cache ----
+    if cache_enabled and cache.exists("price_insight"):
+        logger.info("Loading price insight from cache...")
+        price_insight = cache.load("price_insight")
+    else:
+        raw_price_insight = analyze_price_impact(price_list)
+        price_insight = render_price_insight(raw_price_insight)
+        if cache_enabled:
+            cache.save("price_insight", price_insight)
 
-    file_exists = os.path.exists(history_file)
-
-    # 写入历史记录
-    with open(history_file, "a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        if not file_exists:
-            writer.writerow(["date", "item", "price"])
-        for p in price_list:
-            writer.writerow([date, p["item"], p["price"]])
-
-    # 图表
-    chart_dir = "output/charts"
-    os.makedirs(chart_dir,exist_ok=True)
-    chart_path = os.path.abspath(f"{chart_dir}/price_chart_{date}.png")
-    build_price_chart(history_file, chart_path)
-
-    # AI 价格洞察
-    raw_price_insight = analyze_price_impact(price_list)
-    price_insight = render_price_insight(raw_price_insight)
+    # ---- Chart Cache ----
+    chart_path = f"{cache.day_path}/chart.png"
+    if cache_enabled and os.path.exists(chart_path):
+        logger.info("Using cached chart...")
+    else:
+        logger.info("Generating price chart...")
+        build_price_chart(history_file, chart_path)
 
     return chart_path, price_insight
-
 
 # ============================================================
 # 3. 数据分组层（Region）
 # ============================================================
 
 def group_news_by_region(results):
-    """按 region 分组：china / nigeria / global"""
+    """按 region 分组（带缓存）"""
+
+    if cache_enabled and cache.exists("china"):
+        logger.info("Loading region groups from cache...")
+        return (
+            cache.load("china"),
+            cache.load("nigeria"),
+            cache.load("global")
+        )
+
     china = [r for r in results if r.get("region") == "china"]
     nigeria = [r for r in results if r.get("region") == "nigeria"]
     global_news = [r for r in results if r.get("region") == "global"]
 
-    return china, nigeria, global_news
+    if cache_enabled:
+        cache.save("china", china)
+        cache.save("nigeria", nigeria)
+        cache.save("global", global_news)
 
+    return china, nigeria, global_news
 
 # ============================================================
 # 4. 渲染层（HTML）
@@ -248,8 +280,14 @@ def run():
     price_html = render_price_table(price_list)
 
     # Step 7: Daily Insight
-    raw_daily_insight = generate_daily_insight()
-    daily_insight = render_daily_insight(raw_daily_insight)
+    if cache_enabled and cache.exists("daily_insight"):
+        logger.info("Loading daily insight from cache...")
+        daily_insight = cache.load("daily_insight")
+    else:
+        raw_daily_insight = generate_daily_insight()
+        daily_insight = render_daily_insight(raw_daily_insight)
+        if cache_enabled:
+            cache.save("daily_insight", daily_insight)
 
     # Step 8: PDF 输出
     pdf_path = export_pdf(

@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Disquiet In NEMSA Over Appointment Of Acting MD",
+    "source": "The Whistler Newspaper",
+    "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9XWUhkOG13UlVybVJSUVJnMHJtako4VGJPLTNpOFFkQW1HcEFOLWhBM3B4VnN2aVczRm55Q21Qb2ZJQXhJX1FpZlprZ1NoeWNkcVJVVWZNelFiU24zV3RwYmtlcXlkMl95Ym1nNm4zWjRuTlRweEFjNTJYc9IBgAFBVV95cUxPcUR3MVRtendUcC1zQmxQRHhXTzVsYUxGQVhncWRtWWp5b2dhLTFfd2YyOFdfczY5Z1BfbVJLNmY1UWZRbFdjY3o3bmNrSWNVUTdyMkpkRU94b1pTMFduSDA2U1NoR3NLRXZweUhwZHN6c0ZBYjZzbDN0VlpzQVA5Ng?oc=5",
+    "pub_date": "2026-01-03",
+    "region": "nigeria",
+    "cn_summary": "尼日利亚电力设备与材料检验局（NEMSA）内部对代理董事总经理的任命产生不满。",
+    "en_summary": "There is internal discontent within the Nigerian Electricity Management Services Agency (NEMSA) regarding the appointment of an acting Managing Director.",
+    "cn_insights": [
+      "尼日利亚电力监管机构的人事变动可能影响其技术标准和认证流程的稳定性。",
+      "机构内部的不确定性可能延缓对电力项目（包括太阳能和微电网）的审批与检验。"
+    ],
+    "en_insights": [
+      "Personnel changes in Nigeria's electricity regulatory body could affect the stability of its technical standards and certification processes.",
+      "Internal uncertainty within the agency may delay approvals and inspections for power projects, including solar and microgrids."
+    ],
+    "supply_chain": "No direct impact on the global solar/storage supply chain. The issue is specific to a Nigerian regulatory agency's internal governance.",
+    "nigeria_impact": "Potential negative impact. Uncertainty or delays at NEMSA could slow down the inspection and certification of electrical materials and installations, including distributed solar and microgrid projects, increasing project timelines and risks.",
+    "recommendation": "Monitor the situation at NEMSA closely. For ongoing projects, factor potential regulatory delays into timelines. Engage with local partners to understand the practical implications for equipment certification and project approvals."
+  },
+  {
+    "title": "Nigeria Sees 400% Surge in Electric Vehicle Adoption Over Five Years",
+    "source": "The Guardian Nigeria News",
+    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQdnIwaVZwbWl4TWJOYzUzTHJBZFRvdUg4eThNVnVha0xYeG5Hb3NTeTBrQWJINHBnWGU2Sm9XWU5Sc2xnMGVCNnprVnd0OHdvRUZwTW9PTER3bTRQbkwwNDJndDA0bThWX3hPRzFIMkZ1aEdheDlJZEpLR1c1WlhkTmdaVm9LZ1hhY2o0RzFrS1VGSWdFZnpfa1AwMWVsOWRzMmx2X2ZOTjhheENOaDhaYktPSWdSd2dY?oc=5",
+    "pub_date": "2026-01-03",
+    "region": "nigeria",
+    "cn_summary": "尼日利亚副州长哈姆扎特表示，该国电动汽车采用率在五年内增长了400%。",
+    "en_summary": "Nigeria has experienced a 400% increase in electric vehicle adoption within five years, according to Deputy Governor Hamzat.",
+    "cn_insights": [
+      "尼日利亚电动汽车市场快速增长，可能带动对充电基础设施和分布式能源的需求。",
+      "这一趋势可能为离网太阳能和储能系统创造新的应用场景和商业机会。"
+    ],
+    "en_insights": [
+      "Rapid EV growth in Nigeria signals a potential surge in demand for charging infrastructure and distributed energy solutions.",
+      "This trend could create new opportunities for integrating solar and storage systems to support EV charging, especially in areas with unreliable grid power."
+    ],
+    "supply_chain": "Increased EV adoption in Nigeria may indirectly boost demand for energy storage components (batteries) and potentially solar PV for charging, but the impact on the global upstream supply chain is likely minimal in the short term due to the market's current scale.",
+    "nigeria_impact": "Positive. The rise in EVs will increase electricity demand and highlight the need for reliable, clean power. This strengthens the business case for distributed solar and microgrid projects, which can provide cost-effective and resilient charging solutions, especially for commercial fleets and in off-grid/weak-grid areas.",
+    "recommendation": "Monitor the Nigerian EV and charging infrastructure market closely. Consider pilot projects that bundle solar PV, battery storage, and EV charging for commercial and industrial clients. Prioritize partnerships with local firms experienced in energy and mobility."
+  }
+]
