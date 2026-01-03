@@ -235,10 +235,14 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
     return pdf_path
 
 
-def send_daily_email(news_html, price_html, price_insight,
+def send_daily_email(news_china,news_nigeria,news_global,
+                     news_html, price_html, price_insight,
                      daily_insight,chart_path, date, pdf_path):
 
     ok = send_email(
+        news_china = news_china,
+        news_nigeria = news_nigeria,
+        news_global = news_global,
         news_html=news_html,
         price_html=price_html,
         price_insight=price_insight,
@@ -301,8 +305,9 @@ def run():
 
     # Step 9: 邮件发送
     send_daily_email(
-        news_html, price_html, price_insight, daily_insight,
-        chart_path, date, pdf_path
+        news_china,news_nigeria,news_global,
+        news_html, price_html, price_insight,
+        daily_insight,chart_path, date, pdf_path
     )
 
 

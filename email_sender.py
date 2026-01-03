@@ -44,6 +44,9 @@ def send_with_smtp(host, port, user, password, recipients, msg):
 # 主函数：支持主备邮箱自动切换
 # ============================
 def send_email(
+    news_china,
+    news_nigeria,
+    news_global,
     news_html,
     price_html,
     price_insight,
@@ -78,6 +81,9 @@ def send_email(
 
     # === 使用 Jinja2 渲染 HTML ===
     html_content = render_email_html(
+        news_china = news_china,
+        news_nigeria = news_nigeria,
+        news_global = news_global,
         date=date,
         price_insight=price_insight,
         price_html=price_html,
