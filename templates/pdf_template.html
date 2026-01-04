@@ -2,18 +2,24 @@
 <html>
 <head>
     <meta charset="utf-8">
-
     <style>
 
-    body {
-        font-family: sans-serif;
+    /* ===========================
+       Global Reset
+       =========================== */
+    html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
+        font-family: sans-serif;
         font-size: 14px;
         line-height: 1.6;
         color: #333;
     }
 
+    /* ===========================
+       Page Settings
+       =========================== */
     @page {
         size: A4;
         margin: 80px 40px;
@@ -37,6 +43,81 @@
         }
     }
 
+    /* 封面页：无页脚、无页码、无边距 */
+    @page:first {
+        margin: 0;
+        @bottom-left { content: none; }
+        @bottom-center { content: none; }
+        @bottom-right { content: none; }
+    }
+
+    /* ===========================
+       Cover Page
+       =========================== */
+    .cover {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+
+        background: linear-gradient(135deg, #00334E 0%, #007A6F 50%, #00A89C 100%);
+        color: white;
+        text-align: center;
+    }
+
+    /* Logo 固定顶部 */
+    .cover-logo {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    .cover-logo img {
+        width: 220px;
+    }
+
+    /* 标题 + 日期：中等偏上 */
+    .cover-main {
+        position: absolute;
+        top: 32%;   /* 控制标题整体位置（中等偏上） */
+        left: 0;
+        right: 0;
+        text-align: center;
+        transform: translateY(-50%);
+    }
+
+    .cover-title {
+        font-size: 46px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .cover-date {
+        font-size: 22px;
+        opacity: 0.9;
+        margin-bottom: 20px;
+    }
+
+    /* 作者信息：中等偏下 */
+    .cover-author {
+        position: absolute;
+        bottom: 18%;   /* 控制作者信息位置（中等偏下） */
+        left: 0;
+        right: 0;
+        text-align: center;
+
+        font-size: 18px;
+        line-height: 1.6;
+        opacity: 0.95;
+    }
+
+    /* ===========================
+       Headings
+       =========================== */
     h1 {
         font-size: 28px;
         margin-top: 40px;
@@ -58,57 +139,8 @@
     }
 
     /* ===========================
-       Cover Page
+       Table of Contents
        =========================== */
-
-    .cover {
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        background: linear-gradient(135deg, #00334E 0%, #007A6F 50%, #00A89C 100%);
-        color: white;
-        text-align: center;
-        padding: 40px;
-    }
-
-    .cover-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cover-logo img {
-        width: 220px;
-        margin-bottom: 50px;
-    }
-
-    .cover-title {
-        font-size: 46px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-    }
-
-    .cover-date {
-        font-size: 22px;
-        opacity: 0.9;
-        margin-bottom: 60px;
-    }
-
-    .cover-author {
-        font-size: 18px;
-        line-height: 1.6;
-        opacity: 0.95;
-        margin-top: 40px;
-    }
-
-    /* ===========================
-       Table of Contents (Working)
-       =========================== */
-
     .toc-title {
         font-size: 28px;
         margin-bottom: 20px;
@@ -138,7 +170,6 @@
     /* ===========================
        News Cards
        =========================== */
-
     .news-item {
         border: 1px solid #ddd;
         padding: 15px;
@@ -161,35 +192,37 @@
     </style>
 </head>
 
-
 <body>
 
 <!-- ===========================
      Cover Page
      =========================== -->
 <div class="cover">
-    <div class="cover-content">
-        <div class="cover-logo">
-            <img src="{{ logo_path }}" class="logo">
-        </div>
 
+    <!-- Logo 顶部固定 -->
+    <div class="cover-logo">
+        <img src="{{ logo_path }}" class="logo">
+    </div>
+
+    <!-- 标题 + 日期：中等偏上 -->
+    <div class="cover-main">
         <div class="cover-title">Daily Solar & Storage Intelligence</div>
         <div class="cover-date">{{ date }}</div>
-
-        <div class="cover-author">
-            <div>Prepared by: Yacob</div>
-            <div>Email: ywang@saba.energy</div>
-        </div>
     </div>
+
+    <!-- 作者信息：中等偏下 -->
+    <div class="cover-author">
+        <div>Prepared by: Yacob</div>
+        <div>Email: ywang@saba.energy</div>
+    </div>
+
 </div>
 
 <div style="page-break-after: always;"></div>
 
-
 <!-- ===========================
      Table of Contents
      =========================== -->
-
 <h1 class="toc-title">Table of Contents</h1>
 
 <div class="toc-item">
@@ -211,19 +244,19 @@
 </div>
 
 <div class="toc-item" style="margin-left: 20px;">
-    <span class="toc-text">3.1  🇨🇳China Supply Chain</span>
+    <span class="toc-text">3.1 🇨🇳China Supply Chain</span>
     <span class="toc-dots"></span>
     <span class="toc-page" data-target="#sec31"></span>
 </div>
 
 <div class="toc-item" style="margin-left: 20px;">
-    <span class="toc-text">3.2 🇳🇬Nigeria Market </span>
+    <span class="toc-text">3.2 🇳🇬Nigeria Market</span>
     <span class="toc-dots"></span>
     <span class="toc-page" data-target="#sec32"></span>
 </div>
 
 <div class="toc-item" style="margin-left: 20px;">
-    <span class="toc-text">3.3 🌍Global Solar & Storage </span>
+    <span class="toc-text">3.3 🌍Global Solar & Storage</span>
     <span class="toc-dots"></span>
     <span class="toc-page" data-target="#sec33"></span>
 </div>
@@ -242,31 +275,23 @@
 
 <div style="page-break-after: always;"></div>
 
-
 <!-- ===========================
      Section 1
      =========================== -->
-
 <h1 id="sec1">1. Price Impact Analysis</h1>
 {{ price_insight | safe }}
-
 <div style="page-break-after: always;"></div>
-
 
 <!-- ===========================
      Section 2
      =========================== -->
-
 <h1 id="sec2">2. Market Prices</h1>
 {{ price_html | safe }}
-
 <div style="page-break-after: always;"></div>
-
 
 <!-- ===========================
      Section 3
      =========================== -->
-
 <h1 id="sec3">3. Industry News</h1>
 
 <h2 id="sec31">3.1 🇨🇳China Supply Chain</h2>
@@ -280,26 +305,20 @@
 
 <div style="page-break-after: always;"></div>
 
-
 <!-- ===========================
      Section 4
      =========================== -->
-
 <h1 id="sec4">4. Daily Insight</h1>
 {{ daily_insight | safe }}
-
 <div style="page-break-after: always;"></div>
-
 
 <!-- ===========================
      Section 5
      =========================== -->
-
 <h1 id="sec5">5. Price Trend Chart</h1>
- <div class="chart">
-     <img src="{{ chart_path }}" width="600">
- </div>
-
+<div class="chart">
+    <img src="{{ chart_path }}" width="600">
+</div>
 
 </body>
 </html>

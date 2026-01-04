@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/prompts/industry_summary.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/incoming_urls.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/incoming_urls.jsonl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/news_ai/region_cache.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/news_ai/region_cache.jsonl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/news_ai/summary_cache.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/news_ai/summary_cache.jsonl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ingestion/url_queue_cleanup.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingestion/url_queue_cleanup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insights.py" beforeDir="false" afterPath="$PROJECT_DIR$/insights.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pdf_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pdf_template.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

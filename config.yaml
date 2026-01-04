@@ -1,6 +1,6 @@
 news_sources:
   google_news:
-    enabled: true
+    enabled: false
     type: google
     base_url: "https://news.google.com/rss/search?q={keyword}&hl=en-US&gl=US&ceid=US:en"
     keywords:
@@ -15,22 +15,22 @@ news_sources:
       - "Nigeria solar"
 
   pv_tech:
-    enabled: true
+    enabled: false
     type: rss
     url: "https://www.pv-tech.org/feed/"
 
   bess:
-    enabled: true
+    enabled: false
     type: rss
     url: "https://www.energy-storage.news/feed/"
 
   policy:
-    enabled: true
+    enabled: false
     type: rss
     url: "https://www.ne21.com/rss/"
 
   cailian:
-    enabled: true
+    enabled: false
     type: html
     url: "https://www.cls.cn/v/energy"
     selectors:
@@ -40,7 +40,7 @@ news_sources:
       time: ".time"
 
   kr36:
-    enabled: true
+    enabled: false
     type: html
     url: "https://36kr.com/information/web_news"
     selectors:
@@ -50,7 +50,7 @@ news_sources:
       time: ".time"
 
   sohu_energy:
-    enabled: true
+    enabled: false
     type: html
     url: "https://www.sohu.com/c/8/1460"
     selectors:
@@ -74,7 +74,7 @@ fetch_order:
 prices:
   domestic:
     bjx_storage:
-      enabled: true
+      enabled: false
       url: "https://guangfu.bjx.com.cn/list/price"
       selectors:
         item: ".list-block .item"
@@ -82,7 +82,7 @@ prices:
         price: ".price"
         change: ".change"
     silicon_association:
-      enabled: true
+      enabled: false
       url: "https://www.siliconindustry.com.cn/price"
       selectors:
         item: ".price-row"
@@ -92,14 +92,14 @@ prices:
 
   international:
     tradingeconomics:
-      enabled: true
+      enabled: false
       base_url: "https://tradingeconomics.com/commodity/{item}"
       commodities:
         - "lithium"
         - "nickel"
         - "copper"
     google_finance:
-      enabled: true
+      enabled: false
       base_url: "https://www.google.com/finance/quote/{ticker}"
       tickers:
         - "ENPH:NASDAQ"
