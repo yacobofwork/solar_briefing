@@ -108,6 +108,6 @@ prices:
         - "JKS:NYSE"
 
 cache:
-  enabled: true
+  enabled: false
   path: "./output/cache"
   keep_days: 2

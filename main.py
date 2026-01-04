@@ -3,7 +3,6 @@ load_dotenv()
 
 import os
 import shutil
-import csv
 import datetime
 
 from chart_builder import build_price_chart
@@ -26,12 +25,15 @@ from utils import setup_logger
 from cache_manager import DailyCache
 import yaml
 
+# ⭐ 新增：引入外部 URL → 原始 news 的管道
+from ingestion.external_news_pipeline import process_pending_urls_to_raw_news
+
 logger = setup_logger("main")
 
 history_file = "price_history.csv"
 
 # 初始化天缓存，可在配置文件当中关闭
-config = yaml.safe_load(open("config.yaml"))
+config = yaml.safe_load(open("config.yaml", encoding="utf-8"))
 cache_enabled = config["cache"]["enabled"]
 cache = DailyCache(config["cache"]["path"])
 
@@ -45,7 +47,7 @@ cache.clean_old_cache(keep_days)
 # ============================================================
 
 def fetch_data():
-    """抓取价格与新闻（带缓存）"""
+    """抓取价格与新闻（带缓存），并接入外部 URL 管道。"""
     # ---- Price Cache ----
     if cache_enabled and cache.exists("prices"):
         logger.info("Loading prices from cache...")
@@ -65,6 +67,19 @@ def fetch_data():
         news_list = fetch_all_news()
         if cache_enabled:
             cache.save("news_raw", news_list)
+
+    # ---- External URLs → 原始新闻 ----
+    logger.info("Processing external URL queue for additional news...")
+    external_news = process_pending_urls_to_raw_news()
+    if external_news:
+        logger.info(f"Added {len(external_news)} external news items.")
+        news_list.extend(external_news)
+        # 如果你希望 external 也参与 news_raw 缓存，下次命中缓存时也能看到：
+        if cache_enabled:
+            cache.save("news_raw", news_list)
+    else:
+        logger.info("No external news items added.")
+
     return price_list, news_list
 
 
@@ -95,6 +110,7 @@ def process_news_ai(news_list):
 
     return results
 
+
 def process_price_ai(price_list, date):
     """价格历史记录、图表生成、价格洞察（带缓存）"""
     # ---- Price Insight Cache ----
@@ -119,13 +135,13 @@ def process_price_ai(price_list, date):
 
     return chart_path, price_insight
 
+
 # ============================================================
 # 3. 数据分组层（Region）
 # ============================================================
 
 def group_news_by_region(results):
     """按 region 分组（带缓存）"""
-
     if cache_enabled and cache.exists("china"):
         logger.info("Loading region groups from cache...")
         return (
@@ -144,6 +160,7 @@ def group_news_by_region(results):
         cache.save("global", global_news)
 
     return china, nigeria, global_news
+
 
 # ============================================================
 # 4. 渲染层（HTML）
@@ -176,7 +193,6 @@ def render_pdf_sections(china, nigeria, global_news):
     news_china = "".join(render_article(n) for n in china)
     news_nigeria = "".join(render_article(n) for n in nigeria)
     news_global = "".join(render_article(n) for n in global_news)
-
     return news_china, news_nigeria, news_global
 
 
@@ -210,7 +226,7 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
                price_html, chart_path, price_insight, daily_insight):
 
     pdf_dir = "output/pdf"
-    os.makedirs(pdf_dir,exist_ok=True)
+    os.makedirs(pdf_dir, exist_ok=True)
     pdf_path = os.path.abspath(f"{pdf_dir}/daily_report_{date}.pdf")
 
     logo_path = os.path.abspath("company_logo.png")
@@ -239,14 +255,14 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
     return pdf_path
 
 
-def send_daily_email(news_china,news_nigeria,news_global,
+def send_daily_email(news_china, news_nigeria, news_global,
                      news_html, price_html, price_insight,
-                     daily_insight,chart_path, date, pdf_path):
+                     daily_insight, chart_path, date, pdf_path):
 
     success = send_email(
-        news_china = news_china,
-        news_nigeria = news_nigeria,
-        news_global = news_global,
+        news_china=news_china,
+        news_nigeria=news_nigeria,
+        news_global=news_global,
         news_html=news_html,
         price_html=price_html,
         price_insight=price_insight,
@@ -256,7 +272,7 @@ def send_daily_email(news_china,news_nigeria,news_global,
         pdf_path=pdf_path
     )
 
-    if success :
+    if success:
         safe_delete(pdf_path)
         logger.info("邮件发送成功")
     else:
@@ -272,6 +288,7 @@ def safe_delete(path):
         print(f"Failed to delete {path}: {e}")
     return False
 
+
 # ============================================================
 # 主流程（Pipeline）
 # ============================================================
@@ -279,7 +296,7 @@ def safe_delete(path):
 def run():
     logger.info("=== 新能源日报开始执行 ===")
 
-    # Step 1: 抓取数据
+    # Step 1: 抓取数据（含外部 URL 注入）
     price_list, news_list = fetch_data()
 
     # Step 2: AI 处理新闻
@@ -319,9 +336,9 @@ def run():
 
     # Step 9: 邮件发送
     send_daily_email(
-        news_china,news_nigeria,news_global,
+        news_china, news_nigeria, news_global,
         news_html, price_html, price_insight,
-        daily_insight,chart_path, date, pdf_path
+        daily_insight, chart_path, date, pdf_path
     )
 
 
