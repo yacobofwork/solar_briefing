@@ -55,3 +55,4 @@ RULES:
 - Keep insights concise and actionable.
 - Do NOT include markdown.
 - Output must be valid JSON.
+- The fields "supply_chain", "nigeria_impact", and "recommendation" must always be written in English, regardless of article language or region.
