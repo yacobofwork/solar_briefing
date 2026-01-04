@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from utils import setup_logger
 from config_loader import load_config
+from datetime import date
 
 logger = setup_logger("prices")
 config = load_config()
@@ -148,4 +149,15 @@ def fetch_all_prices():
             price_list += fetch_google_finance(url, ticker)
 
     logger.info(f"成功抓取 {len(price_list)} 条价格数据")
-    return price_list
+
+    # ============================================================
+    # 关键修复：为每条价格补上日期字段（适配 dict）
+    # ============================================================
+    today = date.today().isoformat()
+
+    price_list_with_date = []
+    for item in price_list:
+        item["date"] = today
+        price_list_with_date.append(item)
+
+    return price_list_with_date

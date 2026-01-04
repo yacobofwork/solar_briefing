@@ -23,6 +23,7 @@ from pdf_builder import build_pdf
 from email_sender import send_email
 from utils import setup_logger
 from cache_manager import DailyCache
+from save_price_history import save_price_history
 import yaml
 
 # ⭐ 新增：引入外部 URL → 原始 news 的管道
@@ -298,6 +299,8 @@ def run():
 
     # Step 1: 抓取数据（含外部 URL 注入）
     price_list, news_list = fetch_data()
+    # 保存价格数据
+    save_price_history(price_list,history_file)
 
     # Step 2: AI 处理新闻
     ai_results = process_news_ai(news_list)

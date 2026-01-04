@@ -1,6 +1,6 @@
 news_sources:
   google_news:
-    enabled: false
+    enabled: true
     type: google
     base_url: "https://news.google.com/rss/search?q={keyword}&hl=en-US&gl=US&ceid=US:en"
     keywords:
@@ -15,22 +15,22 @@ news_sources:
       - "Nigeria solar"
 
   pv_tech:
-    enabled: false
+    enabled: true
     type: rss
     url: "https://www.pv-tech.org/feed/"
 
   bess:
-    enabled: false
+    enabled: true
     type: rss
     url: "https://www.energy-storage.news/feed/"
 
   policy:
-    enabled: false
+    enabled: true
     type: rss
     url: "https://www.ne21.com/rss/"
 
   cailian:
-    enabled: false
+    enabled: true
     type: html
     url: "https://www.cls.cn/v/energy"
     selectors:
@@ -40,7 +40,7 @@ news_sources:
       time: ".time"
 
   kr36:
-    enabled: false
+    enabled: true
     type: html
     url: "https://36kr.com/information/web_news"
     selectors:
@@ -50,7 +50,7 @@ news_sources:
       time: ".time"
 
   sohu_energy:
-    enabled: false
+    enabled: true
     type: html
     url: "https://www.sohu.com/c/8/1460"
     selectors:
@@ -74,7 +74,7 @@ fetch_order:
 prices:
   domestic:
     bjx_storage:
-      enabled: false
+      enabled: true
       url: "https://guangfu.bjx.com.cn/list/price"
       selectors:
         item: ".list-block .item"
@@ -82,24 +82,24 @@ prices:
         price: ".price"
         change: ".change"
     silicon_association:
-      enabled: false
+      enabled: true
       url: "https://www.siliconindustry.com.cn/price"
       selectors:
         item: ".price-row"
         name: ".name"
         price: ".value"
-        change: null
+        change: true
 
   international:
     tradingeconomics:
-      enabled: false
+      enabled: true
       base_url: "https://tradingeconomics.com/commodity/{item}"
       commodities:
         - "lithium"
         - "nickel"
         - "copper"
     google_finance:
-      enabled: false
+      enabled: true
       base_url: "https://www.google.com/finance/quote/{ticker}"
       tickers:
         - "ENPH:NASDAQ"
@@ -108,7 +108,7 @@ prices:
         - "JKS:NYSE"
 
 cache:
-  enabled: false
+  enabled: true
   path: "./output/cache"
   keep_days: 2
 
