@@ -9,7 +9,7 @@ def render_daily_insight(data):
     title = data.get("title", "Daily Insight")
     points = data.get("points", [])
 
-    html = f"<h2>{title}</h2><ul>"
+    html = "<ul>"
 
     for p in points:
         html += f"<li>{p}</li>"
