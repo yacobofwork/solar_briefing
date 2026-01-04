@@ -1,5 +1,6 @@
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from weasyprint import HTML
+from bs4 import BeautifulSoup
 
 
 def build_pdf(**kwargs):
@@ -19,8 +20,23 @@ def build_pdf(**kwargs):
 
     # 3. 渲染 HTML
     html_content = template.render(**kwargs)
+    headings = extract_headings(html_content)
+    html_content = template.render(**kwargs,headings=headings)
 
     # 4. 生成 PDF
     (HTML(string=html_content,
          base_url=".") # WeasyPrint 会使用base_url作为根目录
      .write_pdf(kwargs["output_path"]))
+
+
+# 标题扫描器
+def extract_headings(html):
+    soup = BeautifulSoup(html, "html.parser")
+    headings = []
+    for tag in soup.find_all(["h1", "h2"]):
+        if tag.get("id"):
+            headings.append({
+                "id": tag["id"],
+                "text": tag.get_text(strip=True)
+            })
+    return headings
