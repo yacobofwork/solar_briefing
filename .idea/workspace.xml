@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/data/news_ai/incoming_urls.jsonl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/news_ai/region_chache.jsonl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/news_ai/summary_cache.jsonl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/ai_cache.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/region_cache.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/region_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/url_queue_cleanup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prompts/region_classifier.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prompts/safe_summary.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prompts/industry_summary.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/incoming_urls.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/incoming_urls.jsonl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/news_ai/region_cache.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/news_ai/region_cache.jsonl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/news_ai/summary_cache.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/news_ai/summary_cache.jsonl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingestion/url_queue_cleanup.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingestion/url_queue_cleanup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/insights.py" beforeDir="false" afterPath="$PROJECT_DIR$/insights.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

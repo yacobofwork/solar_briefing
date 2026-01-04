@@ -2,7 +2,7 @@
 import datetime
 from typing import List, Dict
 
-from insights import safe_ai_summary
+from insights import safe_ai_summary, safe_ai_summary_industry
 from .ai_cache import load_summary_from_cache, save_summary_to_cache
 from .region_cache import load_region_from_cache, save_region_to_cache
 from .url_queue import load_pending_urls, update_url_status
@@ -44,7 +44,8 @@ def process_pending_urls_to_raw_news() -> List[Dict]:
         if cached:
             summary = cached
         else:
-            summary = safe_ai_summary(fetched.text)
+            # summary = safe_ai_summary(fetched.text)
+            summary = safe_ai_summary_industry(fetched.text)
             save_summary_to_cache(url,summary)
 
         # 将消息进行 region 分类

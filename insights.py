@@ -158,3 +158,45 @@ def safe_ai_summary(text: str) -> str:
 
     # summarize_article 返回 JSON
     return result.get("summary", "")
+
+def detect_industry(text: str) -> str:
+    """
+    简单行业识别（规则 + 关键词）
+    """
+    t = text.lower()
+
+    if any(k in t for k in ["硅料", "硅片", "组件", "光伏", "n型", "p型", "电池片"]):
+        return "pv"
+
+    if any(k in t for k in ["储能", "bess", "电池", "并网", "系统集成"]):
+        return "bess"
+
+    if any(k in t for k in ["逆变器", "inverter", "mppt", "效率"]):
+        return "inverter"
+
+    if any(k in t for k in ["电价", "tariff", "nerc", "ferc", "电力市场"]):
+        return "power"
+
+    if any(k in t for k in ["europe", "us", "germany", "uk", "海外", "出口"]):
+        return "overseas"
+
+    return "general"
+
+def safe_ai_summary_industry(text: str) -> str:
+    """
+    行业特化摘要（零胡编）
+    """
+    industry = detect_industry(text)
+    base_prompt = load_prompt("industry_summary")
+
+    final_prompt = f"""
+{base_prompt}
+
+行业类型：{industry}
+
+正文内容（截断至 4000 字符）：
+{text[:4000]}
+"""
+
+    result = summarize_article({"summary": final_prompt})
+    return result.get("summary", "")

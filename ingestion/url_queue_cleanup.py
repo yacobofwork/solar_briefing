@@ -37,7 +37,18 @@ def cleanup_url_queue():
             except:
                 continue
 
-            ts = datetime.fromisoformat(item.get("timestamp"))
+            ts_raw = item.get("timestamp")
+            # 如果 timestamp 缺失或不是字符串，直接保留该记录
+            if not isinstance(ts_raw, str):
+                cleaned.append(item)
+                continue
+            try:
+                ts = datetime.fromisoformat(ts_raw)
+            except Exception:
+                # 如果格式不对，也保留
+                cleaned.append(item)
+                continue
+
             status = item.get("status")
 
             # 永远保留 pending
