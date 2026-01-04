@@ -139,3 +139,22 @@ def generate_daily_insight():
                 "AI output could not be parsed."
             ]
         }
+
+def safe_ai_summary(text: str) -> str:
+    """
+    使用零胡编 AI 摘要器生成保真摘要。
+    """
+    base_prompt = load_prompt("safe_summary")
+
+    final_prompt = f"""
+{base_prompt}
+
+正文内容（截断至 4000 字符）：
+{text[:4000]}
+"""
+
+    # 复用你现有的 summarize_article 调用方式
+    result = summarize_article({"summary": final_prompt})
+
+    # summarize_article 返回 JSON
+    return result.get("summary", "")

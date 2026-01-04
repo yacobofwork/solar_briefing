@@ -111,3 +111,8 @@ cache:
   enabled: false
   path: "./output/cache"
   keep_days: 2
+
+url_queue:
+  retention_days: 7
+  keep_pending: true
+  if_backup: false

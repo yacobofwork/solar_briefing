@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="698b8919-723a-4e3b-8cf4-1bf0da9810e6" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/ingestion/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/content_fetcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ingestion/url_queue.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/test_enquequ.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/news_ai/incoming_urls.jsonl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/news_ai/region_chache.jsonl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/news_ai/summary_cache.jsonl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ingestion/ai_cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ingestion/region_cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ingestion/region_classifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ingestion/url_queue_cleanup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prompts/region_classifier.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prompts/safe_summary.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/incoming_urls.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/data/incoming_urls.jsonl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/ingestion/external_news_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insights.py" beforeDir="false" afterPath="$PROJECT_DIR$/insights.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,12 +67,13 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "/Users/wangxiaohu/PycharmProjects/solar_briefing/assets/fonts",
+    "last_opened_file_path": "/Users/wangxiaohu/PycharmProjects/solar_briefing/data/news_ai",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/news_ai" />
       <recent name="$PROJECT_DIR$/assets/fonts" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/templates" />

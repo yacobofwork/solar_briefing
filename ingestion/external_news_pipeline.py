@@ -2,19 +2,13 @@
 import datetime
 from typing import List, Dict
 
+from insights import safe_ai_summary
+from .ai_cache import load_summary_from_cache, save_summary_to_cache
+from .region_cache import load_region_from_cache, save_region_to_cache
 from .url_queue import load_pending_urls, update_url_status
 from .content_fetcher import fetch_and_extract
-
-
-def _simple_summary(text: str, max_chars: int = 500) -> str:
-    """
-    暂时用纯截断做“摘要”，不引入 AI，保证零胡编。
-    将来你要换成保真 AI 摘要，只需要替换这里。
-    """
-    text = text.strip()
-    if len(text) <= max_chars:
-        return text
-    return text[: max_chars - 3] + "..."
+from ingestion.region_classifier import classify_region_ai
+from .url_queue_cleanup import cleanup_url_queue
 
 
 def process_pending_urls_to_raw_news() -> List[Dict]:
@@ -46,7 +40,28 @@ def process_pending_urls_to_raw_news() -> List[Dict]:
             update_url_status(url, "failed")
             continue
 
-        summary = _simple_summary(fetched.text)
+        cached = load_summary_from_cache(url)
+        if cached:
+            summary = cached
+        else:
+            summary = safe_ai_summary(fetched.text)
+            save_summary_to_cache(url,summary)
+
+        # 将消息进行 region 分类
+        cached_region = load_region_from_cache(url)
+        if cached_region:
+            region = cached_region["region"]
+            reason = cached_region["reason"]
+        else:
+            region_json = classify_region_ai(
+                title=fetched.title,
+                summary=summary,
+                link=url,
+                raw_text=fetched.text
+            )
+            region = region_json.get("region","global")
+            reason = region_json.get("reason","")
+            save_region_to_cache(url,region,reason)
 
         news_item = {
             "title": fetched.title or url,
@@ -54,12 +69,14 @@ def process_pending_urls_to_raw_news() -> List[Dict]:
             "source": "WeChat" if source == "wechat" else "External",
             "link": url,
             "pub_date": today_str,
-            # 暂时统一归为 global，后面你可以按关键词/域名再细化到 china/nigeria
-            "region": "global",
+            "region": region,
         }
         results.append(news_item)
 
         update_url_status(url, "fetched")
 
     print(f"[external_news] 本次共生成 {len(results)} 条外部新闻。")
+
+    # 进行队列自动清理
+    cleanup_url_queue()
     return results
