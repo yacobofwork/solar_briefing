@@ -29,6 +29,12 @@ def save_price_history(prices, history_file):
         print("[WARN] 历史文件格式错误，已自动修复表头")
         df_old = pd.DataFrame(columns=["item", "date", "price"])
 
-    # 合并并写回
+    # 合并
     df_all = pd.concat([df_old, df_new], ignore_index=True)
+
+    # 按日期排序（升序）
+    df_all["date"] = pd.to_datetime(df_all["date"])
+    df_all = df_all.sort_values(by="date")
+
+    # 写回 CSV
     df_all.to_csv(history_file, index=False)
