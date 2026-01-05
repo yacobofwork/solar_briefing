@@ -7,7 +7,7 @@ Our company overview:
 
 SABA Energy Intelligence System overview:
 * https://yacobofwork.github.io/solar_briefing/
-![img_2.png](img_2.png)
+
 
 Internal Technical Documentation — Version 1.0
 
