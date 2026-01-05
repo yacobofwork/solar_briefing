@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saba Energy Intelligence System</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7f9fc;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0a6fb8, #063b73);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 22px;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e3e8ee;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #0a6fb8;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content */
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #0a6fb8;
+            margin-top: 50px;
+            border-left: 4px solid #0a6fb8;
+            padding-left: 12px;
+            font-size: 28px;
+        }
+
+        h3 {
+            color: #063b73;
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        pre {
+            background: #eef3f8;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+            background: #f0f4f8;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Saba Energy Intelligence System</h1>
+    <p>Enterprise Intelligence Automation for Global Solar & Energy Storage Operations</p >
+</header>
+
+<nav>
+    <a href=" ">Overview</a >
+    <a href="#architecture">Architecture</a >
+    <a href="#dataflow">Data Flow</a >
+    <a href="#features">Features</a >
+    <a href="#cli">CLI</a >
+    <a href="#roadmap">Roadmap</a >
+</nav>
+
+<div class="container">
+
+    <!-- Overview -->
+    <div id="overview" class="section">
+        <h2>1. Overview</h2>
+        <p>
+            The <strong>Saba Energy Intelligence System</strong> is an internal enterprise platform designed to automate
+            intelligence gathering, analysis, and reporting for the global solar and energy‑storage industry.
+            It consolidates multi‑source data, applies AI‑driven insights, and generates professional daily reports
+            for internal decision‑making across procurement, strategy, and operations.
+        </p >
+
+        <p>The system provides:</p >
+        <ul>
+            <li>Automated ingestion of industry news, WeChat articles, and price data</li>
+            <li>AI‑powered summarization, insights, and supply‑chain impact analysis</li>
+            <li>Professional PDF and HTML email generation</li>
+            <li>Daily automated delivery with fallback SMTP</li>
+            <li>Modular, maintainable, and extensible architecture</li>
+        </ul>
+    </div>
+
+    <!-- Architecture -->
+    <div id="architecture" class="section">
+        <h2>2. System Architecture</h2>
+
+<pre>
+solar_briefing/
+│
+├── main.py                     # Main workflow orchestrator
+├── config.yaml                 # Global configuration
+├── requirements.txt            # Python dependencies
+│
+├── ingestion/                  # Data ingestion layer
+│     ├── url_queue.py          # URL queue manager
+│     ├── wechat_link_reader.py # Reads WeChat links → queue
+│     ├── ...                   # Future ingestion modules
+│
+├── fetcher.py                 # Web/WeChat article fetcher
+├── fetch_prices.py            # Price data ingestion
+├── save_price_history.py      # Historical price storage
+│
+├── insights.py                # AI summarization & insights
+│
+├── chart_builder.py           # Price trend chart generator
+├── pdf_builder.py             # PDF report generator
+├── email_builder.py           # HTML email generator
+├── email_sender.py            # Email delivery
+│
+├── templates/                 # HTML/PDF templates
+├── prompts/                   # AI prompt templates
+├── renderers/                 # Rendering utilities
+│
+├── data/                      # Raw data & URL queue
+│     └── incoming_urls.jsonl
+│
+├── output/                    # Generated reports & charts
+│
+└── logs/                      # Runtime logs
+</pre>
+
+    </div>
+
+    <!-- Data Flow -->
+    <div id="dataflow" class="section">
+        <h2>3. Data Flow</h2>
+
+<pre>
+Manual / Automated URLs
+        ↓
+URL Queue (pending/fetched/failed)
+        ↓
+Fetcher (HTML extraction)
+        ↓
+AI Insights (summary, impact, recommendations)
+        ↓
+PDF / Email Rendering
+        ↓
+Automated Delivery
+</pre>
+
+        <h3>3.1 URL Queue System</h3>
+        <p>
+            All external URLs enter the system through a unified queue stored in:
+        </p >
+
+<pre>data/incoming_urls.jsonl</pre>
+
+        <p>The queue ensures:</p >
+        <ul>
+            <li>Deduplication</li>
+            <li>Status tracking</li>
+            <li>Unified ingestion pipeline</li>
+            <li>Auditability and debugging</li>
+        </ul>
+
+        <h3>3.2 WeChat Link Reader</h3>
+        <p>
+            Team members paste WeChat article links into:
+        </p >
+
+<pre>wechat_links.txt</pre>
+
+        <p>Then run:</p >
+
+<pre>python -m solar_briefing ingest-wechat</pre>
+
+        <p>The system automatically validates and enqueues all links.</p >
+    </div>
+
+    <!-- Features -->
+    <div id="features" class="section">
+        <h2>4. Key Features</h2>
+
+        <h3>4.1 Automated Data Ingestion</h3>
+        <ul>
+            <li>WeChat articles</li>
+            <li>Web news</li>
+            <li>Price data</li>
+            <li>Manual link ingestion</li>
+            <li>URL queue with deduplication</li>
+        </ul>
+
+        <h3>4.2 AI‑Powered Intelligence</h3>
+        <ul>
+            <li>Summaries (EN + CN)</li>
+            <li>Key insights</li>
+            <li>Supply‑chain impact analysis</li>
+            <li>Nigeria relevance assessment</li>
+            <li>Procurement recommendations</li>
+        </ul>
+
+        <h3>4.3 Professional Output</h3>
+        <ul>
+            <li>PDF daily report</li>
+            <li>HTML email report</li>
+            <li>Charts & visualizations</li>
+        </ul>
+
+        <h3>4.4 Reliable Delivery</h3>
+        <ul>
+            <li>Primary + fallback SMTP</li>
+            <li>Logging & error handling</li>
+        </ul>
+
+        <h3>4.5 Extensibility</h3>
+        <ul>
+            <li>New ingestion modules</li>
+            <li>New AI prompts</li>
+            <li>New output formats</li>
+            <li>New delivery channels</li>
+        </ul>
+    </div>
+
+    <!-- CLI -->
+    <div id="cli" class="section">
+        <h2>5. Command Line Interface (CLI)</h2>
+
+        <h3>5.1 Ingest WeChat Links</h3>
+<pre>
+python -m solar_briefing ingest-wechat
+</pre>
+
+        <h3>5.2 Run Full Daily Pipeline</h3>
+<pre>
+python main.py
+</pre>
+    </div>
+
+    <!-- Roadmap -->
+    <div id="roadmap" class="section">
+        <h2>6. Future Roadmap</h2>
+
+        <h3>6.1 Data Sources</h3>
+        <ul>
+            <li>WeChat Official Account homepage crawler</li>
+            <li>Policy announcement ingestion</li>
+            <li>Corporate disclosure ingestion</li>
+            <li>RSS/Atom feeds</li>
+        </ul>
+
+        <h3>6.2 Intelligence</h3>
+        <ul>
+            <li>Weekly/monthly automated reports</li>
+            <li>Price forecasting</li>
+            <li>Supply chain risk alerts</li>
+            <li>Competitor analysis</li>
+        </ul>
+
+        <h3>6.3 Delivery</h3>
+        <ul>
+            <li>Microsoft Teams</li>
+            <li>Slack</li>
+            <li>WhatsApp</li>
+            <li>WeCom (企业微信)</li>
+        </ul>
+
+        <h3>6.4 Engineering</h3>
+        <ul>
+            <li>PostgreSQL database</li>
+            <li>Redis caching</li>
+            <li>Airflow scheduling</li>
+            <li>Sentry monitoring</li>
+        </ul>
+    </div>
+
+</div>
+
+<footer>
+    Saba Energy Intelligence System — Internal Use Only
+</footer>
+
+</body>
+</html>

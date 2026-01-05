@@ -42,7 +42,7 @@ price_history.csv
 
 #*.html
 *.yaml
-*.html
+#*.html
 
 # Python 字节码缓存
 __pycache__/
