@@ -13,9 +13,9 @@ QUEUE_FILE = DATA_DIR / "incoming_urls.jsonl"
 
 def _normalize_source(url: str, explicit_source: str | None = None) -> str:
     """
-    根据域名推断来源，除非你手动指定：
+    Infer the source type based on domain unless explicitly provided.
     - mp.weixin.qq.com -> wechat
-    - 其他 -> web
+    - everything else -> web
     """
     if explicit_source:
         return explicit_source
@@ -28,14 +28,18 @@ def _normalize_source(url: str, explicit_source: str | None = None) -> str:
 
 def enqueue_url(url: str, source: str | None = None) -> dict:
     """
-    把一个 URL 加入队列（同一 URL 去重）。
+    Add a URL into the queue (deduplicated).
+    Returns a record with status:
+    - pending
+    - duplicate
     """
     url = url.strip()
     if not url:
-        raise ValueError("URL 不能为空")
+        raise ValueError("URL cannot be empty")
 
     src = _normalize_source(url, source)
 
+    # Load existing URLs to avoid duplicates
     existing_urls = set()
     if QUEUE_FILE.exists():
         with QUEUE_FILE.open("r", encoding="utf-8") as f:
@@ -56,7 +60,7 @@ def enqueue_url(url: str, source: str | None = None) -> dict:
 
     record = {
         "url": url,
-        "source": src,  # wechat / web
+        "source": src,
         "added_at": datetime.utcnow().isoformat(timespec="seconds") + "Z",
         "status": "pending",  # pending / fetched / failed
     }
@@ -69,7 +73,7 @@ def enqueue_url(url: str, source: str | None = None) -> dict:
 
 def load_pending_urls() -> list[dict]:
     """
-    读取 status=pending 的 URL。
+    Load all URLs with status = 'pending'.
     """
     if not QUEUE_FILE.exists():
         return []
@@ -88,7 +92,9 @@ def load_pending_urls() -> list[dict]:
 
 def update_url_status(url: str, status: str):
     """
-    把某个 URL 的 status 更新为 fetched / failed。
+    Update the status of a specific URL:
+    - fetched
+    - failed
     """
     if not QUEUE_FILE.exists():
         return

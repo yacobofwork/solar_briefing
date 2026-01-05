@@ -41,7 +41,8 @@ price_history.csv
 # requirements.txt
 
 #*.html
-config.yaml
+*.yaml
+*.html
 
 # Python 字节码缓存
 __pycache__/
