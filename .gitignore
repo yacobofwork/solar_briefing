@@ -35,10 +35,16 @@ archive_pdf/
 *.svg
 
 # --- 价格历史（如果你不想提交 CSV）---
-# price_history.csv
+price_history.csv
 
 # --- 依赖锁定文件（你可以选择是否提交）---
 # requirements.txt
 
 #*.html
 config.yaml
+
+# Python 字节码缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
