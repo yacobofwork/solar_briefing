@@ -10,16 +10,14 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f7f9fc;
-            color: #333;
+            background: #f4f6f8;
+            color: #333333;
             line-height: 1.6;
         }
 
-        /* ============================
-           Navigation Bar
-        ============================ */
+        /* NAVBAR */
         .navbar {
-            background: #063b73;
+            background: #005B5B;
             color: white;
             padding: 12px 0;
             position: sticky;
@@ -60,100 +58,40 @@
             opacity: 1;
         }
 
-        .nav-toggle {
-            display: none;
-        }
-
-        .nav-toggle-label {
-            display: none;
-            cursor: pointer;
-        }
-
-        .nav-toggle-label span,
-        .nav-toggle-label span::before,
-        .nav-toggle-label span::after {
-            display: block;
-            background: white;
-            height: 3px;
-            width: 24px;
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .nav-toggle-label span::before,
-        .nav-toggle-label span::after {
-            content: "";
-            position: absolute;
-            left: 0;
-        }
-
-        .nav-toggle-label span::before {
-            top: -7px;
-        }
-
-        .nav-toggle-label span::after {
-            top: 7px;
-        }
-
-        @media (max-width: 800px) {
-            .nav-menu {
-                position: absolute;
-                top: 56px;
-                left: 0;
-                right: 0;
-                background: #063b73;
-                flex-direction: column;
-                padding: 10px 0;
-                display: none;
-            }
-
-            .nav-menu a {
-                padding: 10px 20px;
-                border-top: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .nav-toggle-label {
-                display: block;
-            }
-
-            .nav-toggle:checked ~ .nav-menu {
-                display: flex;
-            }
-        }
-
-        /* ============================
-           Page Layout
-        ============================ */
-        header {
-            background: linear-gradient(135deg, #0a6fb8, #063b73);
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #4CCBC0, #007A6F);
             color: white;
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
-        header h1 {
+        .hero h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 700;
         }
 
-        header p {
-            margin: 8px 0 0 0;
+        .hero p {
+            margin-top: 10px;
             font-size: 16px;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
+        /* CONTENT */
         .container {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 40px auto 60px auto;
             padding: 0 20px;
         }
 
         h2.section-title {
-            color: #0a6fb8;
-            border-left: 4px solid #0a6fb8;
+            color: #005B5B;
+            border-left: 4px solid #007A6F;
             padding-left: 10px;
             margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: 700;
         }
 
         .archive-list {
@@ -165,7 +103,7 @@
 
         .archive-item {
             padding: 12px 0;
-            border-bottom: 1px solid #e3e8ee;
+            border-bottom: 1px solid #ddd;
         }
 
         .archive-item:last-child {
@@ -173,30 +111,22 @@
         }
 
         .archive-item a {
+            color: #005599;
             text-decoration: none;
-            color: #063b73;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .archive-item a:hover {
             text-decoration: underline;
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
             padding: 20px 10px 30px 10px;
             font-size: 13px;
-            color: #666;
+            color: #555;
             background: #f0f4f8;
-            margin-top: 40px;
-        }
-
-        .loading {
-            color: #666;
-        }
-
-        .error {
-            color: #c0392b;
         }
     </style>
 </head>
@@ -207,65 +137,58 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-logo">Saba Energy Intelligence System</div>
-
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label">
-            <span></span>
-        </label>
-
         <div class="nav-menu">
             <a href="index.html">Home</a >
-            <a href="daily-data.html">Daily Report</a >
-            <a href="archive.html">Archive</a >
+            <a href="/solar_briefing/daily-data.html">Daily Report</a >
+            <a href="/solar_briefing/archive.html">Archive</a >
         </div>
     </div>
 </nav>
 
-<header>
+<!-- HERO -->
+<div class="hero">
     <h1>Daily Report Archive</h1>
     <p>Browse all historical daily intelligence reports</p >
-</header>
+</div>
 
+<!-- CONTENT -->
 <div class="container">
     <h2 class="section-title">Available Reports</h2>
 
-    <div id="archive" class="archive-list">
-        <p class="loading">Loading archive...</p >
+    <div class="archive-list" id="archive-list">
+        <p>Loading archive...</p >
     </div>
 </div>
 
 <footer>
-    Saba Energy Intelligence System — Internal use only.
+    Saba Energy Intelligence System — Internal use only.<br>
+    Developed by <strong>Yacob</strong> · <a href="mailto:ywang@saba.energy">ywang@saba.energy</a >
 </footer>
 
 <script>
 async function loadArchive() {
-    const container = document.getElementById("archive");
+    const container = document.getElementById("archive-list");
 
     try {
         const resp = await fetch("datas/index.json");
-        if (!resp.ok) throw new Error("Failed to load index.json");
-
         const index = await resp.json();
 
-        if (!index.dates || index.dates.length === 0) {
-            container.innerHTML = "<p class='error'>No reports available.</p >";
+        const dates = index.dates || [];
+        dates.sort().reverse(); // newest first
+
+        if (dates.length === 0) {
+            container.innerHTML = "<p>No reports available.</p >";
             return;
         }
 
-        container.innerHTML = index.dates
-            .map(date => `
-                <div class="archive-item">
-                    <a href="daily-data.html?date=${date}">
-                        ${date} — View Report
-                    </a >
-                </div>
-            `)
-            .join("");
+        container.innerHTML = dates.map(date => `
+            <div class="archive-item">
+                <a href="daily-data.html?date=${date}">${date} — Daily Report</a >
+            </div>
+        `).join("");
 
     } catch (err) {
-        console.error(err);
-        container.innerHTML = "<p class='error'>Failed to load archive.</p >";
+        container.innerHTML = "<p>Error loading archive.</p >";
     }
 }
 
