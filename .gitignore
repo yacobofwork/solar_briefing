@@ -20,6 +20,7 @@ venv/
 
 # --- PDF 归档目录（如果你不想提交历史 PDF）---
 archive_pdf/
+output/
 *.pdf
 
 # --- 临时文件 ---
