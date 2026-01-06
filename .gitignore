@@ -25,13 +25,13 @@ archive_pdf/
 # --- 临时文件 ---
 *.tmp
 *.temp
-*.json
+#*.json
 
 # --- 环境变量文件（敏感信息）---
 .env
 
 # --- WeasyPrint 临时文件 ---
-*.png
+#*.png
 *.svg
 
 # --- 价格历史（如果你不想提交 CSV）---

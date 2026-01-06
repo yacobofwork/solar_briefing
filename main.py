@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+import subprocess
 import os
 import shutil
 import datetime
@@ -8,6 +9,7 @@ import datetime
 from chart_builder import build_price_chart
 from fetch_prices import fetch_all_prices
 from fetcher import fetch_all_news
+from renderers.daily_exporter import save_daily_json, update_index_json
 
 from insights import (
     summarize_article,
@@ -111,10 +113,9 @@ def process_news_ai(news_list):
 
     return results
 
-
 def process_price_ai(price_list, date):
-    """价格历史记录、图表生成、价格洞察（带缓存）"""
-    # ---- Price Insight Cache ----
+    """Price history, chart generation, and price insight (with cache)."""
+    # Price insight cache
     if cache_enabled and cache.exists("price_insight"):
         logger.info("Loading price insight from cache...")
         price_insight = cache.load("price_insight")
@@ -124,17 +125,45 @@ def process_price_ai(price_list, date):
         if cache_enabled:
             cache.save("price_insight", price_insight)
 
-    # ---- Chart Cache ----
+    # Chart cache
     charts_dir = "output/charts"
     os.makedirs(charts_dir, exist_ok=True)
-    chart_path = os.path.abspath(f"{charts_dir}/price_chart_{date}.png")
-    if cache_enabled and os.path.exists(chart_path):
+    filename = f"price_chart_{date}.png"
+    chart_abs_path = os.path.abspath(os.path.join(charts_dir, filename))
+    if cache_enabled and os.path.exists(chart_abs_path):
         logger.info("Using cached chart...")
     else:
         logger.info("Generating price chart...")
-        build_price_chart(history_file, chart_path)
+        build_price_chart(history_file, chart_abs_path)
 
-    return chart_path, price_insight
+    # For GitHub Pages we will use a relative path under docs/charts
+    chart_rel_for_docs = f"charts/{filename}"
+
+    return chart_abs_path, chart_rel_for_docs, price_insight
+
+# def process_price_ai(price_list, date):
+#     """价格历史记录、图表生成、价格洞察（带缓存）"""
+#     # ---- Price Insight Cache ----
+#     if cache_enabled and cache.exists("price_insight"):
+#         logger.info("Loading price insight from cache...")
+#         price_insight = cache.load("price_insight")
+#     else:
+#         raw_price_insight = analyze_price_impact(price_list)
+#         price_insight = render_price_insight(raw_price_insight)
+#         if cache_enabled:
+#             cache.save("price_insight", price_insight)
+#
+#     # ---- Chart Cache ----
+#     charts_dir = "output/charts"
+#     os.makedirs(charts_dir, exist_ok=True)
+#     chart_path = os.path.abspath(f"{charts_dir}/price_chart_{date}.png")
+#     if cache_enabled and os.path.exists(chart_path):
+#         logger.info("Using cached chart...")
+#     else:
+#         logger.info("Generating price chart...")
+#         build_price_chart(history_file, chart_path)
+#
+#     return chart_path, price_insight
 
 
 # ============================================================
@@ -290,6 +319,16 @@ def safe_delete(path):
     return False
 
 
+
+def git_push():
+    try:
+        subprocess.run(["git", "add", "docs/"], check=True)
+        subprocess.run(["git", "commit", "-m", "Daily data update"], check=True)
+        subprocess.run(["git", "push","origin","master"], check=True)
+        print("GitHub push completed.")
+    except subprocess.CalledProcessError as e:
+        print("Git push failed:", e)
+
 # ============================================================
 # 主流程（Pipeline）
 # ============================================================
@@ -311,8 +350,16 @@ def run():
     # Step 4: 日期
     date = datetime.date.today().strftime("%Y-%m-%d")
 
-    # Step 5: 价格处理
-    chart_path, price_insight = process_price_ai(price_list, date)
+    # Step 5: Price processing
+    chart_path, chart_rel_for_docs, price_insight = process_price_ai(price_list, date)
+
+    # Copy chart to docs/charts for GitHub Pages
+    docs_charts_dir = "docs/charts"
+    os.makedirs(docs_charts_dir, exist_ok=True)
+    shutil.copy(
+        chart_path,
+        f"{docs_charts_dir}/price_chart_{date}.png"
+    )
 
     # Step 6: 渲染 HTML
     news_html = render_news_sections(china_news, nigeria_news, global_news)
@@ -343,6 +390,28 @@ def run():
         news_html, price_html, price_insight,
         daily_insight, chart_path, date, pdf_path
     )
+
+
+    # Step 10: Export daily report for GitHub Pages
+    # price_insight is already rendered HTML/string from render_price_insight
+    price_insight_html = price_insight if isinstance(price_insight, str) else str(price_insight)
+
+    # news_china / news_nigeria / news_global are already HTML fragments
+    save_daily_json(
+        date_str=date,
+        news_html=news_html,
+        news_china_html=news_china,
+        news_nigeria_html=news_nigeria,
+        news_global_html=news_global,
+        price_html=price_html,
+        price_insight_html=price_insight_html,
+        daily_insight_html=daily_insight,
+        chart_rel_path=chart_rel_for_docs,
+    )
+    update_index_json(date)
+    logger.info("Daily report exported for GitHub Pages.")
+
+    git_push()
 
 
 if __name__ == "__main__":
