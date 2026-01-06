@@ -1,38 +1,56 @@
+# Saba Energy Intelligence System  
+A fully automated intelligence engine delivering daily insights on global solar supply chains, Nigeria market dynamics, and price movements — across **Email**, **PDF**, and **Web (GitHub Pages)**.
 
-
-## 🌞 SABA Energy Intelligence System
-Our company overview:
-
-* [Saba Energy](https://www.saba.energy/)
-
-SABA Energy Intelligence System overview:
-* https://yacobofwork.github.io/solar_briefing/
-
-
-Internal Technical Documentation — Version 1.0
+Website Address: https://yacobofwork.github.io/solar_briefing/index.html
 
 ---
 
-### 📌 1. Introduction
+## 🌍 Overview
 
-SABA Solar Intelligence System is an internal intelligence automation platform designed to support SABA Energy’s global solar and energy‑storage operations.
-The system consolidates multi‑source industry information, applies AI‑driven analysis, and generates professional‑grade daily reports for internal decision‑making.
+The **Saba Energy Intelligence System** is a production-grade, fully automated intelligence pipeline designed for distributed solar projects in Nigeria.  
+It collects, analyzes, summarizes, and publishes daily insights from multiple global and local data sources, ensuring the team always has a clear and up‑to‑date understanding of the solar supply chain landscape.
 
-The platform is built with:
+The system now supports **three synchronized output channels**:
 
-* Modular and maintainable architecture
-* Automated data ingestion (web, WeChat, price feeds)
-* AI‑powered summarization and insights
-* Professional PDF and HTML email rendering
-* Automated delivery with fallback mechanisms
-* Extensible pipeline for future intelligence modules
+### ✔ Email — Daily briefing delivered automatically  
+### ✔ PDF — Professional, shareable report  
+### ✔ Web (GitHub Pages) — Interactive browsing + historical archive  
 
-
-This system is actively used by the [SABA Energy](https://www.saba.energy) team to improve situational awareness, procurement planning, and market intelligence.
+All three channels share the same data, insights, and visual identity.
 
 ---
 
-### 🏗️ 2. System Architecture
+## 🚀 Key Features
+
+### **1. Multi‑Channel Publishing**
+- 📧 **Email**: Responsive HTML email compatible with Outlook, Gmail, 163  
+- 📄 **PDF**: Professional layout with charts, tables, and structured sections  
+- 🌐 **Web**: Interactive GitHub Pages site with date navigation and archive
+
+### **2. Automated Daily Intelligence**
+- Global solar & storage news  
+- China supply chain updates  
+- Nigeria market intelligence  
+- Daily price tables (modules, batteries, freight)  
+- AI‑generated insights & summaries  
+- Price trend charts (auto‑rendered)
+
+### **3. Zero‑Maintenance Pipeline**
+- Fully automated ingestion → processing → publishing  
+- GitHub Actions / cron‑based execution  
+- Automatic fallback & error‑tolerant design  
+- Historical index auto‑generated
+
+### **4. Unified Visual Identity**
+All outputs (Email, PDF, Web) share the same **Teal brand color system**:
+- Primary: `#005B5B`  
+- Secondary: `#4CCBC0`  
+- Accent: `#007A6F`  
+- Background: `#f4f6f8`
+
+---
+
+## 🧠 System Architecture
 
 ```markdown
 solar_briefing/
@@ -71,233 +89,146 @@ solar_briefing/
 
 ---
 
-### 🔄 3. Data Flow Overview
+## 🔄 Data Flow Overview
 
-                ┌────────────────────────────┐
-                │   Manual / Automated URLs   │
-                │ (WeChat, Web, Price Feeds)  │
-                └──────────────┬─────────────┘
-                               ▼
-                    ingestion/url_queue.py
-                     (pending URL storage)
-                               ▼
-                     fetcher.py / fetch_prices.py
-                     (HTML fetch + data extraction)
-                               ▼
-                         insights.py
-                (AI summary, key insights, impact)
-                               ▼
-                chart_builder / pdf_builder / email_builder
-                               ▼
-                      output/ (PDF + Email)
-                               ▼
-                        email_sender.py
-                     (Daily automated delivery)
-
-
----
-
-### 📥 4. Ingestion Layer
-
-#### 4.1 URL Queue System
-
-All external URLs enter the system through:
-```json
-data/incoming_urls.jsonl
-```
-
-Each record contains:
-
-```json
-{
-  "url": "...",
-  "source": "wechat | web",
-  "added_at": "2026-01-05T10:00:00Z",
-  "status": "pending | fetched | failed"
-}
-```
-
-The queue ensures:
-
-* Deduplication
-* Status tracking
-* Unified ingestion pipeline
-* Easy debugging and auditing
+                ┌──────────────────────────────────────────┐
+                │      Manual / Automated URL Sources       │
+                │  (WeChat Articles, Web Pages, Price Feeds)│
+                └──────────────────────────┬───────────────┘
+                                           ▼
+                               ingestion/url_queue.py
+                               (pending URL storage)
+                                           ▼
+                    ┌──────────────────────────────────────────┐
+                    │ fetcher.py / fetch_prices.py              │
+                    │  - HTML fetch                             │
+                    │  - Content extraction                     │
+                    │  - Price scraping                         │
+                    └──────────────────────────┬───────────────┘
+                                               ▼
+                                        insights.py
+                        (AI summary, region classification,
+                         key insights, price impact analysis)
+                                               ▼
+                    ┌──────────────────────────────────────────┐
+                    │ Rendering Layer                           │
+                    │  - chart_builder.py (PNG charts)          │
+                    │  - pdf_builder.py   (Daily PDF)           │
+                    │  - email_builder.py (HTML Email)          │
+                    │  - json_builder.py  (Web JSON snapshot)   │
+                    └──────────────────────────┬───────────────┘
+                                               ▼
+                                   output/
+                    (PDF, Email HTML, JSON snapshots, Charts)
+                                               ▼
+                    ┌──────────────────────────────────────────┐
+                    │ Publishing Layer                          │
+                    │  - email_sender.py (Daily delivery)       │
+                    │  - GitHub Pages update (Web UI + Archive) │
+                    └──────────────────────────────────────────┘
 
 
 ---
 
-#### 4.2 WeChat Link Reader (Manual Input)
 
-Team members can manually paste WeChat article links into:
+## 📅 Daily Automation Flow
 
-```
-wechat_links.txt
-```
+The system runs a fully automated end‑to‑end pipeline every day:
 
-Then run:
-```python
- python -m ingestion.wechat_link_reader
-```
+1. Fetch Data• Global solar & storage news
+- China supply chain updates
+- Nigeria market intelligence
+- Daily price data (modules, batteries, freight)
 
-The system will:
+2. AI Processing• Summaries for each region
+- Price impact analysis
+- Daily insight generation
+- News classification (China / Nigeria / Global)
 
-* Read all links
-* Validate them
-* Add them to the URL queue
-* Avoid duplicates
+3. Rendering• HTML email (responsive)
+- PDF report (professional layout)
+- JSON snapshot for web UI
+- Price trend chart (PNG)
 
-This is the recommended method for internal WeChat article ingestion.
-
----
-
-### 🧠 5. AI Insights Layer
-
-The system uses structured prompt templates to generate:
-
-* English & Chinese summaries
-* Key insights
-* Supply chain impact analysis
-* Nigeria market relevance
-* Procurement recommendations
+4. Publishing• Send email briefing
+- Save PDF to output directory
+- Update GitHub Pages (daily report + archive)
+- Refresh index.json for historical navigation
 
 
-All prompts are stored in:
-```markdown
-prompts/
-```
 
-This layer ensures consistent, high‑quality intelligence output.
-
----
-
-### 🖼️ 6. Rendering Layer
-
-#### 6.1 PDF Report
-
-Features:
-
-* Gradient cover with SABA branding
-* Auto‑generated table of contents
-* Card‑style news layout
-* Price trend charts
-* Clean, professional typography
-
-
-#### 6.2 HTML Email
-
-Features:
-
-* Responsive layout
-* Outlook/Gmail compatible
-* Embedded charts (CID)
-* Clear visual hierarchy
+This pipeline ensures all three channels — **Email**, **PDF**, and **Web** — stay perfectly synchronized every day.
 
 
 ---
 
-### 🛠️ 7. Command Line Interface (CLI)
+## 🌐 GitHub Pages (Web UI)
 
-Ingest WeChat links
-```python
- python -m ingestion.wechat_link_reader
-```
-Run full daily pipeline
+The system provides a fully interactive web interface:
 
-```python
-python main.py
-```
+### **Homepage**
+- System overview  
+- Architecture  
+- Value proposition  
+- Links to daily report & archive  
 
+### **Daily Report Page**
+- Date selector  
+- Previous/Next navigation  
+- Price tables  
+- Price chart  
+- AI insights  
+- News sections  
 
----
-
-### 🚀 8. Key Features
-
-✔ Automated Data Ingestion
-
-* Web news
-* WeChat articles
-* Price data
-* Manual link ingestion
-* URL queue with deduplication
-
-
-✔ AI‑Powered Analysis
-
-* Summaries
-* Insights
-* Impact assessment
-* Recommendations
-
-
-✔ Professional Output
-
-* PDF daily report
-* HTML email
-* Charts & visualizations
-
-
-✔ Reliable Delivery
-
-* SMTP primary/backup
-* Logging
-* Error handling
-
-
-✔ Modular & Extensible
-
-* Add new ingestion modules
-* Add new AI prompts
-* Add new output formats
-* Add new delivery channels
-
+### **Archive Page**
+- Full historical list  
+- One‑click access to any date  
 
 ---
 
-### 🧩 9. Future Roadmap
+## 🛠 Tech Stack
 
-Data Sources
-
-* WeChat Official Account homepage crawler
-* Policy announcement feeds
-* Corporate disclosures
-* RSS/Atom feeds
-
-
-Intelligence
-
-* Weekly/monthly automated reports
-* Price forecasting
-* Supply chain risk alerts
-* Competitor analysis
-
-
-Delivery
-
-* Microsoft Teams
-* WhatsApp
-
-Engineering
-
-* PostgreSQL database
-* Redis caching
-* Airflow scheduling
-* Sentry monitoring
-
+- **Python** — ingestion, processing, rendering  
+- **Jinja2** — HTML templating  
+- **WeasyPrint** — PDF generation  
+- **Matplotlib** — chart rendering  
+- **GitHub Pages** — web hosting  
+- **GitHub Actions / cron** — automation  
+- **HTML/CSS/JS** — web UI  
+- **DeepSeek** — AI summarization  
 
 ---
 
-### 📄 10. License
+## 📈 Why This System Matters
 
-Internal use only.
-
-This system is proprietary to SABA Energy and must not be distributed externally.
+- Eliminates manual data collection  
+- Ensures consistent daily intelligence  
+- Supports procurement & operations decisions  
+- Provides a unified view of global + Nigeria markets  
+- Scales with the team and future data sources  
+- Professional, reliable, and fully automated  
 
 ---
 
-### 👤 11. Maintainer
+## 👤 Author
 
-* Yacob： QA & Operations Support Engineer of Saba Energy
+**Developed by:** Yacob  
+**Role:** QA & Operations Support Engineer of Saba Energy  
+**Email:** ywang@saba.energy  | yacobofwork@gmail.com
 
+---
 
+## 🔮 Roadmap
 
+- [ ] Add monthly & yearly summary reports  
+- [ ] Add search across historical news  
+- [ ] Add Nigeria price forecasting module  
+- [ ] Add API endpoint for internal tools  
+- [ ] Add dark mode for web UI  
+- [ ] Add multi‑language support (EN/中文)  
+
+---
+
+## 📄 License
+
+Internal use only — Saba Energy.
