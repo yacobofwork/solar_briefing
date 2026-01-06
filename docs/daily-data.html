@@ -270,7 +270,7 @@
 </header>
 
 <div class="container" id="content">
-    <p class="loading">Loading latest daily report...</p >
+    <p class="loading">Loading daily report...</p >
 </div>
 
 <footer>
@@ -278,7 +278,12 @@
 </footer>
 
 <script>
-async function loadLatestReport() {
+function getQueryDate() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("date");
+}
+
+async function loadReport() {
     const container = document.getElementById("content");
     const dateLabel = document.getElementById("report-date");
 
@@ -288,17 +293,22 @@ async function loadLatestReport() {
         const index = await indexResp.json();
 
         if (!index.dates || index.dates.length === 0) {
-            container.innerHTML = "<p class='error'>No reports available yet.</p >";
+            container.innerHTML = "<p class='error'>No reports available.</p >";
             return;
         }
 
-        const latest = index.dates[index.dates.length - 1];
+        let queryDate = getQueryDate();
+        let targetDate = queryDate;
 
-        const dataResp = await fetch(`datas/${latest}.json`);
-        if (!dataResp.ok) throw new Error(`Failed to load daily JSON for ${latest}`);
+        if (!targetDate || !index.dates.includes(targetDate)) {
+            targetDate = index.dates[index.dates.length - 1];
+        }
+
+        const dataResp = await fetch(`datas/${targetDate}.json`);
+        if (!dataResp.ok) throw new Error(`Failed to load daily JSON for ${targetDate}`);
         const data = await dataResp.json();
 
-        dateLabel.textContent = `Date: ${data.date || latest}`;
+        dateLabel.textContent = `Date: ${data.date || targetDate}`;
 
         container.innerHTML = `
             <h2 class="section-title">Overview</h2>
@@ -351,7 +361,7 @@ async function loadLatestReport() {
     }
 }
 
-loadLatestReport();
+loadReport();
 </script>
 
 </body>
