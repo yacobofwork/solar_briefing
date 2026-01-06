@@ -283,7 +283,7 @@ async function loadLatestReport() {
     const dateLabel = document.getElementById("report-date");
 
     try {
-        const indexResp = await fetch("data/index.json");
+        const indexResp = await fetch("datas/index.json");
         if (!indexResp.ok) throw new Error("Failed to load index.json");
         const index = await indexResp.json();
 
@@ -294,7 +294,7 @@ async function loadLatestReport() {
 
         const latest = index.dates[index.dates.length - 1];
 
-        const dataResp = await fetch(`data/${latest}.json`);
+        const dataResp = await fetch(`datas/${latest}.json`);
         if (!dataResp.ok) throw new Error(`Failed to load daily JSON for ${latest}`);
         const data = await dataResp.json();
 

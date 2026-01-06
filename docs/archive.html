@@ -243,7 +243,7 @@ async function loadArchive() {
     const container = document.getElementById("archive");
 
     try {
-        const resp = await fetch("data/index.json");
+        const resp = await fetch("datas/index.json");
         if (!resp.ok) throw new Error("Failed to load index.json");
 
         const index = await resp.json();
