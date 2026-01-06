@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Saba Energy Intelligence System</title>
+    <title>Saba Energy Intelligence System — Archive</title>
 
     <style>
         body {
@@ -127,19 +127,19 @@
         header {
             background: linear-gradient(135deg, #0a6fb8, #063b73);
             color: white;
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
 
         header h1 {
             margin: 0;
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 700;
         }
 
         header p {
-            margin-top: 10px;
-            font-size: 20px;
+            margin: 8px 0 0 0;
+            font-size: 16px;
             opacity: 0.9;
         }
 
@@ -149,20 +149,54 @@
             padding: 0 20px;
         }
 
-        h2 {
+        h2.section-title {
             color: #0a6fb8;
             border-left: 4px solid #0a6fb8;
             padding-left: 10px;
-            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .archive-list {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .archive-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e3e8ee;
+        }
+
+        .archive-item:last-child {
+            border-bottom: none;
+        }
+
+        .archive-item a {
+            text-decoration: none;
+            color: #063b73;
+            font-weight: 500;
+        }
+
+        .archive-item a:hover {
+            text-decoration: underline;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            margin-top: 40px;
-            background: #f0f4f8;
+            padding: 20px 10px 30px 10px;
+            font-size: 13px;
             color: #666;
-            font-size: 14px;
+            background: #f0f4f8;
+            margin-top: 40px;
+        }
+
+        .loading {
+            color: #666;
+        }
+
+        .error {
+            color: #c0392b;
         }
     </style>
 </head>
@@ -188,39 +222,55 @@
 </nav>
 
 <header>
-    <h1>Saba Energy Intelligence System</h1>
-    <p>Enterprise Intelligence Automation Platform</p >
+    <h1>Daily Report Archive</h1>
+    <p>Browse all historical daily intelligence reports</p >
 </header>
 
 <div class="container">
+    <h2 class="section-title">Available Reports</h2>
 
-    <h2>Overview</h2>
-    <p>
-        The <strong>Saba Energy Intelligence System</strong> is an internal intelligence automation platform designed to support
-        SABA Energy’s global solar and energy‑storage operations. It consolidates multi‑source industry information,
-        applies AI‑driven analysis, and generates professional‑grade daily reports for internal decision‑making.
-    </p >
-
-    <h2>Features</h2>
-    <ul>
-        <li>Automated data ingestion (Web, WeChat, price feeds)</li>
-        <li>AI‑powered summarization and insights</li>
-        <li>Professional PDF and HTML email generation</li>
-        <li>Daily automated delivery</li>
-        <li>GitHub Pages online daily report</li>
-    </ul>
-
-    <h2>Daily Report</h2>
-    <p>
-        View the latest daily intelligence report online:
-        <a href="daily-data.html">Open Daily Report →</a >
-    </p >
-
+    <div id="archive" class="archive-list">
+        <p class="loading">Loading archive...</p >
+    </div>
 </div>
 
 <footer>
-    Saba Energy Intelligence System — Internal Use Only
+    Saba Energy Intelligence System — Internal use only.
 </footer>
+
+<script>
+async function loadArchive() {
+    const container = document.getElementById("archive");
+
+    try {
+        const resp = await fetch("data/index.json");
+        if (!resp.ok) throw new Error("Failed to load index.json");
+
+        const index = await resp.json();
+
+        if (!index.dates || index.dates.length === 0) {
+            container.innerHTML = "<p class='error'>No reports available.</p >";
+            return;
+        }
+
+        container.innerHTML = index.dates
+            .map(date => `
+                <div class="archive-item">
+                    <a href="daily-data.html?date=${date}">
+                        ${date} — View Report
+                    </a >
+                </div>
+            `)
+            .join("");
+
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = "<p class='error'>Failed to load archive.</p >";
+    }
+}
+
+loadArchive();
+</script>
 
 </body>
 </html>

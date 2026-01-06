@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saba Energy Intelligence System — Daily Report</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ============================
+           Navigation Bar
+        ============================ */
+        .navbar {
+            background: #063b73;
+            color: white;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .nav-menu a:hover {
+            opacity: 1;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .nav-toggle-label {
+            display: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle-label span,
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            display: block;
+            background: white;
+            height: 3px;
+            width: 24px;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-toggle-label span::before {
+            top: -7px;
+        }
+
+        .nav-toggle-label span::after {
+            top: 7px;
+        }
+
+        @media (max-width: 800px) {
+            .nav-menu {
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: #063b73;
+                flex-direction: column;
+                padding: 10px 0;
+                display: none;
+            }
+
+            .nav-menu a {
+                padding: 10px 20px;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-toggle-label {
+                display: block;
+            }
+
+            .nav-toggle:checked ~ .nav-menu {
+                display: flex;
+            }
+        }
+
+        /* ============================
+           Page Layout
+        ============================ */
+        header {
+            background: linear-gradient(135deg, #0a6fb8, #063b73);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 8px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .date-label {
+            font-weight: 500;
+            margin-top: 4px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        h2.section-title {
+            color: #0a6fb8;
+            border-left: 4px solid #0a6fb8;
+            padding-left: 10px;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 18px;
+            color: #063b73;
+        }
+
+        .price-chart {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #dde3ec;
+        }
+
+        .news-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1000px) {
+            .news-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .news-section h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #063b73;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 10px 30px 10px;
+            font-size: 13px;
+            color: #666;
+            background: #f0f4f8;
+        }
+
+        .loading {
+            color: #666;
+        }
+
+        .error {
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">Saba Energy Intelligence System</div>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+
+        <div class="nav-menu">
+            <a href=" ">Home</a >
+            <a href="daily-data.html">Daily Report</a >
+            <a href="archive.html">Archive</a >
+        </div>
+    </div>
+</nav>
+
+<header>
+    <h1>Saba Energy Intelligence System</h1>
+    <p>Daily Intelligence Report</p >
+    <div class="date-label" id="report-date"></div>
+    <div class="pill">Auto-generated by internal pipeline</div>
+</header>
+
+<div class="container" id="content">
+    <p class="loading">Loading latest daily report...</p >
+</div>
+
+<footer>
+    Saba Energy Intelligence System — Internal use only. Rendered from daily JSON snapshots on GitHub Pages.
+</footer>
+
+<script>
+async function loadLatestReport() {
+    const container = document.getElementById("content");
+    const dateLabel = document.getElementById("report-date");
+
+    try {
+        const indexResp = await fetch("data/index.json");
+        if (!indexResp.ok) throw new Error("Failed to load index.json");
+        const index = await indexResp.json();
+
+        if (!index.dates || index.dates.length === 0) {
+            container.innerHTML = "<p class='error'>No reports available yet.</p >";
+            return;
+        }
+
+        const latest = index.dates[index.dates.length - 1];
+
+        const dataResp = await fetch(`data/${latest}.json`);
+        if (!dataResp.ok) throw new Error(`Failed to load daily JSON for ${latest}`);
+        const data = await dataResp.json();
+
+        dateLabel.textContent = `Date: ${data.date || latest}`;
+
+        container.innerHTML = `
+            <h2 class="section-title">Overview</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Daily Insight</h3>
+                    <div>${data.daily_insight_html || "<p>No daily insight available.</p >"}</div>
+                </div>
+                <div class="card">
+                    <h3>Price Insight</h3>
+                    <div>${data.price_insight_html || "<p>No price insight available.</p >"}</div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Market Prices</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Price Table</h3>
+                    <div>${data.price_html || "<p>No price table available.</p >"}</div>
+                </div>
+                <div class="card">
+                    <h3>Price Chart</h3>
+                    ${
+                        data.chart_path
+                            ? `<img src="${data.chart_path}" alt="Price chart" class="price-chart" />`
+                            : "<p>No chart available.</p >"
+                    }
+                </div>
+            </div>
+
+            <h2 class="section-title">News & Intelligence</h2>
+            <div class="news-columns">
+                <div class="card news-section">
+                    <h3>China Supply Chain</h3>
+                    <div>${data.news_china_html || "<p>No China news available.</p >"}</div>
+                </div>
+                <div class="card news-section">
+                    <h3>Nigeria Market</h3>
+                    <div>${data.news_nigeria_html || "<p>No Nigeria news available.</p >"}</div>
+                </div>
+                <div class="card news-section">
+                    <h3>Global Solar & Storage</h3>
+                    <div>${data.news_global_html || "<p>No global news available.</p >"}</div>
+                </div>
+            </div>
+        `;
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = `<p class="error">Failed to load daily report.</p >`;
+    }
+}
+
+loadLatestReport();
+</script>
+
+</body>
+</html>
