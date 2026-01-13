@@ -16,6 +16,9 @@ def save_price_history(prices: list[dict], history_file: str) -> None:
 
     # Ensure correct column order
     df_new = pd.DataFrame(prices, columns=["item", "date", "price"])
+    missing = {"item", "date", "price"} - set(df_new.columns)
+    if missing:
+        logger.error(f"Missing required columns in prices : {missing}")
 
     try:
         # If file does not exist → create new

@@ -2,6 +2,7 @@ import os
 import shutil
 import datetime
 import subprocess
+from pathlib import Path
 
 from src.renderers.dashborad.article_renderer import render_article
 from src.renderers.dashborad.daily_exporter import save_daily_json, update_index_json
@@ -40,8 +41,7 @@ cache = DailyCache(config["cache"]["path"])
 cache.clean_old_cache(config["cache"]["keep_days"])
 
 charts_dir = config["paths"]["charts_dir"]
-
-history_file = os.path.join("src", "data", "price_history.csv")
+history_file_path = Path(config["paths"]["history_file_path"]).resolve()
 
 
 # ============================================================
@@ -124,7 +124,7 @@ def process_price_ai(price_list, date):
         logger.info("Using cached chart...")
     else:
         logger.info("Generating price chart...")
-        build_price_chart(history_file, chart_abs_path)
+        build_price_chart(history_file_path, chart_abs_path)
 
     chart_rel_for_docs = f"charts/{filename}"
     return chart_abs_path, chart_rel_for_docs, price_insight
@@ -193,11 +193,12 @@ def render_price_table(price_list):
 
 def export_pdf(date, news_html, news_china, news_nigeria, news_global,
                price_html, chart_path, price_insight, daily_insight):
-    pdf_dir = os.path.join("src", "runtime_output", "pdf")
+
+    pdf_dir = Path(config["paths"]["pdf_dir"]).resolve()
     os.makedirs(pdf_dir, exist_ok=True)
     pdf_path = os.path.abspath(os.path.join(pdf_dir, f"daily_report_{date}.pdf"))
 
-    logo_path = os.path.abspath(os.path.join("src", "assets", "company_logo.png"))
+    logo_path = Path(config["paths"]["logo_path"]).resolve()
 
     build_pdf(
         news_html=news_html,
@@ -214,10 +215,10 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
     )
 
     if pdf_path and os.path.exists(pdf_path):
-        archive_dir = os.path.join("src", "runtime_output", "archive")
+        archive_dir = Path(config["paths"]["archive_dir"]).resolve()
         os.makedirs(archive_dir, exist_ok=True)
         shutil.copy(pdf_path, os.path.join(archive_dir, f"daily_report_{date}.pdf"))
-        logger.info(f"PDF generated: {pdf_path}")
+        logger.info(f"PDF archiving successfully to : {pdf_path}")
     else:
         logger.error("PDF not generated, skip archiving")
 
@@ -280,7 +281,7 @@ def run():
 
     # Step 1: Fetch data
     price_list, news_list = fetch_data()
-    save_price_history(price_list, history_file)
+    save_price_history(price_list, history_file_path)
 
     # Step 2: AI process news
     ai_results = process_news_ai(news_list)
