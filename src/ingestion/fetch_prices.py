@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from utils import setup_logger
-from config_loader import load_config
+from solar_intel_v2.system.utils import setup_logger
+from solar_intel_v2.system.config_loader import load_config
 from datetime import date
 
 logger = setup_logger("prices")

@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from utils import setup_logger, get_env
+from solar_intel_v2.system.utils import setup_logger, get_env
 
 logger = setup_logger("email_sender")
 
@@ -16,7 +16,7 @@ logger = setup_logger("email_sender")
 # ============================
 def render_email_html(**kwargs):
     env = Environment(
-        loader=FileSystemLoader("templates"),
+        loader=FileSystemLoader("../../../templates"),
         autoescape=select_autoescape(["html", "xml"])
     )
     template = env.get_template("email_template.html")

@@ -3,7 +3,7 @@ import os
 import inspect
 import json
 from openai import OpenAI
-from utils import clean_html, get_env
+from solar_intel_v2.system.utils import get_env
 
 # DeepSeek API client
 client = OpenAI(
@@ -35,7 +35,7 @@ def load_prompt(name):
     """
     current_file = inspect.getfile(inspect.currentframe())
     base_dir = os.path.dirname(os.path.abspath(current_file))
-    prompt_path = os.path.join(base_dir, "prompts", f"{name}.txt")
+    prompt_path = os.path.join(base_dir, "../../prompts", f"{name}.txt")
 
     if not os.path.exists(prompt_path):
         raise FileNotFoundError(f"Prompt file not found: {prompt_path}")

@@ -1,7 +1,7 @@
 # ingestion/wechat_link_reader.py
 
 from pathlib import Path
-from .url_queue import enqueue_url
+from solar_intel_v2.ingestion.url_queue import enqueue_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 LINK_FILE = BASE_DIR / "wechat_links.txt"

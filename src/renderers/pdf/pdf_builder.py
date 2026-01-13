@@ -11,7 +11,7 @@ def build_pdf(**kwargs):
 
     # 1. 加载 templates 目录
     env = Environment(
-        loader=FileSystemLoader("templates"),
+        loader=FileSystemLoader("../../../templates"),
         autoescape=select_autoescape(["html", "xml"])
     )
 

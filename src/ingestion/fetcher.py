@@ -4,8 +4,8 @@ import feedparser
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser
-from utils import setup_logger
-from config_loader import load_config
+from solar_intel_v2.system.utils import setup_logger
+from solar_intel_v2.system.config_loader import load_config
 from urllib.parse import quote_plus
 
 logger = setup_logger("fetcher")

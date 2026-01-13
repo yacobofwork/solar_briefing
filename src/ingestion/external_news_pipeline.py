@@ -2,13 +2,13 @@
 import datetime
 from typing import List, Dict
 
-from insights import safe_ai_summary, safe_ai_summary_industry
-from .ai_cache import load_summary_from_cache, save_summary_to_cache
-from .region_cache import load_region_from_cache, save_region_to_cache
-from .url_queue import load_pending_urls, update_url_status
-from .content_fetcher import fetch_and_extract
-from ingestion.region_classifier import classify_region_ai
-from .url_queue_cleanup import cleanup_url_queue
+from solar_intel_v2.modules.insights_core import safe_ai_summary_industry
+from solar_intel_v2.ingestion.ai_cache import load_summary_from_cache, save_summary_to_cache
+from solar_intel_v2.ingestion.region_cache import load_region_from_cache, save_region_to_cache
+from solar_intel_v2.ingestion.url_queue import load_pending_urls, update_url_status
+from solar_intel_v2.ingestion.content_fetcher import fetch_and_extract
+from solar_intel_v2.ingestion.region_classifier import classify_region_ai
+from solar_intel_v2.ingestion.url_queue_cleanup import cleanup_url_queue
 
 
 def process_pending_urls_to_raw_news() -> List[Dict]:

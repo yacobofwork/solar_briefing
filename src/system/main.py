@@ -6,37 +6,37 @@ import os
 import shutil
 import datetime
 
-from chart_builder import build_price_chart
-from fetch_prices import fetch_all_prices
-from fetcher import fetch_all_news
-from renderers.daily_exporter import save_daily_json, update_index_json
+from solar_intel_v2.renderers.charts.chart_builder import build_price_chart
+from solar_intel_v2.ingestion.fetch_prices import fetch_all_prices
+from solar_intel_v2.ingestion.fetcher import fetch_all_news
+from solar_intel_v2.renderers.dashborad.daily_exporter import save_daily_json, update_index_json
 
-from insights import (
+from solar_intel_v2.modules.insights_core import (
     summarize_article,
     analyze_price_impact,
     generate_daily_insight
 )
 
-from renderers.article_renderer import render_article
-from renderers.price_renderer import render_price_insight
-from renderers.insight_renderer import render_daily_insight
+from solar_intel_v2.renderers.dashborad.article_renderer import render_article
+from solar_intel_v2.renderers.dashborad.price_renderer import render_price_insight
+from solar_intel_v2.renderers.dashborad.insight_renderer import render_daily_insight
 
-from pdf_builder import build_pdf
-from email_sender import send_email
-from utils import setup_logger
-from cache_manager import DailyCache
-from save_price_history import save_price_history
+from solar_intel_v2.renderers.pdf.pdf_builder import build_pdf
+from solar_intel_v2.renderers.email.email_sender import send_email
+from solar_intel_v2.system.utils import setup_logger
+from solar_intel_v2.system.cache_manager import DailyCache
+from solar_intel_v2.ingestion.save_price_history import save_price_history
 import yaml
 
 # ⭐ 新增：引入外部 URL → 原始 news 的管道
-from ingestion.external_news_pipeline import process_pending_urls_to_raw_news
+from solar_intel_v2.ingestion.external_news_pipeline import process_pending_urls_to_raw_news
 
 logger = setup_logger("main")
 
-history_file = "price_history.csv"
+history_file = "../../price_history.csv"
 
 # 初始化天缓存，可在配置文件当中关闭
-config = yaml.safe_load(open("config.yaml", encoding="utf-8"))
+config = yaml.safe_load(open("../../config.yaml", encoding="utf-8"))
 cache_enabled = config["cache"]["enabled"]
 cache = DailyCache(config["cache"]["path"])
 
@@ -126,7 +126,7 @@ def process_price_ai(price_list, date):
             cache.save("price_insight", price_insight)
 
     # Chart cache
-    charts_dir = "output/charts"
+    charts_dir = "../runtime_output/charts"
     os.makedirs(charts_dir, exist_ok=True)
     filename = f"price_chart_{date}.png"
     chart_abs_path = os.path.abspath(os.path.join(charts_dir, filename))
@@ -255,11 +255,11 @@ def render_price_table(price_list):
 def export_pdf(date, news_html, news_china, news_nigeria, news_global,
                price_html, chart_path, price_insight, daily_insight):
 
-    pdf_dir = "output/pdf"
+    pdf_dir = "../runtime_output/pdf"
     os.makedirs(pdf_dir, exist_ok=True)
     pdf_path = os.path.abspath(f"{pdf_dir}/daily_report_{date}.pdf")
 
-    logo_path = os.path.abspath("company_logo.png")
+    logo_path = os.path.abspath("../assets/company_logo.png")
 
     build_pdf(
         news_html=news_html,
@@ -278,7 +278,7 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
     logger.info(f"PDF 已生成：{pdf_path}")
 
     # 归档
-    archive_dir = "output/archive"
+    archive_dir = "../runtime_output/archive"
     os.makedirs(archive_dir, exist_ok=True)
     shutil.copy(pdf_path, os.path.join(archive_dir, f"daily_report_{date}.pdf"))
 
@@ -354,7 +354,7 @@ def run():
     chart_path, chart_rel_for_docs, price_insight = process_price_ai(price_list, date)
 
     # Copy chart to docs/charts for GitHub Pages
-    docs_charts_dir = "docs/charts"
+    docs_charts_dir = "../../docs/charts"
     os.makedirs(docs_charts_dir, exist_ok=True)
     shutil.copy(
         chart_path,

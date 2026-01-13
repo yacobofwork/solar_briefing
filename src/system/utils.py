@@ -30,7 +30,7 @@ def setup_logger(name="app"):
         logger.addHandler(ch)
 
         # 文件日志（可选）
-        log_dir = "logs"
+        log_dir = "../../logs"
         os.makedirs(log_dir, exist_ok=True)
         log_path = os.path.join(log_dir, f"{datetime.now().strftime('%Y-%m-%d')}.log")
 
