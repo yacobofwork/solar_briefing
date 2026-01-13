@@ -29,14 +29,14 @@ output/
 #*.json
 
 # --- 环境变量文件（敏感信息）---
-.env
+src/config/.env
 
 # --- WeasyPrint 临时文件 ---
 #*.png
 *.svg
 
 # --- 价格历史（如果你不想提交 CSV）---
-price_history.csv
+src/data/price_history.csv
 
 # --- 依赖锁定文件（你可以选择是否提交）---
 # requirements.txt

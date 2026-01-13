@@ -1,8 +1,6 @@
-# ingestion/region_classifier.py
-
 import re
 
-from solar_intel_v2.modules.insights_core import summarize_article, load_prompt
+from src.modules.insights_core import summarize_article, load_prompt
 
 # ------------------------------------------------------------
 # 可配置关键词（你可以随时扩展）

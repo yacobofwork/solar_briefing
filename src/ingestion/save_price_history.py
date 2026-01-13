@@ -1,40 +1,56 @@
 import os
 import pandas as pd
+from src.system.logger import setup_logger
 
-def save_price_history(prices, history_file):
-    # 如果没有抓到价格，不写入空文件
+logger = setup_logger("save_price_history")
+
+
+def save_price_history(prices: list[dict], history_file: str) -> None:
+    """
+    Save daily price data into history CSV file.
+    Ensures correct headers, merges with existing data, and sorts by date.
+    """
     if not prices:
-        print("[WARN] 今日无价格数据，不更新历史记录")
+        logger.warning("No price data today, skipping history update.")
         return
 
-    # 明确指定字段顺序，确保表头正确
+    # Ensure correct column order
     df_new = pd.DataFrame(prices, columns=["item", "date", "price"])
 
-    # 如果文件不存在 → 创建并写入表头
-    if not os.path.exists(history_file):
-        df_new.to_csv(history_file, index=False)
-        return
+    try:
+        # If file does not exist → create new
+        if not os.path.exists(history_file) or os.path.getsize(history_file) == 0:
+            df_new.to_csv(history_file, index=False)
+            logger.info(f"Created new history file: {history_file}")
+            return
 
-    # 如果文件存在但为空 → 写入表头
-    if os.path.getsize(history_file) == 0:
-        df_new.to_csv(history_file, index=False)
-        return
+        # Read old data
+        df_old = pd.read_csv(history_file)
 
-    # 文件存在且有内容 → 读取旧数据
-    df_old = pd.read_csv(history_file)
+        # Fix missing columns
+        required_cols = {"item", "date", "price"}
+        if not required_cols.issubset(df_old.columns):
+            logger.warning("History file format invalid, resetting headers.")
+            df_old = pd.DataFrame(columns=["item", "date", "price"])
 
-    # 如果旧文件缺少字段 → 强制修复
-    required_cols = {"item", "date", "price"}
-    if not required_cols.issubset(df_old.columns):
-        print("[WARN] 历史文件格式错误，已自动修复表头")
-        df_old = pd.DataFrame(columns=["item", "date", "price"])
+        # Merge
+        df_all = pd.concat([df_old, df_new], ignore_index=True)
 
-    # 合并
-    df_all = pd.concat([df_old, df_new], ignore_index=True)
+        # Ensure date column is datetime
+        df_all["date"] = pd.to_datetime(df_all["date"], errors="coerce")
 
-    # 按日期排序（升序）
-    df_all["date"] = pd.to_datetime(df_all["date"])
-    df_all = df_all.sort_values(by="date")
+        # Drop rows with invalid dates
+        df_all = df_all.dropna(subset=["date"])
 
-    # 写回 CSV
-    df_all.to_csv(history_file, index=False)
+        # Sort by date ascending
+        df_all = df_all.sort_values(by="date")
+
+        # Drop duplicates (same item + date)
+        df_all = df_all.drop_duplicates(subset=["item", "date"], keep="last")
+
+        # Write back
+        df_all.to_csv(history_file, index=False)
+        logger.info(f"Updated history file: {history_file} with {len(df_new)} new records.")
+
+    except Exception as e:
+        logger.error(f"Failed to update price history: {e}")

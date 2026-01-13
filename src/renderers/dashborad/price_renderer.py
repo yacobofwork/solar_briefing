@@ -1,4 +1,3 @@
-# renderers/price_renderer.py
 
 def render_price_insight(data):
     sections = data.get("sections", [])

@@ -1,14 +1,14 @@
-# ingestion/url_queue.py
 import json
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
+from src.system.logger import setup_logger
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
-DATA_DIR.mkdir(exist_ok=True)
+logger = setup_logger("url_queue")
 
-QUEUE_FILE = DATA_DIR / "incoming_urls.jsonl"
+
+QUEUE_FILE = Path("src/data/incoming_urls.jsonl")
+QUEUE_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 
 def _normalize_source(url: str, explicit_source: str | None = None) -> str:
@@ -48,9 +48,11 @@ def enqueue_url(url: str, source: str | None = None) -> dict:
                     item = json.loads(line)
                     existing_urls.add(item.get("url"))
                 except json.JSONDecodeError:
+                    logger.warning("Skipping invalid JSON line in queue file.")
                     continue
 
     if url in existing_urls:
+        logger.info(f"Duplicate URL ignored: {url}")
         return {
             "url": url,
             "source": src,
@@ -68,6 +70,7 @@ def enqueue_url(url: str, source: str | None = None) -> dict:
     with QUEUE_FILE.open("a", encoding="utf-8") as f:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
+    logger.info(f"URL enqueued: {url}")
     return record
 
 
@@ -84,13 +87,14 @@ def load_pending_urls() -> list[dict]:
             try:
                 item = json.loads(line)
             except json.JSONDecodeError:
+                logger.warning("Skipping invalid JSON line in queue file.")
                 continue
             if item.get("status") == "pending":
                 items.append(item)
     return items
 
 
-def update_url_status(url: str, status: str):
+def update_url_status(url: str, status: str) -> None:
     """
     Update the status of a specific URL:
     - fetched
@@ -105,6 +109,7 @@ def update_url_status(url: str, status: str):
             try:
                 item = json.loads(line)
             except json.JSONDecodeError:
+                logger.warning("Skipping invalid JSON line in queue file.")
                 continue
             if item.get("url") == url:
                 item["status"] = status
@@ -113,3 +118,5 @@ def update_url_status(url: str, status: str):
     with QUEUE_FILE.open("w", encoding="utf-8") as f:
         for item in rows:
             f.write(json.dumps(item, ensure_ascii=False) + "\n")
+
+    logger.info(f"Updated status for {url} → {status}")

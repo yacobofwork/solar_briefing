@@ -1,36 +1,60 @@
+from pathlib import Path
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from weasyprint import HTML
 from bs4 import BeautifulSoup
 
+from src.system.config_loader import load_config
+from src.system.logger import setup_logger
+
+config = load_config()
+
+logger = setup_logger("pdf_builder")
 
 def build_pdf(**kwargs):
     """
-    使用 Jinja2 渲染 PDF 模板，彻底避免 .format() 与 CSS 冲突。
-    支持自动目录页、Logo、咨询公司级排版。
+    Render PDF using Jinja2 + WeasyPrint.
+    Supports automatic table of contents, logo, and professional layout.
     """
+    try:
+        # 1. Load templates directory
+        templates_dir = Path(config["paths"]["templates_dir"]).resolve()
+        if not templates_dir.exists():
+            logger.error(f"Templates directory not found: {templates_dir}")
+            return None
 
-    # 1. 加载 templates 目录
-    env = Environment(
-        loader=FileSystemLoader("../../../templates"),
-        autoescape=select_autoescape(["html", "xml"])
-    )
+        env = Environment(
+            loader=FileSystemLoader(templates_dir),
+            autoescape=select_autoescape(["html", "xml"])
+        )
 
-    # 2. 加载 pdf_template.html
-    template = env.get_template("pdf_template.html")
+        # 2. Load pdf_template.html
+        template = env.get_template("pdf_template.html")
 
-    # 3. 渲染 HTML
-    html_content = template.render(**kwargs)
-    headings = extract_headings(html_content)
-    html_content = template.render(**kwargs,headings=headings)
+        # 3. Render HTML with headings
+        html_content = template.render(**kwargs)
+        headings = extract_headings(html_content)
+        html_content = template.render(**kwargs, headings=headings)
 
-    # 4. 生成 PDF
-    (HTML(string=html_content,
-         base_url=".") # WeasyPrint 会使用base_url作为根目录
-     .write_pdf(kwargs["output_path"]))
+        # 4. Generate PDF
+        output_path = kwargs.get("output_path")
+        if not output_path:
+            logger.error("Missing output_path in build_pdf kwargs.")
+            return None
+
+        HTML(string=html_content, base_url=str(templates_dir)).write_pdf(output_path)
+        logger.info(f"PDF generated successfully: {output_path}")
+        return str(output_path)
+
+    except Exception as e:
+        logger.error(f"Failed to generate PDF: {e}")
+        return None
 
 
-# 标题扫描器
-def extract_headings(html):
+
+def extract_headings(html: str):
+    """
+    Extract headings (h1, h2) with IDs for table of contents.
+    """
     soup = BeautifulSoup(html, "html.parser")
     headings = []
     for tag in soup.find_all(["h1", "h2"]):

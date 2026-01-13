@@ -1,47 +1,58 @@
 import os
 import smtplib
+from pathlib import Path
 from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from solar_intel_v2.system.utils import setup_logger, get_env
+
+from src.system.config_loader import load_config
+from src.system.logger import setup_logger
+from src.system.utils import get_env
+
+config = load_config()
 
 logger = setup_logger("email_sender")
 
 
 # ============================
-# 使用 Jinja2 渲染 HTML 模板
+# Render HTML template with Jinja2
 # ============================
-def render_email_html(**kwargs):
+def render_email_html(**kwargs) -> str:
+    templates_dir = Path(config["paths"]["templates_dir"]).resolve()
     env = Environment(
-        loader=FileSystemLoader("../../../templates"),
+        loader=FileSystemLoader(templates_dir),
         autoescape=select_autoescape(["html", "xml"])
     )
-    template = env.get_template("email_template.html")
-    return template.render(**kwargs)
-
-
-# ============================
-# 内部函数：尝试使用某个 SMTP 发送
-# ============================
-def send_with_smtp(host, port, user, password, recipients, msg):
     try:
-        logger.info(f"尝试 SMTP 发送：{host}:{port} 用户={user}")
+        template = env.get_template("email_template.html")
+        return template.render(**kwargs)
+    except Exception as e:
+        logger.error(f"Failed to render email template: {e}")
+        return "<p>Email template error.</p >"
+
+
+# ============================
+# Internal function: try sending with SMTP
+# ============================
+def send_with_smtp(host, port, user, password, recipients, msg) -> bool:
+    try:
+        logger.info(f"Trying SMTP send: {host}:{port}, user={user}")
         server = smtplib.SMTP_SSL(host, port)
         server.login(user, password)
         server.sendmail(user, recipients, msg.as_string())
         server.quit()
-        logger.info("发送成功")
+        logger.info("Email sent successfully via SMTP.")
         return True
     except Exception as e:
-        logger.error(f"发送失败：{e}")
+        logger.error(f"SMTP send failed: {e}")
         return False
 
 
 # ============================
-# 主函数：支持主备邮箱自动切换
+# Main function: support primary/backup email
 # ============================
 def send_email(
     news_china,
@@ -54,10 +65,10 @@ def send_email(
     chart_path,
     date,
     pdf_path=None
-):
-    """发送日报邮件（支持主备邮箱自动切换 + HTML 模板 + 图表嵌入 + PDF 附件）"""
+) -> bool:
+    """Send daily report email (supports primary/backup SMTP, HTML template, chart embed, PDF attachment)."""
 
-    # === 主邮箱配置 ===
+    # Primary email config
     primary = {
         "host": get_env("PRIMARY_EMAIL_HOST"),
         "port": int(get_env("PRIMARY_EMAIL_PORT", default=465)),
@@ -65,7 +76,7 @@ def send_email(
         "password": get_env("PRIMARY_EMAIL_PASS"),
     }
 
-    # === 备用邮箱配置 ===
+    # Backup email config
     backup = {
         "host": get_env("BACKUP_EMAIL_HOST"),
         "port": int(get_env("BACKUP_EMAIL_PORT", default=465)),
@@ -73,17 +84,20 @@ def send_email(
         "password": get_env("BACKUP_EMAIL_PASS"),
     }
 
-    # === 收件人 ===
-    recipients = get_env("RECEIVERS", "").split(",")
+    # Recipients: YAML first，.env second
+    recipients = config.get("email", {}).get("receivers", [])
     if not recipients:
-        logger.error("未配置收件人 RECEIVERS")
+        recipients_env = get_env("RECEIVERS", "")
+        recipients = [r.strip() for r in recipients_env.split(",") if r.strip()]
+    if not recipients:
+        logger.error("No recipients configured (email.receivers or RECEIVERS).")
         return False
 
-    # === 使用 Jinja2 渲染 HTML ===
+    # Render HTML
     html_content = render_email_html(
-        news_china = news_china,
-        news_nigeria = news_nigeria,
-        news_global = news_global,
+        news_china=news_china,
+        news_nigeria=news_nigeria,
+        news_global=news_global,
         date=date,
         price_insight=price_insight,
         price_html=price_html,
@@ -91,45 +105,51 @@ def send_email(
         daily_insight=daily_insight
     )
 
-    # === 构建邮件 ===
+    # Build email
     msg = MIMEMultipart("related")
     msg["Subject"] = f"Daily Solar & Storage Intelligence - {date}"
     msg["From"] = primary["user"]
     msg["To"] = ", ".join(recipients)
 
-    # HTML 部分
+    # HTML part
     msg_alt = MIMEMultipart("alternative")
     msg.attach(msg_alt)
     msg_alt.attach(MIMEText(html_content, "html", "utf-8"))
 
-    # === 图表嵌入（cid:price_chart） ===
+    # Chart embed
     if chart_path and os.path.exists(chart_path):
-        with open(chart_path, "rb") as f:
-            img = MIMEImage(f.read())
+        try:
+            with open(chart_path, "rb") as f:
+                img = MIMEImage(f.read())
             img.add_header("Content-ID", "<price_chart>")
             img.add_header("Content-Disposition", "inline", filename=os.path.basename(chart_path))
             msg.attach(img)
+        except Exception as e:
+            logger.warning(f"Failed to embed chart: {e}")
     else:
-        logger.warning("图表文件不存在，跳过嵌入图表")
+        logger.warning("Chart file not found, skipping embed.")
 
-    # === PDF 附件 ===
+    # PDF attachment
     if pdf_path and os.path.exists(pdf_path):
-        with open(pdf_path, "rb") as f:
-            part = MIMEApplication(f.read(), Name=os.path.basename(pdf_path))
-        part["Content-Disposition"] = f'attachment; filename="{os.path.basename(pdf_path)}"'
-        msg.attach(part)
+        try:
+            with open(pdf_path, "rb") as f:
+                part = MIMEApplication(f.read(), Name=os.path.basename(pdf_path))
+            part["Content-Disposition"] = f'attachment; filename="{os.path.basename(pdf_path)}"'
+            msg.attach(part)
+        except Exception as e:
+            logger.warning(f"Failed to attach PDF: {e}")
     else:
-        logger.warning("PDF 文件不存在，跳过附件")
+        logger.warning("PDF file not found, skipping attachment.")
 
-    # === 1) 尝试主邮箱发送 ===
-    logger.info("优先使用主邮箱发送…")
+    # Try primary SMTP
+    logger.info("Attempting to send via primary SMTP...")
     if send_with_smtp(primary["host"], primary["port"], primary["user"], primary["password"], recipients, msg):
         return True
 
-    # === 2) 主邮箱失败 → 自动切换备用邮箱 ===
-    logger.warning("主邮箱发送失败，切换备用邮箱…")
+    # Fallback to backup SMTP
+    logger.warning("Primary SMTP failed, switching to backup SMTP...")
     if send_with_smtp(backup["host"], backup["port"], backup["user"], backup["password"], recipients, msg):
         return True
 
-    logger.error("主备邮箱均发送失败")
+    logger.error("Both primary and backup SMTP failed.")
     return False

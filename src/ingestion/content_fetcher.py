@@ -1,24 +1,25 @@
-# ingestion/content_fetcher.py
 import re
 from dataclasses import dataclass
 from typing import Optional
 
 import requests
-from bs4 import BeautifulSoup  # 记得在 requirements.txt 里加 beautifulsoup4
+from bs4 import BeautifulSoup
+from src.system.logger import setup_logger
 
 REQUEST_TIMEOUT = 15
+logger = setup_logger("content_fetcher")
 
 
 @dataclass
 class FetchedContent:
     url: str
-    source: str          # wechat / web
+    source: str          # "wechat" / "web"
     title: str
     html: str
     text: str
 
 
-def _fetch_html(url: str) -> str:
+def _fetch_html(url: str) -> Optional[str]:
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -26,27 +27,25 @@ def _fetch_html(url: str) -> str:
             "Chrome/123.0 Safari/537.36"
         )
     }
-    resp = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
-    resp.raise_for_status()
-    resp.encoding = resp.apparent_encoding or "utf-8"
-    return resp.text
+    try:
+        resp = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
+        resp.raise_for_status()
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        logger.info(f"Fetched HTML successfully: {url}")
+        return resp.text
+    except requests.RequestException as e:
+        logger.error(f"Failed to fetch HTML from {url}: {e}")
+        return None
 
 
 def _extract_wechat_content(html: str) -> tuple[str, str]:
-    """
-    微信文章：title + #js_content
-    """
+    """Extract title and text from WeChat article."""
     soup = BeautifulSoup(html, "html.parser")
 
-    title_el = soup.find(id="activity-name")
-    if not title_el:
-        title_el = soup.find("title")
+    title_el = soup.find(id="activity-name") or soup.find("title")
     title = title_el.get_text(strip=True) if title_el else ""
 
-    content_el = soup.find(id="js_content")
-    if not content_el:
-        content_el = soup.body
-
+    content_el = soup.find(id="js_content") or soup.body
     if not content_el:
         return title, ""
 
@@ -60,9 +59,7 @@ def _extract_wechat_content(html: str) -> tuple[str, str]:
 
 
 def _extract_generic_content(html: str) -> tuple[str, str]:
-    """
-    普通网页：title + <article>/<main>/body
-    """
+    """Extract title and text from generic web page."""
     soup = BeautifulSoup(html, "html.parser")
 
     title_el = soup.find("title")
@@ -74,7 +71,6 @@ def _extract_generic_content(html: str) -> tuple[str, str]:
         or soup.find("div", {"id": "content"})
         or soup.body
     )
-
     if not content_el:
         return title, ""
 
@@ -89,23 +85,29 @@ def _extract_generic_content(html: str) -> tuple[str, str]:
 
 def fetch_and_extract(url: str, source: str) -> Optional[FetchedContent]:
     """
-    抓取并抽取正文。
+    Fetch HTML and extract main content.
+    :param url: Target URL
+    :param source: "wechat" or "web"
+    :return: FetchedContent or None
     """
-    try:
-        html = _fetch_html(url)
-    except Exception as e:
-        print(f"[content_fetcher] 抓取失败: {url} ({e})")
+    html = _fetch_html(url)
+    if not html:
         return None
 
-    if source == "wechat":
-        title, text = _extract_wechat_content(html)
-    else:
-        title, text = _extract_generic_content(html)
+    try:
+        if source == "wechat":
+            title, text = _extract_wechat_content(html)
+        else:
+            title, text = _extract_generic_content(html)
 
-    return FetchedContent(
-        url=url,
-        source=source,
-        title=title,
-        html=html,
-        text=text,
-    )
+        logger.info(f"Content extracted successfully from {url}")
+        return FetchedContent(
+            url=url,
+            source=source,
+            title=title,
+            html=html,
+            text=text,
+        )
+    except Exception as e:
+        logger.error(f"Failed to extract content from {url}: {e}")
+        return None

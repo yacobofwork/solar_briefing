@@ -3,73 +3,100 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import shutil
 import yaml
+from src.system.logger import setup_logger
 
-QUEUE_PATH = Path("data/incoming_urls.jsonl")
-BACKUP_PATH = Path("data/incoming_urls_backup.jsonl")
+logger = setup_logger("url_queue_cleanup")
+
+QUEUE_PATH = Path("src/data/incoming_urls.jsonl")
+BACKUP_PATH = Path("src/data/incoming_urls_backup.jsonl")
 
 
-def load_config():
+def load_config() -> dict:
+    """
+    Load cleanup configuration from config.yaml.
+    Returns default values if config file is missing.
+    """
     config_path = Path("config.yaml")
     if not config_path.exists():
-        return {"url_queue": {"retention_days": 7, "keep_pending": True}}
-    with config_path.open("r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        logger.warning("Config file not found, using default cleanup settings.")
+        return {"url_queue": {"retention_days": 7, "keep_pending": True, "if_backup": False}}
+
+    try:
+        with config_path.open("r", encoding="utf-8") as f:
+            return yaml.safe_load(f)
+    except Exception as e:
+        logger.error(f"Failed to load config file: {e}")
+        return {"url_queue": {"retention_days": 7, "keep_pending": True, "if_backup": False}}
 
 
-def cleanup_url_queue():
+def cleanup_url_queue() -> None:
+    """
+    Clean up the URL queue file:
+    - Keep pending entries
+    - Keep entries within retention_days
+    - Optionally backup old file
+    """
     if not QUEUE_PATH.exists():
-        print("[url_queue] 队列文件不存在，跳过清理。")
+        logger.info("Queue file does not exist, skipping cleanup.")
         return
 
     config = load_config().get("url_queue", {})
     retention_days = config.get("retention_days", 7)
     keep_pending = config.get("keep_pending", True)
+    if_backup = config.get("if_backup", False)
 
     cutoff = datetime.now() - timedelta(days=retention_days)
 
     cleaned = []
     removed = []
 
-    with QUEUE_PATH.open("r", encoding="utf-8") as f:
-        for line in f:
+    try:
+        with QUEUE_PATH.open("r", encoding="utf-8") as f:
+            for line in f:
+                try:
+                    item = json.loads(line)
+                except json.JSONDecodeError:
+                    logger.warning("Skipping invalid JSON line in queue file.")
+                    continue
+
+                ts_raw = item.get("timestamp")
+                status = item.get("status")
+
+                # Always keep pending
+                if keep_pending and status == "pending":
+                    cleaned.append(item)
+                    continue
+
+                # If timestamp missing or invalid → keep
+                if not isinstance(ts_raw, str):
+                    cleaned.append(item)
+                    continue
+                try:
+                    ts = datetime.fromisoformat(ts_raw)
+                except Exception:
+                    cleaned.append(item)
+                    continue
+
+                # Keep recent entries, remove old ones
+                if ts >= cutoff:
+                    cleaned.append(item)
+                else:
+                    removed.append(item)
+
+        # Backup old file if enabled
+        if if_backup:
             try:
-                item = json.loads(line)
-            except:
-                continue
+                shutil.copy(QUEUE_PATH, BACKUP_PATH)
+                logger.info(f"Backup created: {BACKUP_PATH}")
+            except Exception as e:
+                logger.error(f"Failed to create backup: {e}")
 
-            ts_raw = item.get("timestamp")
-            # 如果 timestamp 缺失或不是字符串，直接保留该记录
-            if not isinstance(ts_raw, str):
-                cleaned.append(item)
-                continue
-            try:
-                ts = datetime.fromisoformat(ts_raw)
-            except Exception:
-                # 如果格式不对，也保留
-                cleaned.append(item)
-                continue
+        # Write cleaned file
+        with QUEUE_PATH.open("w", encoding="utf-8") as f:
+            for item in cleaned:
+                f.write(json.dumps(item, ensure_ascii=False) + "\n")
 
-            status = item.get("status")
+        logger.info(f"Cleanup complete: kept {len(cleaned)} entries, removed {len(removed)} entries.")
 
-            # 永远保留 pending
-            if keep_pending and status == "pending":
-                cleaned.append(item)
-                continue
-
-            # 保留最近 N 天
-            if ts >= cutoff:
-                cleaned.append(item)
-            else:
-                removed.append(item)
-
-    # 备份旧文件
-    if_backup = config.get("if_backup", False)
-    if if_backup:
-        shutil.copy(QUEUE_PATH, BACKUP_PATH)
-
-    # 写入新文件
-    with QUEUE_PATH.open("w", encoding="utf-8") as f:
-        for item in cleaned:
-            f.write(json.dumps(item, ensure_ascii=False) + "\n")
-
-    print(f"[url_queue] 清理完成：保留 {len(cleaned)} 条，删除 {len(removed)} 条。")
+    except Exception as e:
+        logger.error(f"Failed to clean up queue file: {e}")

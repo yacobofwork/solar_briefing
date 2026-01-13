@@ -1,57 +1,54 @@
-from dotenv import load_dotenv
-load_dotenv()
-
-import subprocess
 import os
 import shutil
 import datetime
+import subprocess
 
-from solar_intel_v2.renderers.charts.chart_builder import build_price_chart
-from solar_intel_v2.ingestion.fetch_prices import fetch_all_prices
-from solar_intel_v2.ingestion.fetcher import fetch_all_news
-from solar_intel_v2.renderers.dashborad.daily_exporter import save_daily_json, update_index_json
+from src.renderers.dashborad.article_renderer import render_article
+from src.renderers.dashborad.daily_exporter import save_daily_json, update_index_json
+from src.renderers.dashborad.insight_renderer import render_daily_insight
+from src.renderers.dashborad.price_renderer import render_price_insight
+from src.system.logger import setup_logger
+from src.system.cache_manager import DailyCache
 
-from solar_intel_v2.modules.insights_core import (
+from src.ingestion.fetch_prices import fetch_all_prices
+from src.ingestion.fetcher import fetch_all_news
+from src.ingestion.save_price_history import save_price_history
+from src.ingestion.external_news_pipeline import process_pending_urls_to_raw_news
+
+from src.renderers.charts.chart_builder import build_price_chart
+from src.renderers.pdf.pdf_builder import build_pdf
+from src.renderers.email.email_sender import send_email
+from src.system.config_loader import load_config
+
+from src.modules.insights_core import (
     summarize_article,
     analyze_price_impact,
     generate_daily_insight
 )
 
-from solar_intel_v2.renderers.dashborad.article_renderer import render_article
-from solar_intel_v2.renderers.dashborad.price_renderer import render_price_insight
-from solar_intel_v2.renderers.dashborad.insight_renderer import render_daily_insight
+# ============================================================
+# Init configuration and logger
+# ============================================================
 
-from solar_intel_v2.renderers.pdf.pdf_builder import build_pdf
-from solar_intel_v2.renderers.email.email_sender import send_email
-from solar_intel_v2.system.utils import setup_logger
-from solar_intel_v2.system.cache_manager import DailyCache
-from solar_intel_v2.ingestion.save_price_history import save_price_history
-import yaml
 
-# ⭐ 新增：引入外部 URL → 原始 news 的管道
-from solar_intel_v2.ingestion.external_news_pipeline import process_pending_urls_to_raw_news
+config = load_config()
 
 logger = setup_logger("main")
 
-history_file = "../../price_history.csv"
-
-# 初始化天缓存，可在配置文件当中关闭
-config = yaml.safe_load(open("../../config.yaml", encoding="utf-8"))
 cache_enabled = config["cache"]["enabled"]
 cache = DailyCache(config["cache"]["path"])
+cache.clean_old_cache(config["cache"]["keep_days"])
 
-# 自动清理缓存
-keep_days = config["cache"]["keep_days"]
-cache.clean_old_cache(keep_days)
+charts_dir = config["paths"]["charts_dir"]
+
+history_file = os.path.join("src", "data", "price_history.csv")
 
 
 # ============================================================
-# 1. 数据抓取层
+# 1. Data fetching
 # ============================================================
 
 def fetch_data():
-    """抓取价格与新闻（带缓存），并接入外部 URL 管道。"""
-    # ---- Price Cache ----
     if cache_enabled and cache.exists("prices"):
         logger.info("Loading prices from cache...")
         price_list = cache.load("prices")
@@ -61,7 +58,6 @@ def fetch_data():
         if cache_enabled:
             cache.save("prices", price_list)
 
-    # ---- News Cache ----
     if cache_enabled and cache.exists("news_raw"):
         logger.info("Loading raw news from cache...")
         news_list = cache.load("news_raw")
@@ -71,27 +67,22 @@ def fetch_data():
         if cache_enabled:
             cache.save("news_raw", news_list)
 
-    # ---- External URLs → 原始新闻 ----
     logger.info("Processing external URL queue for additional news...")
     external_news = process_pending_urls_to_raw_news()
     if external_news:
         logger.info(f"Added {len(external_news)} external news items.")
         news_list.extend(external_news)
-        # 如果你希望 external 也参与 news_raw 缓存，下次命中缓存时也能看到：
         if cache_enabled:
             cache.save("news_raw", news_list)
-    else:
-        logger.info("No external news items added.")
 
     return price_list, news_list
 
 
 # ============================================================
-# 2. AI 处理层
+# 2. AI processing
 # ============================================================
 
 def process_news_ai(news_list):
-    """AI 处理新闻（带缓存）"""
     if cache_enabled and cache.exists("news_ai"):
         logger.info("Loading AI-processed news from cache...")
         return cache.load("news_ai")
@@ -113,9 +104,8 @@ def process_news_ai(news_list):
 
     return results
 
+
 def process_price_ai(price_list, date):
-    """Price history, chart generation, and price insight (with cache)."""
-    # Price insight cache
     if cache_enabled and cache.exists("price_insight"):
         logger.info("Loading price insight from cache...")
         price_insight = cache.load("price_insight")
@@ -125,60 +115,29 @@ def process_price_ai(price_list, date):
         if cache_enabled:
             cache.save("price_insight", price_insight)
 
-    # Chart cache
-    charts_dir = "../runtime_output/charts"
+
     os.makedirs(charts_dir, exist_ok=True)
     filename = f"price_chart_{date}.png"
     chart_abs_path = os.path.abspath(os.path.join(charts_dir, filename))
+
     if cache_enabled and os.path.exists(chart_abs_path):
         logger.info("Using cached chart...")
     else:
         logger.info("Generating price chart...")
         build_price_chart(history_file, chart_abs_path)
 
-    # For GitHub Pages we will use a relative path under docs/charts
     chart_rel_for_docs = f"charts/{filename}"
-
     return chart_abs_path, chart_rel_for_docs, price_insight
-
-# def process_price_ai(price_list, date):
-#     """价格历史记录、图表生成、价格洞察（带缓存）"""
-#     # ---- Price Insight Cache ----
-#     if cache_enabled and cache.exists("price_insight"):
-#         logger.info("Loading price insight from cache...")
-#         price_insight = cache.load("price_insight")
-#     else:
-#         raw_price_insight = analyze_price_impact(price_list)
-#         price_insight = render_price_insight(raw_price_insight)
-#         if cache_enabled:
-#             cache.save("price_insight", price_insight)
-#
-#     # ---- Chart Cache ----
-#     charts_dir = "output/charts"
-#     os.makedirs(charts_dir, exist_ok=True)
-#     chart_path = os.path.abspath(f"{charts_dir}/price_chart_{date}.png")
-#     if cache_enabled and os.path.exists(chart_path):
-#         logger.info("Using cached chart...")
-#     else:
-#         logger.info("Generating price chart...")
-#         build_price_chart(history_file, chart_path)
-#
-#     return chart_path, price_insight
 
 
 # ============================================================
-# 3. 数据分组层（Region）
+# 3. Region grouping
 # ============================================================
 
 def group_news_by_region(results):
-    """按 region 分组（带缓存）"""
     if cache_enabled and cache.exists("china"):
         logger.info("Loading region groups from cache...")
-        return (
-            cache.load("china"),
-            cache.load("nigeria"),
-            cache.load("global")
-        )
+        return cache.load("china"), cache.load("nigeria"), cache.load("global")
 
     china = [r for r in results if r.get("region") == "china"]
     nigeria = [r for r in results if r.get("region") == "nigeria"]
@@ -193,73 +152,52 @@ def group_news_by_region(results):
 
 
 # ============================================================
-# 4. 渲染层（HTML）
+# 4. Rendering
 # ============================================================
 
 def render_news_sections(china, nigeria, global_news):
-    """渲染邮件用的 news_html（带标题）"""
     html = ""
-
     if china:
-        html += "<h2> 🇨🇳China Supply Chain</h2>"
-        for item in china:
-            html += render_article(item)
-
+        html += "<h2>China Supply Chain</h2>"
+        html += "".join(render_article(item) for item in china)
     if nigeria:
-        html += "<h2>🇳🇬Nigeria Market</h2>"
-        for item in nigeria:
-            html += render_article(item)
-
+        html += "<h2>Nigeria Market</h2>"
+        html += "".join(render_article(item) for item in nigeria)
     if global_news:
-        html += "<h2> 🌍Global Solar & Storage</h2>"
-        for item in global_news:
-            html += render_article(item)
-
+        html += "<h2>Global Solar & Storage</h2>"
+        html += "".join(render_article(item) for item in global_news)
     return html
 
 
 def render_pdf_sections(china, nigeria, global_news):
-    """渲染 PDF 用的三个分区（不带标题，由模板控制）"""
-    news_china = "".join(render_article(n) for n in china)
-    news_nigeria = "".join(render_article(n) for n in nigeria)
-    news_global = "".join(render_article(n) for n in global_news)
-    return news_china, news_nigeria, news_global
+    return (
+        "".join(render_article(n) for n in china),
+        "".join(render_article(n) for n in nigeria),
+        "".join(render_article(n) for n in global_news),
+    )
 
 
 def render_price_table(price_list):
-    """渲染价格表 HTML"""
     if not price_list:
         return "<p>No price data available today.</p >"
-
-    html = """
-    <table>
-        <tr><th>Item</th><th>Price</th><th>Change</th><th>Source</th></tr>
-    """
-    for p in price_list:
-        html += f"""
-        <tr>
-            <td>{p['item']}</td>
-            <td>{p['price']}</td>
-            <td>{p['change']}</td>
-            <td>{p['source']}</td>
-        </tr>
-        """
-    html += "</table>"
-    return html
+    rows = "".join(
+        f"<tr><td>{p['item']}</td><td>{p['price']}</td><td>{p['change']}</td><td>{p['source']}</td></tr>"
+        for p in price_list
+    )
+    return f"<table><tr><th>Item</th><th>Price</th><th>Change</th><th>Source</th></tr>{rows}</table>"
 
 
 # ============================================================
-# 5. 输出层（PDF + 邮件）
+# 5. Output (PDF + Email)
 # ============================================================
 
 def export_pdf(date, news_html, news_china, news_nigeria, news_global,
                price_html, chart_path, price_insight, daily_insight):
-
-    pdf_dir = "../runtime_output/pdf"
+    pdf_dir = os.path.join("src", "runtime_output", "pdf")
     os.makedirs(pdf_dir, exist_ok=True)
-    pdf_path = os.path.abspath(f"{pdf_dir}/daily_report_{date}.pdf")
+    pdf_path = os.path.abspath(os.path.join(pdf_dir, f"daily_report_{date}.pdf"))
 
-    logo_path = os.path.abspath("../assets/company_logo.png")
+    logo_path = os.path.abspath(os.path.join("src", "assets", "company_logo.png"))
 
     build_pdf(
         news_html=news_html,
@@ -275,12 +213,14 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
         output_path=pdf_path
     )
 
-    logger.info(f"PDF 已生成：{pdf_path}")
+    if pdf_path and os.path.exists(pdf_path):
+        archive_dir = os.path.join("src", "runtime_output", "archive")
+        os.makedirs(archive_dir, exist_ok=True)
+        shutil.copy(pdf_path, os.path.join(archive_dir, f"daily_report_{date}.pdf"))
+        logger.info(f"PDF generated: {pdf_path}")
+    else:
+        logger.error("PDF not generated, skip archiving")
 
-    # 归档
-    archive_dir = "../runtime_output/archive"
-    os.makedirs(archive_dir, exist_ok=True)
-    shutil.copy(pdf_path, os.path.join(archive_dir, f"daily_report_{date}.pdf"))
 
     return pdf_path
 
@@ -288,7 +228,6 @@ def export_pdf(date, news_html, news_china, news_nigeria, news_global,
 def send_daily_email(news_china, news_nigeria, news_global,
                      news_html, price_html, price_insight,
                      daily_insight, chart_path, date, pdf_path):
-
     success = send_email(
         news_china=news_china,
         news_nigeria=news_nigeria,
@@ -304,9 +243,9 @@ def send_daily_email(news_china, news_nigeria, news_global,
 
     if success:
         safe_delete(pdf_path)
-        logger.info("邮件发送成功")
+        logger.info("Email sent successfully")
     else:
-        logger.error("邮件发送失败")
+        logger.error("Email sending failed")
 
 
 def safe_delete(path):
@@ -315,57 +254,58 @@ def safe_delete(path):
             os.remove(path)
             return True
     except Exception as e:
-        print(f"Failed to delete {path}: {e}")
+        logger.error(f"Failed to delete {path}: {e}")
     return False
-
 
 
 def git_push():
     try:
         subprocess.run(["git", "add", "docs/"], check=True)
         subprocess.run(["git", "commit", "-m", "Daily data update"], check=True)
-        subprocess.run(["git", "push","origin","master"], check=True)
-        print("GitHub push completed.")
+        subprocess.run(["git", "push", "origin", "master"], check=True)
+        logger.info("GitHub push completed.")
     except subprocess.CalledProcessError as e:
-        print("Git push failed:", e)
+        logger.error(f"Git push failed: {e}")
+
 
 # ============================================================
-# 主流程（Pipeline）
+# Main pipeline
+# ============================================================
+# ============================================================
+# Main pipeline
 # ============================================================
 
 def run():
-    logger.info("=== 新能源日报开始执行 ===")
+    logger.info("=== Saba Energy Intelligence System starting ===")
 
-    # Step 1: 抓取数据（含外部 URL 注入）
+    # Step 1: Fetch data
     price_list, news_list = fetch_data()
-    # 保存价格数据
-    save_price_history(price_list,history_file)
+    save_price_history(price_list, history_file)
 
-    # Step 2: AI 处理新闻
+    # Step 2: AI process news
     ai_results = process_news_ai(news_list)
 
-    # Step 3: Region 分组
+    # Step 3: Group by region
     china_news, nigeria_news, global_news = group_news_by_region(ai_results)
 
-    # Step 4: 日期
+    # Step 4: Date
     date = datetime.date.today().strftime("%Y-%m-%d")
 
     # Step 5: Price processing
     chart_path, chart_rel_for_docs, price_insight = process_price_ai(price_list, date)
 
     # Copy chart to docs/charts for GitHub Pages
-    docs_charts_dir = "../../docs/charts"
+    docs_charts_dir = os.path.join("docs", "charts")
     os.makedirs(docs_charts_dir, exist_ok=True)
-    shutil.copy(
-        chart_path,
-        f"{docs_charts_dir}/price_chart_{date}.png"
-    )
+    if chart_path and os.path.exists(chart_path):
+        shutil.copy(chart_path, os.path.join(docs_charts_dir, f"price_chart_{date}.png"))
+        logger.info(f"Price chart copied to docs : {docs_charts_dir}")
+    else:
+        logger.warning("Price chart not generated, skip copying to docs")
 
-    # Step 6: 渲染 HTML
+    # Step 6: Render HTML
     news_html = render_news_sections(china_news, nigeria_news, global_news)
-    news_china, news_nigeria, news_global = render_pdf_sections(
-        china_news, nigeria_news, global_news
-    )
+    news_china, news_nigeria, news_global = render_pdf_sections(china_news, nigeria_news, global_news)
     price_html = render_price_table(price_list)
 
     # Step 7: Daily Insight
@@ -378,25 +318,22 @@ def run():
         if cache_enabled:
             cache.save("daily_insight", daily_insight)
 
-    # Step 8: PDF 输出
+    # Step 8: PDF output
     pdf_path = export_pdf(
         date, news_html, news_china, news_nigeria, news_global,
         price_html, chart_path, price_insight, daily_insight
     )
 
-    # Step 9: 邮件发送
+    # Step 9: Send email
     send_daily_email(
         news_china, news_nigeria, news_global,
         news_html, price_html, price_insight,
         daily_insight, chart_path, date, pdf_path
     )
 
-
     # Step 10: Export daily report for GitHub Pages
-    # price_insight is already rendered HTML/string from render_price_insight
     price_insight_html = price_insight if isinstance(price_insight, str) else str(price_insight)
 
-    # news_china / news_nigeria / news_global are already HTML fragments
     save_daily_json(
         date_str=date,
         news_html=news_html,
@@ -411,8 +348,10 @@ def run():
     update_index_json(date)
     logger.info("Daily report exported for GitHub Pages.")
 
+    # Step 11: Git push
     git_push()
 
+    logger.info("=== Daily Solar Briefing finished ===")
 
 if __name__ == "__main__":
     run()

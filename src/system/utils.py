@@ -1,65 +1,56 @@
-import logging
 from datetime import datetime
 import re
 import os
+from dotenv import load_dotenv
+
+# Explicitly load environment variables from src/config/.env
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # points to src/
+CONFIG_DIR = os.path.join(BASE_DIR, "config")
+ENV_PATH = os.path.join(CONFIG_DIR, ".env")
+
+load_dotenv(dotenv_path=ENV_PATH)
 
 
-def now_str():
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+def now_str(fmt: str = "%Y-%m-%d %H:%M:%S") -> str:
+    """Return current timestamp as string."""
+    return datetime.now().strftime(fmt)
 
-def get_env(key, default=None, required=False):
+
+def get_env(key: str, default=None, required: bool = False):
+    """
+    Retrieve environment variable value.
+    :param key: Environment variable name
+    :param default: Default value if not set
+    :param required: If True and variable is missing, raise RuntimeError
+    :return: Environment variable value or default
+    """
     value = os.getenv(key, default)
-    if required and not value:
+    if required and value is None:
         raise RuntimeError(f"Missing required environment variable: {key}")
     return value
 
-def setup_logger(name="app"):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
 
-    if not logger.handlers:
-        # 控制台输出
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.INFO)
-
-        formatter = logging.Formatter(
-            "%(asctime)s [%(levelname)s] %(message)s",
-            "%Y-%m-%d %H:%M:%S"
-        )
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
-
-        # 文件日志（可选）
-        log_dir = "../../logs"
-        os.makedirs(log_dir, exist_ok=True)
-        log_path = os.path.join(log_dir, f"{datetime.now().strftime('%Y-%m-%d')}.log")
-
-        fh = logging.FileHandler(log_path, encoding="utf-8")
-        fh.setLevel(logging.INFO)
-        fh.setFormatter(formatter)
-        logger.addHandler(fh)
-
-    return logger
-
-#  增强版清洗：去掉换行、HTML、Markdown、重复空格
 def clean_html(text: str) -> str:
-
+    """
+    Clean HTML/Markdown from text.
+    - Remove HTML tags
+    - Remove Markdown symbols
+    - Normalize whitespace
+    """
     if not text:
         return ""
 
-    # 去掉 HTML 标签
+    # Remove HTML tags
     text = re.sub(r"<[^>]+>", " ", text)
 
-    # 去掉 Markdown 代码块 ```
-    text = text.replace("```", " ")
+    # Remove Markdown code blocks and symbols
+    text = re.sub(r"```", " ", text)
+    text = re.sub(r"[*_#>`~]", " ", text)
 
-    # 去掉 Markdown 粗体/斜体符号
-    text = text.replace("**", " ").replace("*", " ")
-
-    # 替换换行
+    # Replace newlines with space
     text = text.replace("\n", " ")
 
-    # 合并重复空格
+    # Collapse multiple spaces
     text = re.sub(r"\s+", " ", text)
 
     return text.strip()
