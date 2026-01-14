@@ -12,8 +12,10 @@ def setup_logger(name="main", config=None):
         return logger
 
     # Load config if available
+    project_root = Path(__file__).resolve().parents[2]
     log_level = "DEBUG"
-    logs_dir = Path("src/logs").resolve()
+    logs_dir = project_root/ "src" / "logs"
+    logs_dir.mkdir(parents=True, exist_ok=True)
     if config:
         log_level = config.get("logging", {}).get("level", "DEBUG").upper()
         logs_dir = Path(config["paths"]["logs_dir"]).resolve()

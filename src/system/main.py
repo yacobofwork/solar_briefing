@@ -34,7 +34,7 @@ from src.modules.insights_core import (
 
 config = load_config()
 
-logger = setup_logger("main")
+logger = setup_logger("main",config)
 
 cache_enabled = config["cache"]["enabled"]
 cache = DailyCache(Path(config["cache"]["path"]).resolve())
