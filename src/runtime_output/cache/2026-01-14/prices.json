@@ -1,0 +1,30 @@
+[
+  {
+    "item": "ENPH:NASDAQ",
+    "price": "54,341.23",
+    "change": "",
+    "source": "Google Finance",
+    "date": "2026-01-14"
+  },
+  {
+    "item": "FSLR:NASDAQ",
+    "price": "54,341.23",
+    "change": "",
+    "source": "Google Finance",
+    "date": "2026-01-14"
+  },
+  {
+    "item": "TSLA:NASDAQ",
+    "price": "54,341.23",
+    "change": "",
+    "source": "Google Finance",
+    "date": "2026-01-14"
+  },
+  {
+    "item": "JKS:NYSE",
+    "price": "54,341.23",
+    "change": "",
+    "source": "Google Finance",
+    "date": "2026-01-14"
+  }
+]

@@ -37,7 +37,8 @@ config = load_config()
 logger = setup_logger("main",config)
 
 cache_enabled = config["cache"]["enabled"]
-cache = DailyCache(Path(config["cache"]["path"]).resolve())
+project_root = Path(__file__).resolve().parents[2]
+cache = DailyCache(project_root / config["cache"]["path"])
 cache.clean_old_cache(config["cache"]["keep_days"])
 
 charts_dir = config["paths"]["charts_dir"]
