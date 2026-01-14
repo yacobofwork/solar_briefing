@@ -39,6 +39,7 @@ logger = setup_logger("main",config)
 project_root = Path(__file__).resolve().parents[2]
 cache = DailyCache(project_root / config["cache"]["path"])
 history_file_path = project_root / config["paths"]["history_file_path"]
+docs_dir = project_root / "docs/"
 
 cache_enabled = config["cache"]["enabled"]
 cache.clean_old_cache(config["cache"]["keep_days"])
@@ -268,7 +269,7 @@ def safe_delete(path):
 
 def git_push():
     try:
-        subprocess.run(["git", "add", "docs/"], check=True)
+        subprocess.run(["git", "add", f"{docs_dir}"], check=True)
         subprocess.run(["git", "commit", "-m", "Daily data update"], check=True)
         subprocess.run(["git", "push", "origin", "master"], check=True)
         logger.info("GitHub push completed.")
