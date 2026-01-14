@@ -4,7 +4,7 @@ from datetime import date
 from src.system.logger import setup_logger
 from src.system.config_loader import load_config
 
-logger = setup_logger("fetch_prices")
+logger = setup_logger("main")
 config = load_config()
 
 

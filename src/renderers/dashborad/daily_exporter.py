@@ -8,7 +8,7 @@ config = load_config()
 
 docs_datas = Path(config["paths"]["docs_datas"]).resolve()
 
-logger = setup_logger("daily_exporter")
+logger = setup_logger("main")
 
 
 def save_daily_json(

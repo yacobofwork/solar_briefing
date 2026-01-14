@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import datetime
 from src.system.logger import setup_logger
 
-logger = setup_logger("email_builder")
+logger = setup_logger("main")
 
 
 def build_email_html(price_insight: str, price_html: str, news_html: str, chart_path: str) -> str:

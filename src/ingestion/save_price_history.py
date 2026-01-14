@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from src.system.logger import setup_logger
 
-logger = setup_logger("save_price_history")
+logger = setup_logger("main")
 
 
 def save_price_history(prices: list[dict], history_file: str) -> None:

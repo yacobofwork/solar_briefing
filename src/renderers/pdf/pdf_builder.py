@@ -8,7 +8,7 @@ from src.system.logger import setup_logger
 
 config = load_config()
 
-logger = setup_logger("pdf_builder")
+logger = setup_logger("main")
 
 def build_pdf(**kwargs):
     """

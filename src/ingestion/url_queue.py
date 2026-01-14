@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from src.system.logger import setup_logger
 
-logger = setup_logger("url_queue")
+logger = setup_logger("main")
 
 
 QUEUE_FILE = Path("src/data/incoming_urls.jsonl")

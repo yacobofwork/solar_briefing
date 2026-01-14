@@ -2,7 +2,7 @@ from pathlib import Path
 from src.ingestion.url_queue import enqueue_url
 from src.system.logger import setup_logger
 
-logger = setup_logger("wechat_link_reader")
+logger = setup_logger("main")
 
 LINK_FILE = Path("src/data/wechat_links.txt")
 

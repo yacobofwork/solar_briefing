@@ -5,7 +5,7 @@ import shutil
 import yaml
 from src.system.logger import setup_logger
 
-logger = setup_logger("url_queue_cleanup")
+logger = setup_logger("main")
 
 QUEUE_PATH = Path("src/data/incoming_urls.jsonl")
 BACKUP_PATH = Path("src/data/incoming_urls_backup.jsonl")

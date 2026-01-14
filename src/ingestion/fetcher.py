@@ -8,7 +8,7 @@ from urllib.parse import quote_plus, urljoin
 from src.system.logger import setup_logger
 from src.system.config_loader import load_config
 
-logger = setup_logger("fetcher")
+logger = setup_logger("main")
 config = load_config()
 
 

@@ -3,7 +3,7 @@ from pathlib import Path
 from datetime import datetime
 from src.system.logger import setup_logger
 
-logger = setup_logger("region_cache")
+logger = setup_logger("main")
 
 CACHE_PATH = Path("src/data/news_ai/region_cache.jsonl")
 

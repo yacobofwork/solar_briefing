@@ -6,7 +6,7 @@ from openai import OpenAI
 from src.system.utils import get_env
 from src.system.logger import setup_logger
 
-logger = setup_logger("insights_core")
+logger = setup_logger("main")
 
 # ============================================================
 # DeepSeek API client

@@ -10,7 +10,7 @@ from src.ingestion.content_fetcher import fetch_and_extract
 from src.ingestion.region_classifier import classify_region_ai
 from src.ingestion.url_queue_cleanup import cleanup_url_queue
 
-logger = setup_logger("external_news_pipeline")
+logger = setup_logger("main")
 
 
 def process_pending_urls_to_raw_news() -> List[Dict]:

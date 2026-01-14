@@ -14,7 +14,7 @@ from src.system.utils import get_env
 
 config = load_config()
 
-logger = setup_logger("email_sender")
+logger = setup_logger("main")
 
 
 # ============================

@@ -10,7 +10,7 @@ from src.system.logger import setup_logger
 config = load_config()
 charts_dir = Path(config["paths"]["charts_dir"]).resolve()
 
-logger = setup_logger("chart_builder")
+logger = setup_logger("main")
 
 
 def build_price_chart(history_file: str, output_path: str | None = None) -> str | None:

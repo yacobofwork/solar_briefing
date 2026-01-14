@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from src.system.logger import setup_logger
 
 REQUEST_TIMEOUT = 15
-logger = setup_logger("content_fetcher")
+logger = setup_logger("main")
 
 
 @dataclass

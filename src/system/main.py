@@ -37,7 +37,7 @@ config = load_config()
 logger = setup_logger("main")
 
 cache_enabled = config["cache"]["enabled"]
-cache = DailyCache(config["cache"]["path"])
+cache = DailyCache(Path(config["cache"]["path"]).resolve())
 cache.clean_old_cache(config["cache"]["keep_days"])
 
 charts_dir = config["paths"]["charts_dir"]
@@ -296,7 +296,7 @@ def run():
     chart_path, chart_rel_for_docs, price_insight = process_price_ai(price_list, date)
 
     # Copy chart to docs/charts for GitHub Pages
-    docs_charts_dir = os.path.join("docs", "charts")
+    docs_charts_dir = Path(config["paths"]["docs_charts"]).resolve()
     os.makedirs(docs_charts_dir, exist_ok=True)
     if chart_path and os.path.exists(chart_path):
         shutil.copy(chart_path, os.path.join(docs_charts_dir, f"price_chart_{date}.png"))
@@ -347,9 +347,9 @@ def run():
         chart_rel_path=chart_rel_for_docs,
     )
     update_index_json(date)
-    logger.info("Daily report exported for GitHub Pages.")
 
     # Step 11: Git push
+    logger.info("Daily report exported for GitHub Pages.")
     git_push()
 
     logger.info("=== Daily Solar Briefing finished ===")
