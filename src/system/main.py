@@ -83,6 +83,12 @@ def fetch_data():
 # ============================================================
 
 def process_news_ai(news_list):
+    # If no news passed in, skip DS call
+    if not news_list:
+        logger.info("No news data provided, skipping AI processing.")
+        return []
+
+    # If cache exists, load from cache
     if cache_enabled and cache.exists("news_ai"):
         logger.info("Loading AI-processed news from cache...")
         return cache.load("news_ai")
@@ -91,10 +97,10 @@ def process_news_ai(news_list):
     results = []
     for item in news_list:
         article_obj = {
-            "summary": item.get("summary", item["title"]),
+            "summary": item.get("summary", item.get("title")),
             "source": item.get("source", "Unknown"),
-            "link": item.get("link", None),
-            "pub_date": item.get("pub_date", None)
+            "link": item.get("link"),
+            "pub_date": item.get("pub_date")
         }
         ai_json = summarize_article(article_obj)
         results.append(ai_json)
