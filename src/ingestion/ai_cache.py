@@ -1,11 +1,15 @@
 import json
 from pathlib import Path
 from datetime import datetime
+
+from src.system.config_loader import load_config
 from src.system.logger import setup_logger
 
 logger = setup_logger("main")
 
-CACHE_PATH = Path("src/data/news_ai/summary_cache.jsonl")
+config = load_config()
+project_root = Path(__file__).resolve().parents[2]
+SUMMARY_CACHE_PATH = project_root / config["cache"]["summary_cache_path"]
 
 
 def load_summary_from_cache(url: str):
@@ -13,12 +17,12 @@ def load_summary_from_cache(url: str):
     Load cached summary for a given URL.
     Returns None if not found or cache file missing.
     """
-    if not CACHE_PATH.exists():
+    if not SUMMARY_CACHE_PATH.exists():
         logger.info("Cache file does not exist.")
         return None
 
     try:
-        with CACHE_PATH.open("r", encoding="utf-8") as f:
+        with SUMMARY_CACHE_PATH.open("r", encoding="utf-8") as f:
             for line in f:
                 try:
                     item = json.loads(line)
@@ -42,7 +46,7 @@ def save_summary_to_cache(url: str, summary: str, source: str = None):
     Each entry is stored as JSONL with timestamp.
     """
     try:
-        CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        SUMMARY_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
         entry = {
             "url": url,
             "summary": summary,
@@ -51,7 +55,7 @@ def save_summary_to_cache(url: str, summary: str, source: str = None):
         if source:
             entry["source"] = source
 
-        with CACHE_PATH.open("a", encoding="utf-8") as f:
+        with SUMMARY_CACHE_PATH.open("a", encoding="utf-8") as f:
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
         logger.info(f"Summary cached for URL: {url}")

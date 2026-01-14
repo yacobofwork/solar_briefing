@@ -1,13 +1,16 @@
 from pathlib import Path
 from src.ingestion.url_queue import enqueue_url
+from src.system.config_loader import load_config
 from src.system.logger import setup_logger
 
 logger = setup_logger("main")
 
-LINK_FILE = Path("src/data/wechat_links.txt")
+config = load_config()
+project_root = Path(__file__).resolve().parents[2]
+WECHAT_LINKS_PATH = project_root / config["cache"]["wechat_links_path"]
 
 
-def read_links_from_file(path: Path = LINK_FILE) -> list[str]:
+def read_links_from_file(path: Path = WECHAT_LINKS_PATH) -> list[str]:
     """
     Read all WeChat article URLs from a text file.
     - Skip empty lines

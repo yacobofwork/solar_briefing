@@ -2,13 +2,16 @@ import json
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
+
+from src.system.config_loader import load_config
 from src.system.logger import setup_logger
 
 logger = setup_logger("main")
 
-
-QUEUE_FILE = Path("src/data/incoming_urls.jsonl")
-QUEUE_FILE.parent.mkdir(parents=True, exist_ok=True)
+config = load_config()
+project_root = Path(__file__).resolve().parents[2]
+QUEUE_FILE_PATH = project_root / config["cache"]["incoming_urls_path"]
+QUEUE_FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
 def _normalize_source(url: str, explicit_source: str | None = None) -> str:
@@ -41,8 +44,8 @@ def enqueue_url(url: str, source: str | None = None) -> dict:
 
     # Load existing URLs to avoid duplicates
     existing_urls = set()
-    if QUEUE_FILE.exists():
-        with QUEUE_FILE.open("r", encoding="utf-8") as f:
+    if QUEUE_FILE_PATH.exists():
+        with QUEUE_FILE_PATH.open("r", encoding="utf-8") as f:
             for line in f:
                 try:
                     item = json.loads(line)
@@ -67,7 +70,7 @@ def enqueue_url(url: str, source: str | None = None) -> dict:
         "status": "pending",  # pending / fetched / failed
     }
 
-    with QUEUE_FILE.open("a", encoding="utf-8") as f:
+    with QUEUE_FILE_PATH.open("a", encoding="utf-8") as f:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
     logger.info(f"URL enqueued: {url}")
@@ -78,11 +81,11 @@ def load_pending_urls() -> list[dict]:
     """
     Load all URLs with status = 'pending'.
     """
-    if not QUEUE_FILE.exists():
+    if not QUEUE_FILE_PATH.exists():
         return []
 
     items: list[dict] = []
-    with QUEUE_FILE.open("r", encoding="utf-8") as f:
+    with QUEUE_FILE_PATH.open("r", encoding="utf-8") as f:
         for line in f:
             try:
                 item = json.loads(line)
@@ -100,11 +103,11 @@ def update_url_status(url: str, status: str) -> None:
     - fetched
     - failed
     """
-    if not QUEUE_FILE.exists():
+    if not QUEUE_FILE_PATH.exists():
         return
 
     rows: list[dict] = []
-    with QUEUE_FILE.open("r", encoding="utf-8") as f:
+    with QUEUE_FILE_PATH.open("r", encoding="utf-8") as f:
         for line in f:
             try:
                 item = json.loads(line)
@@ -115,7 +118,7 @@ def update_url_status(url: str, status: str) -> None:
                 item["status"] = status
             rows.append(item)
 
-    with QUEUE_FILE.open("w", encoding="utf-8") as f:
+    with QUEUE_FILE_PATH.open("w", encoding="utf-8") as f:
         for item in rows:
             f.write(json.dumps(item, ensure_ascii=False) + "\n")
 

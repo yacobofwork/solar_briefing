@@ -4,11 +4,14 @@ from datetime import datetime, timedelta
 import shutil
 import yaml
 from src.system.logger import setup_logger
+from src.system.config_loader import load_config
 
 logger = setup_logger("main")
 
-QUEUE_PATH = Path("src/data/incoming_urls.jsonl")
-BACKUP_PATH = Path("src/data/incoming_urls_backup.jsonl")
+config = load_config()
+project_root = Path(__file__).resolve().parents[2]
+QUEUE_FILE_PATH = project_root / config["cache"]["incoming_urls_path"]
+QUEUE_FILE_BACKUP_PATH = project_root / config["cache"]["incoming_urls_backup_path"]
 
 
 def load_config() -> dict:
