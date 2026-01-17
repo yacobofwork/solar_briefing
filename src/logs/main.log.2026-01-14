@@ -1,0 +1,553 @@
+2026-01-14 15:17:45,134 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 15:17:45,134 - INFO - Fetching price data...
+2026-01-14 15:17:45,134 - INFO - Starting price data fetch...
+2026-01-14 15:17:45,134 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 15:17:46,278 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 15:17:46,280 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 15:17:46,377 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 15:17:46,377 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 15:17:49,500 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 15:17:49,502 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 15:17:51,548 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 15:17:51,550 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 15:17:53,247 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 15:17:53,249 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 15:17:54,358 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 15:17:56,461 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 15:18:00,647 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 15:18:24,547 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 15:18:24,547 - INFO - Fetching price data...
+2026-01-14 15:18:24,547 - INFO - Starting price data fetch...
+2026-01-14 15:18:24,548 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 15:18:25,766 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 15:18:25,768 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 15:18:25,807 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 15:18:25,807 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 15:18:28,819 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 15:18:28,821 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 15:18:30,559 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 15:18:30,561 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 15:18:33,017 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 15:18:33,019 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 15:18:36,522 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 15:18:37,359 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 15:18:41,535 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 15:18:43,950 - INFO - Fetched 4 price entries in total.
+2026-01-14 15:18:43,950 - INFO - Fetching news data...
+2026-01-14 15:18:43,950 - INFO - Starting news fetch...
+2026-01-14 15:18:43,950 - INFO - Fetching news source: google_news
+2026-01-14 15:18:56,621 - INFO - Fetching news source: pv_tech
+2026-01-14 15:18:57,105 - INFO - Fetching news source: bess
+2026-01-14 15:18:57,670 - INFO - Fetching news source: policy
+2026-01-14 15:18:57,940 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 15:18:57,942 - INFO - Fetching news source: cailian
+2026-01-14 15:18:58,264 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 15:18:58,266 - INFO - Fetching news source: kr36
+2026-01-14 15:18:59,021 - INFO - Fetching news source: sohu_energy
+2026-01-14 15:18:59,061 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 15:18:59,063 - INFO - Fetched 47 news items for today.
+2026-01-14 15:18:59,064 - INFO - Processing external URL queue for additional news...
+2026-01-14 15:18:59,064 - INFO - No pending URLs, skipping.
+2026-01-14 15:18:59,146 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 15:18:59,147 - INFO - Processing news with AI...
+2026-01-14 15:26:31,990 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 15:26:31,990 - INFO - Fetching price data...
+2026-01-14 15:26:31,990 - INFO - Starting price data fetch...
+2026-01-14 15:26:31,991 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 15:26:33,139 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 15:26:33,142 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 15:26:33,165 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 15:26:33,165 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 15:26:34,589 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 15:26:34,592 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 15:26:36,204 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 15:26:36,206 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 15:26:38,866 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 15:26:38,868 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 15:26:39,726 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 15:26:40,474 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 15:26:41,297 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 15:26:42,215 - INFO - Fetched 4 price entries in total.
+2026-01-14 15:26:42,215 - INFO - Fetching news data...
+2026-01-14 15:26:42,215 - INFO - Starting news fetch...
+2026-01-14 15:26:42,215 - INFO - Fetching news source: google_news
+2026-01-14 15:26:57,558 - INFO - Fetching news source: pv_tech
+2026-01-14 15:26:58,021 - INFO - Fetching news source: bess
+2026-01-14 15:26:59,214 - INFO - Fetching news source: policy
+2026-01-14 15:26:59,482 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 15:26:59,483 - INFO - Fetching news source: cailian
+2026-01-14 15:26:59,807 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 15:26:59,809 - INFO - Fetching news source: kr36
+2026-01-14 15:27:00,567 - INFO - Fetching news source: sohu_energy
+2026-01-14 15:27:00,605 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 15:27:00,608 - INFO - Fetched 48 news items for today.
+2026-01-14 15:27:00,609 - INFO - Processing external URL queue for additional news...
+2026-01-14 15:27:00,609 - INFO - No pending URLs, skipping.
+2026-01-14 15:27:00,734 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 15:27:00,735 - INFO - Processing news with AI...
+2026-01-14 15:40:39,517 - WARNING - DeepSeek API request failed (attempt 1): Request timed out.
+2026-01-14 15:42:14,813 - WARNING - DeepSeek API request failed (attempt 2): Request timed out.
+2026-01-14 15:43:49,817 - WARNING - DeepSeek API request failed (attempt 3): Request timed out.
+2026-01-14 15:43:51,820 - ERROR - DeepSeek API failed after 3 retries
+2026-01-14 15:52:59,509 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 15:52:59,510 - INFO - Fetching price data...
+2026-01-14 15:52:59,510 - INFO - Starting price data fetch...
+2026-01-14 15:52:59,510 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 15:53:02,700 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 15:53:02,702 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 15:53:02,755 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 15:53:02,756 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 15:53:05,944 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 15:53:05,946 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 15:53:07,584 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 15:53:07,586 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 15:53:09,939 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 15:53:09,941 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 15:53:10,831 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 15:53:11,733 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 15:53:12,630 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 15:53:16,604 - INFO - Fetched 4 price entries in total.
+2026-01-14 15:53:16,604 - INFO - Fetching news data...
+2026-01-14 15:53:16,604 - INFO - Starting news fetch...
+2026-01-14 15:53:16,604 - INFO - Fetching news source: google_news
+2026-01-14 15:53:31,192 - INFO - Fetching news source: pv_tech
+2026-01-14 15:53:32,090 - INFO - Fetching news source: bess
+2026-01-14 15:53:32,629 - INFO - Fetching news source: policy
+2026-01-14 15:53:32,907 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 15:53:32,908 - INFO - Fetching news source: cailian
+2026-01-14 15:53:33,230 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 15:53:33,232 - INFO - Fetching news source: kr36
+2026-01-14 15:53:33,998 - INFO - Fetching news source: sohu_energy
+2026-01-14 15:53:34,037 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 15:53:34,040 - INFO - Fetched 57 news items for today.
+2026-01-14 15:53:34,040 - INFO - Processing external URL queue for additional news...
+2026-01-14 15:53:34,040 - INFO - No pending URLs, skipping.
+2026-01-14 15:53:34,041 - INFO - Processing news with AI...
+2026-01-14 15:55:52,931 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 15:55:52,931 - INFO - Fetching price data...
+2026-01-14 15:55:52,931 - INFO - Starting price data fetch...
+2026-01-14 15:55:52,932 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 15:55:54,057 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 15:55:54,059 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 15:55:54,077 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-14 15:55:54,077 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 15:55:56,328 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 15:55:56,330 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 15:55:58,029 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 15:55:58,032 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 15:55:59,883 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 15:55:59,885 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 15:56:02,437 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 15:56:05,333 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 15:56:06,350 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 15:56:07,319 - INFO - Fetched 4 price entries in total.
+2026-01-14 15:56:07,319 - INFO - Fetching news data...
+2026-01-14 15:56:07,319 - INFO - Starting news fetch...
+2026-01-14 15:56:07,319 - INFO - Fetching news source: google_news
+2026-01-14 15:56:23,100 - INFO - Fetching news source: pv_tech
+2026-01-14 15:56:23,877 - INFO - Fetching news source: bess
+2026-01-14 15:56:26,008 - INFO - Fetching news source: policy
+2026-01-14 15:56:26,286 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 15:56:26,289 - INFO - Fetching news source: cailian
+2026-01-14 15:56:26,638 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 15:56:26,640 - INFO - Fetching news source: kr36
+2026-01-14 15:56:27,204 - INFO - Fetching news source: sohu_energy
+2026-01-14 15:56:27,244 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 15:56:27,247 - INFO - Fetched 58 news items for today.
+2026-01-14 15:56:27,248 - INFO - Processing external URL queue for additional news...
+2026-01-14 15:56:27,248 - INFO - No pending URLs, skipping.
+2026-01-14 15:56:27,464 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 15:56:27,465 - INFO - Processing news with AI...
+2026-01-14 16:04:29,356 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 16:04:29,357 - INFO - Fetching price data...
+2026-01-14 16:04:29,357 - INFO - Starting price data fetch...
+2026-01-14 16:04:29,357 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 16:04:34,375 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 16:04:34,375 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 16:04:34,392 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-14 16:04:34,392 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 16:04:36,232 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 16:04:36,234 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 16:04:38,118 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 16:04:38,120 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 16:04:40,061 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 16:04:40,063 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 16:04:41,001 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 16:04:41,744 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 16:04:43,677 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 16:04:44,476 - INFO - Fetched 4 price entries in total.
+2026-01-14 16:04:44,476 - INFO - Fetching news data...
+2026-01-14 16:04:44,476 - INFO - Starting news fetch...
+2026-01-14 16:04:44,477 - INFO - Fetching news source: google_news
+2026-01-14 16:04:57,729 - INFO - Fetching news source: pv_tech
+2026-01-14 16:04:59,105 - INFO - Fetching news source: bess
+2026-01-14 16:05:02,745 - INFO - Fetching news source: policy
+2026-01-14 16:05:03,020 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 16:05:03,022 - INFO - Fetching news source: cailian
+2026-01-14 16:05:03,351 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 16:05:03,353 - INFO - Fetching news source: kr36
+2026-01-14 16:05:04,016 - INFO - Fetching news source: sohu_energy
+2026-01-14 16:05:04,061 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 16:05:04,063 - INFO - Fetched 60 news items for today.
+2026-01-14 16:05:04,064 - INFO - Processing external URL queue for additional news...
+2026-01-14 16:05:04,064 - INFO - No pending URLs, skipping.
+2026-01-14 16:05:04,307 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 16:05:04,307 - INFO - Processing news with AI (multi-threaded, workers=8)...
+2026-01-14 16:08:04,701 - INFO - Generating price chart...
+2026-01-14 16:08:05,319 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-14.png
+2026-01-14 16:08:05,332 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 16:08:24,863 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 16:08:24,865 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 16:08:24,901 - INFO - Attempting to send via primary SMTP...
+2026-01-14 16:08:24,901 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 16:08:28,735 - INFO - Email sent successfully via SMTP.
+2026-01-14 16:08:28,738 - INFO - Email sent successfully
+2026-01-14 16:08:28,744 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 16:08:28,748 - INFO - Index updated with date 2026-01-14
+2026-01-14 16:08:28,748 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 16:08:28,940 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 16:08:28,940 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 16:17:30,121 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 16:17:30,121 - INFO - Fetching price data...
+2026-01-14 16:17:30,122 - INFO - Starting price data fetch...
+2026-01-14 16:17:30,122 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 16:17:34,282 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 16:17:34,285 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 16:17:34,314 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 16:17:34,315 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 16:17:38,133 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 16:17:38,135 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 16:17:39,876 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 16:17:39,878 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 16:17:41,820 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 16:17:41,822 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 16:17:45,793 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 16:17:46,664 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 16:17:47,657 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 16:17:50,672 - INFO - Fetched 4 price entries in total.
+2026-01-14 16:17:50,672 - INFO - Fetching news data...
+2026-01-14 16:17:50,672 - INFO - Starting news fetch...
+2026-01-14 16:17:50,673 - INFO - Fetching news source: google_news
+2026-01-14 16:18:06,185 - INFO - Fetching news source: pv_tech
+2026-01-14 16:18:06,686 - INFO - Fetching news source: bess
+2026-01-14 16:18:07,194 - INFO - Fetching news source: policy
+2026-01-14 16:18:07,463 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 16:18:07,465 - INFO - Fetching news source: cailian
+2026-01-14 16:18:07,790 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 16:18:07,792 - INFO - Fetching news source: kr36
+2026-01-14 16:18:08,435 - INFO - Fetching news source: sohu_energy
+2026-01-14 16:18:08,482 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 16:18:08,484 - INFO - Fetched 64 news items for today.
+2026-01-14 16:18:08,485 - INFO - Processing external URL queue for additional news...
+2026-01-14 16:18:08,485 - INFO - No pending URLs, skipping.
+2026-01-14 16:18:08,603 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 16:18:08,609 - INFO - [AI] News count before processing: 64
+2026-01-14 16:18:08,609 - INFO - [AI] Region distribution before processing: {'unknown': 64}
+2026-01-14 16:18:08,609 - INFO - [AI] Starting multi-threaded AI processing with 8 workers...
+2026-01-14 16:18:26,359 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:27,898 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:29,025 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:29,742 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:30,458 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:31,687 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:37,779 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:38,240 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:44,485 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:46,840 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:47,660 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:48,628 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:52,165 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:54,417 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:58,514 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:18:58,923 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:07,011 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:07,320 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:07,333 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:10,288 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:10,330 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:12,818 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:20,732 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:21,959 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:25,345 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:26,874 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:28,717 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:32,714 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:33,947 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:34,657 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:41,823 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:43,257 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:45,407 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:48,072 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:19:48,889 - DEBUG - [AI] Processed item: None | region=global
+2026-01-14 16:23:45,491 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 16:23:45,492 - INFO - Fetching price data...
+2026-01-14 16:23:45,492 - INFO - Starting price data fetch...
+2026-01-14 16:23:45,492 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 16:23:50,509 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 16:23:50,510 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 16:23:50,536 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 16:23:50,536 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 16:23:53,611 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 16:23:53,613 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 16:23:55,961 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 16:23:55,964 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 16:23:57,805 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 16:23:57,807 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 16:24:01,086 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 16:24:04,409 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 16:24:06,762 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 16:24:08,924 - INFO - Fetched 4 price entries in total.
+2026-01-14 16:24:08,925 - INFO - Fetching news data...
+2026-01-14 16:24:08,925 - INFO - Starting news fetch...
+2026-01-14 16:24:08,925 - INFO - Fetching news source: google_news
+2026-01-14 16:24:26,071 - INFO - Fetching news source: pv_tech
+2026-01-14 16:24:27,694 - INFO - Fetching news source: bess
+2026-01-14 16:24:28,247 - INFO - Fetching news source: policy
+2026-01-14 16:24:28,511 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 16:24:28,513 - INFO - Fetching news source: cailian
+2026-01-14 16:24:28,835 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 16:24:28,837 - INFO - Fetching news source: kr36
+2026-01-14 16:24:29,545 - INFO - Fetching news source: sohu_energy
+2026-01-14 16:24:29,580 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 16:24:29,584 - INFO - Fetched 66 news items for today.
+2026-01-14 16:24:29,584 - INFO - Processing external URL queue for additional news...
+2026-01-14 16:24:29,584 - INFO - No pending URLs, skipping.
+2026-01-14 16:24:29,661 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 16:24:29,661 - INFO - [AI] Processing 66 news items with AI (multi-threaded)...
+2026-01-14 16:27:34,880 - INFO - [AI] Finished processing. Results count: 66
+2026-01-14 16:27:48,157 - INFO - Generating price chart...
+2026-01-14 16:27:48,700 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-14.png
+2026-01-14 16:27:48,704 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 16:28:02,226 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 16:28:02,229 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 16:28:02,264 - INFO - Attempting to send via primary SMTP...
+2026-01-14 16:28:02,264 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 16:28:06,588 - INFO - Email sent successfully via SMTP.
+2026-01-14 16:28:06,591 - INFO - Email sent successfully
+2026-01-14 16:28:06,598 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 16:28:06,604 - INFO - Index updated with date 2026-01-14
+2026-01-14 16:28:06,604 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 16:28:06,780 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 16:28:06,781 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 16:30:44,058 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 16:30:44,059 - INFO - Fetching price data...
+2026-01-14 16:30:44,059 - INFO - Starting price data fetch...
+2026-01-14 16:30:44,059 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 16:30:47,369 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 16:30:47,371 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 16:30:47,395 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-14 16:30:47,395 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 16:30:49,629 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 16:30:49,631 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 16:30:52,658 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 16:30:52,660 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 16:30:54,416 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 16:30:54,419 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 16:30:55,824 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 16:30:57,815 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 16:31:00,733 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 16:31:03,544 - INFO - Fetched 4 price entries in total.
+2026-01-14 16:31:03,546 - INFO - Fetching news data...
+2026-01-14 16:31:03,546 - INFO - Starting news fetch...
+2026-01-14 16:31:03,547 - INFO - Fetching news source: google_news
+2026-01-14 16:31:16,768 - INFO - Fetching news source: pv_tech
+2026-01-14 16:31:17,754 - INFO - Fetching news source: bess
+2026-01-14 16:31:18,546 - INFO - Fetching news source: policy
+2026-01-14 16:31:18,821 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 16:31:18,823 - INFO - Fetching news source: cailian
+2026-01-14 16:31:19,156 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 16:31:19,158 - INFO - Fetching news source: kr36
+2026-01-14 16:31:19,932 - INFO - Fetching news source: sohu_energy
+2026-01-14 16:31:19,976 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 16:31:19,978 - INFO - Fetched 67 news items for today.
+2026-01-14 16:31:19,980 - INFO - Processing external URL queue for additional news...
+2026-01-14 16:31:19,981 - INFO - No pending URLs, skipping.
+2026-01-14 16:31:20,060 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 16:31:20,060 - INFO - Processing news with AI...
+2026-01-14 16:33:42,908 - WARNING - DeepSeek API request failed (attempt 1): Request timed out.
+2026-01-14 16:43:29,826 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 16:43:29,828 - INFO - Fetching price data...
+2026-01-14 16:43:29,828 - INFO - Starting price data fetch...
+2026-01-14 16:43:29,828 - INFO - Fetching domestic price source: bjx_storage
+2026-01-14 16:43:33,990 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-14 16:43:33,993 - INFO - Fetching domestic price source: silicon_association
+2026-01-14 16:43:34,009 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-14 16:43:34,009 - INFO - Fetching TradingEconomics price: lithium
+2026-01-14 16:43:36,135 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-14 16:43:36,137 - INFO - Fetching TradingEconomics price: nickel
+2026-01-14 16:43:38,083 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-14 16:43:38,085 - INFO - Fetching TradingEconomics price: copper
+2026-01-14 16:43:40,130 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-14 16:43:40,132 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-14 16:43:42,974 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-14 16:43:44,131 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-14 16:43:45,184 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-14 16:43:46,107 - INFO - Fetched 4 price entries in total.
+2026-01-14 16:43:46,109 - INFO - Fetching news data...
+2026-01-14 16:43:46,109 - INFO - Starting news fetch...
+2026-01-14 16:43:46,109 - INFO - Fetching news source: google_news
+2026-01-14 16:44:01,040 - INFO - Fetching news source: pv_tech
+2026-01-14 16:44:01,611 - INFO - Fetching news source: bess
+2026-01-14 16:44:06,626 - INFO - Fetching news source: policy
+2026-01-14 16:44:06,900 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-14 16:44:06,902 - INFO - Fetching news source: cailian
+2026-01-14 16:44:07,213 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-14 16:44:07,215 - INFO - Fetching news source: kr36
+2026-01-14 16:44:07,921 - INFO - Fetching news source: sohu_energy
+2026-01-14 16:44:07,962 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-14 16:44:07,965 - INFO - Fetched 69 news items for today.
+2026-01-14 16:44:07,967 - INFO - Processing external URL queue for additional news...
+2026-01-14 16:44:07,967 - INFO - No pending URLs, skipping.
+2026-01-14 16:44:08,056 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 16:44:08,057 - INFO - Processing news with AI...
+2026-01-14 17:09:01,467 - INFO - Using cached chart...
+2026-01-14 17:09:01,566 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:09:17,428 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:09:17,437 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:09:17,476 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:09:17,476 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:09:23,119 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:09:23,120 - INFO - Email sent successfully
+2026-01-14 17:09:23,125 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:09:23,126 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:09:23,126 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:09:23,181 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 17:09:23,181 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 17:15:07,560 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 17:15:07,561 - INFO - Loading prices from cache...
+2026-01-14 17:15:07,561 - INFO - Loading raw news from cache...
+2026-01-14 17:15:07,562 - INFO - Processing external URL queue for additional news...
+2026-01-14 17:15:07,563 - INFO - No pending URLs, skipping.
+2026-01-14 17:15:07,637 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 17:15:07,637 - INFO - Loading AI-processed news from cache...
+2026-01-14 17:15:07,652 - INFO - Loading region groups from cache...
+2026-01-14 17:15:07,666 - INFO - Loading price insight from cache...
+2026-01-14 17:15:07,667 - INFO - Using cached chart...
+2026-01-14 17:15:07,692 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:15:07,732 - INFO - Loading daily insight from cache...
+2026-01-14 17:15:18,170 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:15:18,174 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:15:18,215 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:15:18,215 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:15:21,382 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:15:21,384 - INFO - Email sent successfully
+2026-01-14 17:15:21,391 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:15:21,392 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:15:21,393 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:15:21,432 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 17:15:21,432 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 17:15:45,434 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 17:15:45,435 - INFO - Loading prices from cache...
+2026-01-14 17:15:45,435 - INFO - Loading raw news from cache...
+2026-01-14 17:15:45,437 - INFO - Processing external URL queue for additional news...
+2026-01-14 17:15:45,437 - INFO - No pending URLs, skipping.
+2026-01-14 17:15:45,455 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 17:15:45,455 - INFO - Loading AI-processed news from cache...
+2026-01-14 17:15:45,463 - INFO - Loading region groups from cache...
+2026-01-14 17:15:45,473 - INFO - Loading price insight from cache...
+2026-01-14 17:15:45,473 - INFO - Using cached chart...
+2026-01-14 17:15:45,475 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:15:45,478 - INFO - Loading daily insight from cache...
+2026-01-14 17:15:51,479 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:15:51,481 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:15:51,517 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:15:51,517 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:15:54,136 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:15:54,138 - INFO - Email sent successfully
+2026-01-14 17:15:54,144 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:15:54,150 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:15:54,150 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:15:54,178 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 17:15:54,179 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 17:18:54,716 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 17:18:54,717 - INFO - Loading prices from cache...
+2026-01-14 17:18:54,718 - INFO - Loading raw news from cache...
+2026-01-14 17:18:54,724 - INFO - Processing external URL queue for additional news...
+2026-01-14 17:18:54,725 - INFO - No pending URLs, skipping.
+2026-01-14 17:18:54,850 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 17:18:54,850 - INFO - Loading AI-processed news from cache...
+2026-01-14 17:18:54,865 - INFO - Loading region groups from cache...
+2026-01-14 17:18:54,882 - INFO - Loading price insight from cache...
+2026-01-14 17:18:54,884 - INFO - Using cached chart...
+2026-01-14 17:18:54,890 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:18:54,896 - INFO - Loading daily insight from cache...
+2026-01-14 17:19:00,670 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:19:00,672 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:19:00,711 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:19:00,711 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:19:05,624 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:19:05,627 - INFO - Email sent successfully
+2026-01-14 17:19:05,632 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:19:05,639 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:19:05,639 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:19:05,796 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 17:19:05,796 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 17:36:43,211 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 17:36:43,212 - INFO - Loading prices from cache...
+2026-01-14 17:36:43,213 - INFO - Loading raw news from cache...
+2026-01-14 17:36:43,215 - INFO - Processing external URL queue for additional news...
+2026-01-14 17:36:43,216 - INFO - No pending URLs, skipping.
+2026-01-14 17:36:43,295 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 17:36:43,296 - INFO - Loading AI-processed news from cache...
+2026-01-14 17:36:43,304 - INFO - Loading region groups from cache...
+2026-01-14 17:36:43,314 - INFO - Loading price insight from cache...
+2026-01-14 17:36:43,315 - INFO - Using cached chart...
+2026-01-14 17:36:43,325 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:36:43,329 - INFO - Loading daily insight from cache...
+2026-01-14 17:36:49,341 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:36:49,343 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:36:49,377 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:36:49,378 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:36:53,172 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:36:53,173 - INFO - Email sent successfully
+2026-01-14 17:36:53,179 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:36:53,185 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:36:53,186 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:36:53,227 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 17:36:53,228 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 17:39:04,173 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 17:39:04,173 - INFO - Loading prices from cache...
+2026-01-14 17:39:04,174 - INFO - Loading raw news from cache...
+2026-01-14 17:39:04,175 - INFO - Processing external URL queue for additional news...
+2026-01-14 17:39:04,176 - INFO - No pending URLs, skipping.
+2026-01-14 17:39:04,236 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 17:39:04,236 - INFO - Loading AI-processed news from cache...
+2026-01-14 17:39:04,239 - INFO - Loading region groups from cache...
+2026-01-14 17:39:04,242 - INFO - Loading price insight from cache...
+2026-01-14 17:39:04,243 - INFO - Using cached chart...
+2026-01-14 17:39:04,244 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:39:04,249 - INFO - Loading daily insight from cache...
+2026-01-14 17:39:12,581 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:39:12,584 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:39:12,620 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:39:12,620 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:39:15,795 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:39:15,797 - INFO - Email sent successfully
+2026-01-14 17:39:15,803 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:39:15,804 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:39:15,804 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:39:15,822 - ERROR - Git push failed: Command '['git', 'add', 'docs/']' returned non-zero exit status 128.
+2026-01-14 17:39:15,823 - INFO - === Daily Solar Briefing finished ===
+2026-01-14 17:45:22,943 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-14 17:45:22,945 - INFO - Loading prices from cache...
+2026-01-14 17:45:22,946 - INFO - Loading raw news from cache...
+2026-01-14 17:45:22,947 - INFO - Processing external URL queue for additional news...
+2026-01-14 17:45:22,947 - INFO - No pending URLs, skipping.
+2026-01-14 17:45:23,023 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-14 17:45:23,023 - INFO - Loading AI-processed news from cache...
+2026-01-14 17:45:23,038 - INFO - Loading region groups from cache...
+2026-01-14 17:45:23,048 - INFO - Loading price insight from cache...
+2026-01-14 17:45:23,049 - INFO - Using cached chart...
+2026-01-14 17:45:23,065 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-14 17:45:23,067 - INFO - Loading daily insight from cache...
+2026-01-14 17:45:28,785 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:45:28,787 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-14.pdf
+2026-01-14 17:45:28,824 - INFO - Attempting to send via primary SMTP...
+2026-01-14 17:45:28,824 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-14 17:45:33,215 - INFO - Email sent successfully via SMTP.
+2026-01-14 17:45:33,217 - INFO - Email sent successfully
+2026-01-14 17:45:33,223 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-14.json
+2026-01-14 17:45:33,230 - INFO - Index updated with date 2026-01-14
+2026-01-14 17:45:33,230 - INFO - Daily report exported for GitHub Pages.
+2026-01-14 17:45:33,326 - ERROR - Git push failed: Command '['git', 'commit', '-m', 'Daily data update']' returned non-zero exit status 1.
+2026-01-14 17:45:33,326 - INFO - === Daily Solar Briefing finished ===

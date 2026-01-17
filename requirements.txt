@@ -5,6 +5,9 @@ httpcore==0.17.3
 h11==0.14.0
 requests==2.31.0
 
+dashscope>=1.20.0
+python-dotenv>=1.0.0
+
 # --- Environment & Config ---
 python-dotenv==1.0.1
 pytz==2023.3

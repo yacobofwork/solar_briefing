@@ -24,7 +24,8 @@ from src.system.config_loader import load_config
 from src.modules.insights_core import (
     summarize_article,
     analyze_price_impact,
-    generate_daily_insight
+    generate_daily_insight,
+    generate_price_trend_chart   # ← 新增这一行
 )
 
 # ============================================================
@@ -137,6 +138,50 @@ def process_price_ai(price_list, date):
     chart_rel_for_docs = f"charts/{filename}"
     return chart_abs_path, chart_rel_for_docs, price_insight
 
+
+# ============================================================
+# 2.5 Raw Material Trend Chart (NEW)
+# ============================================================
+
+def generate_and_save_raw_material_chart(date: str, cache_enabled: bool = False) -> tuple[str | None, str | None]:
+    """
+    Generate raw material price trend chart via AI web search and save to file.
+
+    Returns:
+        tuple: (base64_string, file_path) — both may be None if failed
+    """
+    import base64
+    from pathlib import Path
+
+    # Try cache first
+    if cache_enabled and cache.exists("raw_material_chart"):
+        logger.info("Loading raw material trend chart from cache...")
+        raw_material_chart_b64 = cache.load("raw_material_chart")
+    else:
+        logger.info("Generating raw material price trend chart via AI web search...")
+        raw_material_chart_b64 = generate_price_trend_chart()
+        if cache_enabled:
+            cache.save("raw_material_chart", raw_material_chart_b64)
+
+    if not raw_material_chart_b64:
+        logger.warning("No chart data returned from AI.")
+        return None, None
+
+    # Save to file
+    try:
+        chart_dir = Path(config["paths"]["charts_dir"]).resolve()
+        chart_dir.mkdir(exist_ok=True)
+        filename = f"raw_material_trend_{date}.png"
+        chart_path = str(chart_dir / filename)
+
+        with open(chart_path, "wb") as f:
+            f.write(base64.b64decode(raw_material_chart_b64))
+        logger.info(f"Raw material trend chart saved: {chart_path}")
+        return raw_material_chart_b64, chart_path
+
+    except Exception as e:
+        logger.error(f"Failed to save raw material chart: {e}")
+        return raw_material_chart_b64, None
 
 # ============================================================
 # 3. Region grouping
@@ -326,6 +371,30 @@ def run():
         daily_insight = render_daily_insight(raw_daily_insight)
         if cache_enabled:
             cache.save("daily_insight", daily_insight)
+
+    with open("email_debug.html", "w") as f:
+        f.write(f"<html><body>{daily_insight}</body></html>")
+
+    # Step 7.5: Generate raw material trend chart (NEW - single function call)
+    raw_material_chart_b64, raw_material_chart_path = generate_and_save_raw_material_chart(date, cache_enabled)
+    logger.info(f"Base64 length: {len(raw_material_chart_b64)}")
+
+    # Inject chart into daily_insight as inline HTML (no need to change PDF/email functions)
+    if raw_material_chart_b64:
+        chart_html = f'''
+        <div style="margin: 30px 0; page-break-before: always;">
+            <h2>Core Raw Material Price Trends (Last 7 Days)</h2>
+            <img src="data:image/png;base64,{raw_material_chart_b64}" 
+                 alt="PV & BESS Raw Material Trends"
+                 style="max-width: 100%; height: auto; border: 1px solid #eee; border-radius: 8px;">
+            <p style="font-size: 0.9em; color: #666; margin-top: 8px;">
+                Data sourced via real-time web search on {date}.
+            </p>
+        </div>
+        '''
+        daily_insight += chart_html
+    else:
+        daily_insight += "<p><em>Raw material trend chart could not be generated.</em></p>"
 
     # Step 8: PDF output
     pdf_path = export_pdf(

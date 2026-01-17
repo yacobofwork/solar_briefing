@@ -1,0 +1,644 @@
+2026-01-16 18:37:25,470 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 18:37:25,471 - INFO - Fetching price data...
+2026-01-16 18:37:25,471 - INFO - Starting price data fetch...
+2026-01-16 18:37:25,471 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 18:37:29,598 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/list/price
+2026-01-16 18:37:29,600 - INFO - Fetching domestic price source: silicon_association
+2026-01-16 18:37:29,660 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 18:37:29,660 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 18:37:31,015 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-16 18:37:31,017 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 18:37:32,228 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-16 18:37:32,230 - INFO - Fetching TradingEconomics price: copper
+2026-01-16 18:37:33,481 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-16 18:37:33,483 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 18:37:38,501 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/ENPH:NASDAQ: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 18:37:38,501 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 18:37:43,506 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/FSLR:NASDAQ: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 18:37:43,506 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 18:37:48,517 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/TSLA:NASDAQ: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 18:37:48,518 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 18:37:53,533 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/JKS:NYSE: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 18:37:53,533 - INFO - Fetched 0 price entries in total.
+2026-01-16 18:37:53,534 - INFO - Fetching news data...
+2026-01-16 18:37:53,534 - INFO - Starting news fetch...
+2026-01-16 18:37:53,534 - INFO - Fetching news source: google_news
+2026-01-16 18:38:38,730 - INFO - Fetching news source: pv_tech
+2026-01-16 18:38:40,540 - INFO - Fetching news source: bess
+2026-01-16 18:38:41,834 - INFO - Fetching news source: policy
+2026-01-16 18:38:42,099 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 18:38:42,100 - INFO - Fetching news source: cailian
+2026-01-16 18:38:42,421 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-16 18:38:42,424 - INFO - Fetching news source: kr36
+2026-01-16 18:38:43,110 - INFO - Fetching news source: sohu_energy
+2026-01-16 18:38:43,154 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-16 18:38:43,157 - INFO - Fetched 5 news items for today.
+2026-01-16 18:38:43,158 - INFO - Processing external URL queue for additional news...
+2026-01-16 18:38:43,159 - INFO - No pending URLs, skipping.
+2026-01-16 18:38:43,160 - WARNING - No price data today, skipping history update.
+2026-01-16 18:38:43,160 - INFO - Processing news with AI...
+2026-01-16 18:39:55,511 - INFO - Generating price chart...
+2026-01-16 18:39:56,122 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-16.png
+2026-01-16 18:39:56,124 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-16 18:40:12,062 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-16.pdf
+2026-01-16 18:40:12,064 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-16.pdf
+2026-01-16 18:40:12,090 - INFO - Attempting to send via primary SMTP...
+2026-01-16 18:40:12,090 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-16 18:40:14,127 - INFO - Email sent successfully via SMTP.
+2026-01-16 18:40:14,128 - INFO - Email sent successfully
+2026-01-16 18:40:14,131 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-16.json
+2026-01-16 18:40:14,138 - INFO - Index updated with date 2026-01-16
+2026-01-16 18:40:14,139 - INFO - Daily report exported for GitHub Pages.
+2026-01-16 18:40:19,063 - INFO - GitHub push completed.
+2026-01-16 18:40:19,064 - INFO - === Daily Solar Briefing finished ===
+2026-01-16 19:03:44,771 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 19:03:44,771 - INFO - Fetching price data...
+2026-01-16 19:03:44,771 - INFO - Starting price data fetch...
+2026-01-16 19:03:44,771 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 19:03:49,791 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 19:03:49,791 - INFO - Fetching domestic price source: silicon_association
+2026-01-16 19:03:49,996 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-16 19:03:49,996 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 19:03:51,750 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-16 19:03:51,752 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 19:03:53,695 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-16 19:03:53,697 - INFO - Fetching TradingEconomics price: copper
+2026-01-16 19:03:55,535 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/copper: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/copper
+2026-01-16 19:03:55,539 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 19:03:57,238 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 19:03:58,484 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 19:03:59,480 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 19:04:00,419 - INFO - Fetched 4 price entries in total.
+2026-01-16 19:04:00,419 - INFO - Fetching news data...
+2026-01-16 19:04:00,419 - INFO - Starting news fetch...
+2026-01-16 19:04:00,419 - INFO - Fetching news source: google_news
+2026-01-16 19:04:16,603 - INFO - Fetching news source: pv_tech
+2026-01-16 19:04:17,814 - INFO - Fetching news source: bess
+2026-01-16 19:04:21,031 - INFO - Fetching news source: policy
+2026-01-16 19:04:21,310 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 19:04:21,314 - INFO - Fetching news source: cailian
+2026-01-16 19:04:21,648 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-16 19:04:21,650 - INFO - Fetching news source: kr36
+2026-01-16 19:04:22,173 - INFO - Fetching news source: sohu_energy
+2026-01-16 19:04:22,225 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-16 19:04:22,265 - INFO - Fetched 89 news items for today.
+2026-01-16 19:04:22,266 - INFO - Processing external URL queue for additional news...
+2026-01-16 19:04:22,268 - INFO - No pending URLs, skipping.
+2026-01-16 19:04:22,405 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-16 19:04:22,406 - INFO - Processing news with AI...
+2026-01-16 19:31:36,930 - INFO - Generating price chart...
+2026-01-16 19:31:38,631 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-16.png
+2026-01-16 19:31:38,635 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-16 19:32:01,953 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-16.pdf
+2026-01-16 19:32:01,956 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-16.pdf
+2026-01-16 19:32:01,998 - INFO - Attempting to send via primary SMTP...
+2026-01-16 19:32:01,999 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-16 19:32:04,816 - INFO - Email sent successfully via SMTP.
+2026-01-16 19:32:04,818 - INFO - Email sent successfully
+2026-01-16 19:32:04,823 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-16.json
+2026-01-16 19:32:04,825 - INFO - Index updated with date 2026-01-16
+2026-01-16 19:32:04,825 - INFO - Daily report exported for GitHub Pages.
+2026-01-16 19:32:10,231 - INFO - GitHub push completed.
+2026-01-16 19:32:10,231 - INFO - === Daily Solar Briefing finished ===
+2026-01-16 22:04:03,224 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 22:04:03,226 - INFO - Loading prices from cache...
+2026-01-16 22:04:03,227 - INFO - Loading raw news from cache...
+2026-01-16 22:04:03,228 - INFO - Processing external URL queue for additional news...
+2026-01-16 22:04:03,229 - INFO - No pending URLs, skipping.
+2026-01-16 22:04:03,229 - WARNING - No price data today, skipping history update.
+2026-01-16 22:04:03,230 - INFO - Loading AI-processed news from cache...
+2026-01-16 22:04:03,231 - INFO - Loading region groups from cache...
+2026-01-16 22:04:03,234 - INFO - Loading price insight from cache...
+2026-01-16 22:04:03,235 - INFO - Using cached chart...
+2026-01-16 22:04:03,250 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-16 22:04:03,251 - INFO - Loading daily insight from cache...
+2026-01-16 22:04:09,737 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-16.pdf
+2026-01-16 22:04:09,739 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-16.pdf
+2026-01-16 22:04:09,763 - INFO - Attempting to send via primary SMTP...
+2026-01-16 22:04:09,763 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-16 22:04:14,424 - INFO - Email sent successfully via SMTP.
+2026-01-16 22:04:14,425 - INFO - Email sent successfully
+2026-01-16 22:04:14,426 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-16.json
+2026-01-16 22:04:14,429 - INFO - Index updated with date 2026-01-16
+2026-01-16 22:04:14,429 - INFO - Daily report exported for GitHub Pages.
+2026-01-16 22:04:19,141 - INFO - GitHub push completed.
+2026-01-16 22:04:19,142 - INFO - === Daily Solar Briefing finished ===
+2026-01-16 22:04:39,759 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 22:04:39,760 - INFO - Fetching price data...
+2026-01-16 22:04:39,760 - INFO - Starting price data fetch...
+2026-01-16 22:04:39,760 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 22:04:44,785 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:04:44,786 - INFO - Fetching domestic price source: silicon_association
+2026-01-16 22:04:44,852 - ERROR - Failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:04:44,852 - INFO - Fetching domestic price source: silver_market
+2026-01-16 22:04:45,126 - ERROR - Failed to fetch HTML price from https://www.shfe.com.cn/silver: HTTPSConnectionPool(host='www.shfe.com.cn', port=443): Max retries exceeded with url: /silver (Caused by ProxyError('Unable to connect to proxy', RemoteDisconnected('Remote end closed connection without response')))
+2026-01-16 22:04:45,126 - INFO - Fetching domestic price source: glass_market
+2026-01-16 22:04:45,179 - ERROR - Failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:04:45,180 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 22:04:47,666 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-16 22:04:47,668 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 22:04:49,192 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-16 22:04:49,194 - INFO - Fetching TradingEconomics price: cobalt
+2026-01-16 22:04:50,532 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/cobalt: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/cobalt
+2026-01-16 22:04:50,534 - INFO - Fetching TradingEconomics price: graphite
+2026-01-16 22:04:51,860 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/graphite: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/graphite
+2026-01-16 22:04:51,862 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 22:04:53,628 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 22:05:01,991 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 22:05:10,588 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 22:05:20,601 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/JKS:NYSE: HTTPSConnectionPool(host='www.google.com', port=443): Read timed out. (read timeout=10)
+2026-01-16 22:05:20,601 - INFO - Fetched 3 price entries in total.
+2026-01-16 22:05:20,601 - INFO - Fetching news data...
+2026-01-16 22:05:20,602 - INFO - Starting news fetch...
+2026-01-16 22:05:20,602 - INFO - Fetching news source: google_news
+2026-01-16 22:05:38,164 - INFO - Fetching news source: pv_tech
+2026-01-16 22:05:39,782 - INFO - Fetching news source: bess
+2026-01-16 22:05:40,959 - INFO - Fetching news source: policy
+2026-01-16 22:05:41,929 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 22:05:41,930 - INFO - Fetching news source: cailian
+2026-01-16 22:05:42,787 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-16 22:05:42,789 - INFO - Fetching news source: kr36
+2026-01-16 22:05:43,401 - INFO - Fetching news source: sohu_energy
+2026-01-16 22:05:43,442 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-16 22:05:43,444 - INFO - Fetched 123 news items for today.
+2026-01-16 22:05:43,445 - INFO - Processing external URL queue for additional news...
+2026-01-16 22:05:43,454 - INFO - No pending URLs, skipping.
+2026-01-16 22:05:43,727 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 3 new records.
+2026-01-16 22:05:43,727 - INFO - Processing news with AI...
+2026-01-16 22:17:04,758 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 22:17:04,759 - INFO - Fetching price data...
+2026-01-16 22:17:04,759 - INFO - Starting price data fetch...
+2026-01-16 22:17:04,759 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 22:17:09,771 - ERROR - Attempt 1/3 failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:17:17,769 - ERROR - Attempt 2/3 failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:17:21,594 - ERROR - Attempt 3/3 failed to fetch HTML price from https://guangfu.bjx.com.cn/list/price: 404 Client Error: Not Found for url: https://guangfu.bjx.com.cn/list/price
+2026-01-16 22:17:24,147 - WARNING - All attempts failed for https://guangfu.bjx.com.cn/list/price, returning placeholder data.
+2026-01-16 22:17:24,148 - INFO - Fetching domestic price source: silicon_association
+2026-01-16 22:17:24,176 - ERROR - Attempt 1/3 failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:17:26,543 - ERROR - Attempt 2/3 failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-16 22:17:29,315 - ERROR - Attempt 3/3 failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-16 22:17:30,585 - WARNING - All attempts failed for https://www.siliconindustry.com.cn/price, returning placeholder data.
+2026-01-16 22:17:30,586 - INFO - Fetching domestic price source: silver_market
+2026-01-16 22:17:30,794 - ERROR - Attempt 1/3 failed to fetch HTML price from https://www.shfe.com.cn/silver: 404 Client Error: Not Found for url: https://www.shfe.com.cn/silver
+2026-01-16 22:17:31,989 - ERROR - Attempt 2/3 failed to fetch HTML price from https://www.shfe.com.cn/silver: 404 Client Error: Not Found for url: https://www.shfe.com.cn/silver
+2026-01-16 22:17:34,207 - ERROR - Attempt 3/3 failed to fetch HTML price from https://www.shfe.com.cn/silver: 404 Client Error: Not Found for url: https://www.shfe.com.cn/silver
+2026-01-16 22:17:36,791 - WARNING - All attempts failed for https://www.shfe.com.cn/silver, returning placeholder data.
+2026-01-16 22:17:36,793 - INFO - Fetching domestic price source: glass_market
+2026-01-16 22:17:36,916 - ERROR - Attempt 1/3 failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:17:38,034 - ERROR - Attempt 2/3 failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:17:39,212 - ERROR - Attempt 3/3 failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:17:41,175 - WARNING - All attempts failed for https://www.chinaglassnet.com/market, returning placeholder data.
+2026-01-16 22:17:41,175 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 22:17:43,993 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-16 22:17:43,995 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 22:17:46,108 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-16 22:17:46,110 - INFO - Fetching TradingEconomics price: cobalt
+2026-01-16 22:17:48,561 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/cobalt: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/cobalt
+2026-01-16 22:17:48,564 - INFO - Fetching TradingEconomics price: graphite
+2026-01-16 22:17:49,981 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/graphite: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/graphite
+2026-01-16 22:17:49,983 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 22:17:51,730 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 22:17:54,088 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 22:17:55,384 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 22:17:56,718 - INFO - Fetched 8 price entries in total.
+2026-01-16 22:17:56,718 - INFO - Fetching news data...
+2026-01-16 22:17:56,718 - INFO - Starting news fetch...
+2026-01-16 22:17:56,718 - INFO - Fetching news source: google_news
+2026-01-16 22:18:14,160 - INFO - Fetching news source: pv_tech
+2026-01-16 22:18:15,744 - INFO - Fetching news source: bess
+2026-01-16 22:18:22,775 - INFO - Fetching news source: policy
+2026-01-16 22:18:23,048 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 22:18:23,050 - INFO - Fetching news source: cailian
+2026-01-16 22:18:23,293 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 404 Client Error: Not Found for url: https://www.cls.cn/v/energy
+2026-01-16 22:18:23,295 - INFO - Fetching news source: kr36
+2026-01-16 22:18:23,905 - INFO - Fetching news source: sohu_energy
+2026-01-16 22:18:23,954 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-16 22:18:23,956 - INFO - Fetched 124 news items for today.
+2026-01-16 22:18:23,957 - INFO - Processing external URL queue for additional news...
+2026-01-16 22:18:23,959 - INFO - No pending URLs, skipping.
+2026-01-16 22:18:23,980 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 8 new records.
+2026-01-16 22:18:23,980 - INFO - Processing news with AI...
+2026-01-16 22:27:13,068 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 22:27:13,074 - INFO - Fetching price data...
+2026-01-16 22:27:13,075 - INFO - Starting price data fetch...
+2026-01-16 22:27:13,075 - INFO - Fetching domestic price source: silicon_association
+2026-01-16 22:27:13,298 - ERROR - Attempt 1/3 failed to fetch HTML price from https://www.siliconindustry.com.cn/price: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:27:14,748 - ERROR - Attempt 2/3 failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-16 22:27:16,594 - ERROR - Attempt 3/3 failed to fetch HTML price from https://www.siliconindustry.com.cn/price: HTTPSConnectionPool(host='www.siliconindustry.com.cn', port=443): Max retries exceeded with url: /price (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))
+2026-01-16 22:27:18,334 - WARNING - All attempts failed for https://www.siliconindustry.com.cn/price, returning placeholder data.
+2026-01-16 22:27:18,335 - INFO - Fetching domestic price source: glass_market
+2026-01-16 22:27:18,395 - ERROR - Attempt 1/3 failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:27:20,256 - ERROR - Attempt 2/3 failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:27:22,304 - ERROR - Attempt 3/3 failed to fetch HTML price from https://www.chinaglassnet.com/market: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 22:27:24,249 - WARNING - All attempts failed for https://www.chinaglassnet.com/market, returning placeholder data.
+2026-01-16 22:27:24,252 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 22:27:29,096 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/lithium: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/lithium
+2026-01-16 22:27:29,098 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 22:27:30,706 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/nickel: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/nickel
+2026-01-16 22:27:30,707 - INFO - Fetching TradingEconomics price: cobalt
+2026-01-16 22:27:32,139 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/cobalt: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/cobalt
+2026-01-16 22:27:32,141 - INFO - Fetching TradingEconomics price: graphite
+2026-01-16 22:27:33,460 - ERROR - Failed to fetch TradingEconomics price from https://tradingeconomics.com/commodity/graphite: 403 Client Error: Forbidden for url: https://tradingeconomics.com/commodity/graphite
+2026-01-16 22:27:33,463 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 22:27:35,437 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 22:27:37,589 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 22:27:41,219 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 22:27:42,691 - INFO - Fetched 6 price entries in total.
+2026-01-16 22:27:42,693 - INFO - Fetching news data...
+2026-01-16 22:27:42,693 - INFO - Starting news fetch...
+2026-01-16 22:27:42,693 - INFO - Fetching news source: google_news
+2026-01-16 22:27:58,463 - INFO - Fetching news source: pv_tech
+2026-01-16 22:27:59,249 - INFO - Fetching news source: bess
+2026-01-16 22:28:01,813 - INFO - Fetching news source: policy
+2026-01-16 22:28:02,084 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 22:28:02,087 - INFO - Fetching news source: cailian
+2026-01-16 22:28:02,400 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 418 Client Error:  for url: https://www.cls.cn/v/energy
+2026-01-16 22:28:02,402 - INFO - Fetching news source: kr36
+2026-01-16 22:28:03,213 - INFO - Fetching news source: sohu_energy
+2026-01-16 22:28:03,251 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-16 22:28:03,253 - INFO - Fetched 126 news items for today.
+2026-01-16 22:28:03,254 - INFO - Processing external URL queue for additional news...
+2026-01-16 22:28:03,256 - INFO - No pending URLs, skipping.
+2026-01-16 22:28:03,317 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 6 new records.
+2026-01-16 22:28:03,318 - INFO - Processing news with AI...
+2026-01-16 22:42:03,338 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 22:42:03,338 - INFO - Fetching price data...
+2026-01-16 22:42:03,338 - INFO - Starting price data fetch...
+2026-01-16 22:42:03,338 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 22:42:14,305 - INFO - Fetching domestic price source: silicon_association
+2026-01-16 22:42:15,611 - ERROR - Browser fetch failed for https://www.siliconindustry.com.cn/: Page.goto: net::ERR_CONNECTION_RESET at https://www.siliconindustry.com.cn/
+Call log:
+  - navigating to "https://www.siliconindustry.com.cn/", waiting until "load"
+
+2026-01-16 22:42:15,619 - INFO - Fetching domestic price source: silver_market
+2026-01-16 22:42:25,825 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,827 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,828 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,828 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,828 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,828 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,829 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,829 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,829 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,829 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,830 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,830 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,830 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,831 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,831 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,831 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,831 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,834 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,836 - WARNING - Failed to parse one price entry from https://www.shfe.com.cn/products/futures/metal/ferrousandpreciousmetal/ag_f/: 'NoneType' object has no attribute 'get_text'
+2026-01-16 22:42:25,839 - INFO - Fetching domestic price source: glass_market
+2026-01-16 22:42:30,261 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 22:42:32,120 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/commodities/lithium?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/commodities/lithium?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:42:32,127 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 22:42:35,600 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/commodities/nickel?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/commodities/nickel?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:42:35,602 - INFO - Fetching TradingEconomics price: cobalt
+2026-01-16 22:42:37,650 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/commodities/cobalt?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/commodities/cobalt?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:42:37,653 - INFO - Fetching TradingEconomics price: graphite
+2026-01-16 22:42:39,370 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/commodities/graphite?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/commodities/graphite?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:42:39,372 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 22:42:41,336 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 22:42:44,042 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 22:42:46,025 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 22:42:47,928 - INFO - Fetched 43 price entries in total.
+2026-01-16 22:42:47,928 - INFO - Fetching news data...
+2026-01-16 22:42:47,928 - INFO - Starting news fetch...
+2026-01-16 22:42:47,928 - INFO - Fetching news source: google_news
+2026-01-16 22:48:28,406 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 22:48:28,407 - INFO - Fetching price data...
+2026-01-16 22:48:28,408 - INFO - Starting price data fetch...
+2026-01-16 22:48:28,409 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 22:48:41,384 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 22:48:48,152 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 22:48:52,396 - INFO - Fetching domestic price source: glass_market
+2026-01-16 22:48:58,186 - INFO - Fetching TradingEconomics price: lithium
+2026-01-16 22:49:00,632 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/markets/commodity/lithium?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/markets/commodity/lithium?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:49:00,634 - INFO - Fetching TradingEconomics price: nickel
+2026-01-16 22:49:02,357 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/markets/commodity/nickel?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/markets/commodity/nickel?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:49:02,358 - INFO - Fetching TradingEconomics price: cobalt
+2026-01-16 22:49:04,234 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/markets/commodity/cobalt?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/markets/commodity/cobalt?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:49:04,236 - INFO - Fetching TradingEconomics price: silver
+2026-01-16 22:49:06,856 - ERROR - Failed to fetch TradingEconomics price from https://api.tradingeconomics.com/markets/commodity/silver?c=YOUR_KEY:YOUR_SECRET: 404 Client Error: Not Found for url: https://api.tradingeconomics.com/markets/commodity/silver?c=YOUR_KEY:YOUR_SECRET
+2026-01-16 22:49:06,858 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 22:49:11,823 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 22:49:14,611 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 22:49:16,946 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 22:49:18,774 - INFO - Fetched 4 price entries in total.
+2026-01-16 22:49:18,775 - INFO - Fetching news data...
+2026-01-16 22:49:18,775 - INFO - Starting news fetch...
+2026-01-16 22:49:18,775 - INFO - Fetching news source: google_news
+2026-01-16 22:49:39,750 - INFO - Fetching news source: pv_tech
+2026-01-16 22:49:41,531 - INFO - Fetching news source: bess
+2026-01-16 22:49:45,298 - INFO - Fetching news source: policy
+2026-01-16 22:49:45,656 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 22:49:45,657 - INFO - Fetching news source: cailian
+2026-01-16 22:49:45,931 - ERROR - Failed to fetch HTML: https://www.cls.cn/v/energy | 404 Client Error: Not Found for url: https://www.cls.cn/v/energy
+2026-01-16 22:49:45,933 - INFO - Fetching news source: kr36
+2026-01-16 22:49:46,820 - INFO - Fetching news source: sohu_energy
+2026-01-16 22:49:46,858 - ERROR - Failed to fetch HTML: https://www.sohu.com/c/8/1460 | 403 Client Error: Forbidden for url: https://www.sohu.com/c/8/1460
+2026-01-16 22:49:46,860 - INFO - Fetched 124 news items for today.
+2026-01-16 22:49:46,861 - INFO - Processing external URL queue for additional news...
+2026-01-16 22:49:46,869 - INFO - No pending URLs, skipping.
+2026-01-16 22:49:47,015 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-16 22:49:47,016 - INFO - Processing news with AI...
+2026-01-16 23:08:58,066 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:08:58,073 - INFO - Fetching price data...
+2026-01-16 23:08:58,074 - INFO - Starting price data fetch...
+2026-01-16 23:08:58,074 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:09:13,923 - ERROR - Browser fetch failed for https://guangfu.bjx.com.cn/topics/guangfujiage/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.list-block") to be visible
+
+2026-01-16 23:09:13,923 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:09:26,430 - ERROR - Browser fetch failed for https://www.infolink-group.com/spot-price/cn: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator(".spot-price-table") to be visible
+
+2026-01-16 23:09:26,431 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:09:36,015 - ERROR - Browser fetch failed for https://xny.mysteel.com/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.price-list") to be visible
+
+2026-01-16 23:09:36,015 - INFO - Fetching domestic price source: glass_market
+2026-01-16 23:09:46,156 - ERROR - Browser fetch failed for https://glass.100ppi.com/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.price-list") to be visible
+
+2026-01-16 23:09:46,156 - INFO - Fetching Investing.com price: silver
+2026-01-16 23:10:11,277 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/silver: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:10:11,278 - INFO - Fetching Investing.com price: nickel
+2026-01-16 23:10:44,819 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/nickel: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:10:44,820 - INFO - Fetching Investing.com price: cobalt
+2026-01-16 23:11:10,945 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/cobalt: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:11:10,945 - INFO - Fetching Investing.com price: lithium
+2026-01-16 23:11:47,419 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/lithium: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:11:47,419 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 23:11:50,331 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 23:11:52,386 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 23:11:54,987 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 23:11:58,588 - INFO - Fetched 12 price entries in total.
+2026-01-16 23:11:58,588 - INFO - Fetching news data...
+2026-01-16 23:11:58,588 - INFO - Starting news fetch...
+2026-01-16 23:11:58,589 - INFO - Fetching news source: google_news
+2026-01-16 23:12:06,937 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:12:06,937 - INFO - Fetching price data...
+2026-01-16 23:12:06,937 - INFO - Starting price data fetch...
+2026-01-16 23:12:06,937 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:12:29,239 - ERROR - Browser fetch failed for https://guangfu.bjx.com.cn/topics/guangfujiage/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.list-block") to be visible
+
+2026-01-16 23:12:29,241 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:12:39,998 - ERROR - Browser fetch failed for https://www.infolink-group.com/spot-price/cn: Page.wait_for_selector: Target page, context or browser has been closed
+Call log:
+  - waiting for locator(".spot-price-table") to be visible
+
+2026-01-16 23:12:39,998 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:14:26,078 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:14:26,078 - INFO - Fetching price data...
+2026-01-16 23:14:26,078 - INFO - Starting price data fetch...
+2026-01-16 23:14:26,079 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:14:42,252 - ERROR - Browser fetch failed for https://guangfu.bjx.com.cn/topics/guangfujiage/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.list-block") to be visible
+
+2026-01-16 23:14:42,253 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:14:59,857 - ERROR - Browser fetch failed for https://www.infolink-group.com/spot-price/cn: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator(".spot-price-table") to be visible
+
+2026-01-16 23:14:59,858 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:15:20,187 - ERROR - Browser fetch failed for https://xny.mysteel.com/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.price-list") to be visible
+
+2026-01-16 23:15:20,187 - INFO - Fetching domestic price source: glass_market
+2026-01-16 23:15:32,361 - ERROR - Browser fetch failed for https://glass.100ppi.com/: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("div.price-list") to be visible
+
+2026-01-16 23:15:32,362 - INFO - Fetching Investing.com price: silver
+2026-01-16 23:16:50,677 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:16:50,677 - INFO - Fetching price data...
+2026-01-16 23:16:50,677 - INFO - Starting price data fetch...
+2026-01-16 23:16:50,677 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:17:06,579 - ERROR - Browser fetch failed for https://guangfu.bjx.com.cn/topics/guangfujiage/: Page.goto: net::ERR_CONNECTION_RESET at https://guangfu.bjx.com.cn/topics/guangfujiage/
+Call log:
+  - navigating to "https://guangfu.bjx.com.cn/topics/guangfujiage/", waiting until "load"
+
+2026-01-16 23:17:06,580 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:17:26,652 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:17:42,597 - ERROR - Browser fetch failed for https://xny.mysteel.com/: Page.content: Target page, context or browser has been closed
+2026-01-16 23:17:42,598 - INFO - Fetching domestic price source: glass_market
+2026-01-16 23:17:54,238 - INFO - Fetching Investing.com price: silver
+2026-01-16 23:18:13,715 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/silver: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:18:13,716 - INFO - Fetching Investing.com price: nickel
+2026-01-16 23:18:36,551 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/nickel: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:18:36,552 - INFO - Fetching Investing.com price: cobalt
+2026-01-16 23:19:00,759 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/cobalt: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:19:00,760 - INFO - Fetching Investing.com price: lithium
+2026-01-16 23:19:18,163 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/lithium: Page.wait_for_selector: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:19:18,163 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 23:19:21,983 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 23:19:24,122 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 23:19:25,867 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 23:19:27,538 - INFO - Fetched 10 price entries in total.
+2026-01-16 23:19:27,538 - INFO - Fetching news data...
+2026-01-16 23:19:27,538 - INFO - Starting news fetch...
+2026-01-16 23:19:27,538 - INFO - Fetching news source: google_news
+2026-01-16 23:19:46,949 - INFO - Fetching news source: pv_tech
+2026-01-16 23:19:50,201 - INFO - Fetching news source: bess
+2026-01-16 23:19:52,145 - INFO - Fetching news source: policy
+2026-01-16 23:19:52,417 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 23:19:52,419 - INFO - Fetching news source: bjx_pv_news
+2026-01-16 23:19:53,528 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-16 23:19:53,530 - INFO - Fetching news source: bjx_storage_news
+2026-01-16 23:19:58,542 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 23:19:58,542 - INFO - Fetching news source: nairametrics_energy
+2026-01-16 23:20:00,690 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-16 23:20:00,692 - INFO - Fetching news source: thecable_energy
+2026-01-16 23:20:01,261 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-16 23:20:01,263 - INFO - Fetching news source: premiumtimes_energy
+2026-01-16 23:20:07,964 - INFO - Fetched 134 news items for today.
+2026-01-16 23:20:07,964 - INFO - Processing external URL queue for additional news...
+2026-01-16 23:20:07,967 - INFO - No pending URLs, skipping.
+2026-01-16 23:20:08,243 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 10 new records.
+2026-01-16 23:20:08,243 - INFO - Processing news with AI...
+2026-01-16 23:29:50,462 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:29:50,462 - INFO - Fetching price data...
+2026-01-16 23:29:50,462 - INFO - Starting price data fetch...
+2026-01-16 23:29:50,463 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:30:17,376 - ERROR - Browser fetch failed for https://guangfu.bjx.com.cn/topics/guangfujiage/: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("div.list-block") to be visible
+
+2026-01-16 23:30:17,377 - INFO - [bjx_storage] fetched 1 items
+2026-01-16 23:30:17,377 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:30:33,660 - ERROR - Browser fetch failed for https://www.infolink-group.com/spot-price/cn: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator(".spot-price-table") to be visible
+
+2026-01-16 23:30:33,660 - INFO - [infolink_pv] fetched 1 items
+2026-01-16 23:30:33,660 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:30:52,762 - ERROR - Browser fetch failed for https://xny.mysteel.com/: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("div.price-list") to be visible
+
+2026-01-16 23:30:52,762 - INFO - [mysteel_metals] fetched 1 items
+2026-01-16 23:30:52,762 - INFO - Fetching domestic price source: glass_market
+2026-01-16 23:31:05,828 - ERROR - Browser fetch failed for https://glass.100ppi.com/: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("div.price-list") to be visible
+
+2026-01-16 23:31:05,828 - INFO - [glass_market] fetched 1 items
+2026-01-16 23:31:05,828 - INFO - Fetching Investing.com price: silver
+2026-01-16 23:31:36,670 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/silver: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:31:36,671 - INFO - [Investing:silver] fetched 1 items
+2026-01-16 23:31:36,671 - INFO - Fetching Investing.com price: nickel
+2026-01-16 23:32:01,594 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/nickel: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("span.text-2xl") to be visible
+
+2026-01-16 23:32:01,594 - INFO - [Investing:nickel] fetched 1 items
+2026-01-16 23:32:01,594 - INFO - Fetching Investing.com price: cobalt
+2026-01-16 23:32:23,748 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/cobalt: Page.goto: Timeout 20000ms exceeded.
+Call log:
+  - navigating to "https://www.investing.com/commodities/cobalt", waiting until "load"
+
+2026-01-16 23:32:23,749 - INFO - [Investing:cobalt] fetched 1 items
+2026-01-16 23:32:23,750 - INFO - Fetching Investing.com price: lithium
+2026-01-16 23:32:46,933 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/lithium: Page.goto: Timeout 20000ms exceeded.
+Call log:
+  - navigating to "https://www.investing.com/commodities/lithium", waiting until "load"
+
+2026-01-16 23:32:46,934 - INFO - [Investing:lithium] fetched 1 items
+2026-01-16 23:32:46,934 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 23:32:49,152 - INFO - [GoogleFinance:ENPH:NASDAQ] fetched 1 items
+2026-01-16 23:32:49,152 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 23:32:50,162 - INFO - [GoogleFinance:FSLR:NASDAQ] fetched 1 items
+2026-01-16 23:32:50,162 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 23:32:57,479 - INFO - [GoogleFinance:TSLA:NASDAQ] fetched 1 items
+2026-01-16 23:32:57,479 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 23:32:58,556 - INFO - [GoogleFinance:JKS:NYSE] fetched 1 items
+2026-01-16 23:32:58,556 - INFO - Total price entries: 12
+2026-01-16 23:32:58,557 - INFO - Fetching news data...
+2026-01-16 23:32:58,557 - INFO - Starting news fetch...
+2026-01-16 23:32:58,557 - INFO - Fetching news source: google_news
+2026-01-16 23:33:24,588 - INFO - Fetching news source: pv_tech
+2026-01-16 23:33:26,834 - INFO - Fetching news source: bess
+2026-01-16 23:33:30,110 - INFO - Fetching news source: policy
+2026-01-16 23:33:30,381 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 23:33:30,383 - INFO - Fetching news source: bjx_pv_news
+2026-01-16 23:33:31,501 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-16 23:33:31,503 - INFO - Fetching news source: bjx_storage_news
+2026-01-16 23:33:36,518 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-16 23:33:36,518 - INFO - Fetching news source: nairametrics_energy
+2026-01-16 23:33:38,248 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-16 23:33:38,250 - INFO - Fetching news source: thecable_energy
+2026-01-16 23:33:38,844 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-16 23:33:38,846 - INFO - Fetching news source: premiumtimes_energy
+2026-01-16 23:33:47,927 - INFO - Fetched 135 news items for today.
+2026-01-16 23:33:47,927 - INFO - Processing external URL queue for additional news...
+2026-01-16 23:33:47,929 - INFO - No pending URLs, skipping.
+2026-01-16 23:33:47,945 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 12 new records.
+2026-01-16 23:33:47,945 - INFO - Processing news with AI...
+2026-01-16 23:35:38,706 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:35:38,706 - INFO - Fetching price data...
+2026-01-16 23:35:38,706 - INFO - Starting price data fetch...
+2026-01-16 23:35:38,706 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:35:59,868 - INFO - [bjx_storage] fetched 0 items
+2026-01-16 23:35:59,869 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:36:35,143 - ERROR - Browser fetch failed for https://www.infolink-group.com/spot-price/cn: Timeout 30000ms exceeded.
+2026-01-16 23:36:35,143 - INFO - [infolink_pv] fetched 1 items
+2026-01-16 23:36:35,144 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:37:10,986 - INFO - [mysteel_metals] fetched 0 items
+2026-01-16 23:37:10,988 - INFO - Fetching domestic price source: glass_market
+2026-01-16 23:37:25,831 - INFO - [glass_market] fetched 0 items
+2026-01-16 23:37:25,832 - INFO - Fetching Investing.com price: silver
+2026-01-16 23:38:14,312 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/silver: Timeout 30000ms exceeded.
+2026-01-16 23:38:14,313 - INFO - [Investing:silver] fetched 1 items
+2026-01-16 23:38:14,313 - INFO - Fetching Investing.com price: nickel
+2026-01-16 23:39:04,549 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/nickel: Timeout 30000ms exceeded.
+2026-01-16 23:39:04,550 - INFO - [Investing:nickel] fetched 1 items
+2026-01-16 23:39:04,550 - INFO - Fetching Investing.com price: cobalt
+2026-01-16 23:39:36,972 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/cobalt: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.investing.com/commodities/cobalt", waiting until "load"
+
+2026-01-16 23:39:36,973 - INFO - [Investing:cobalt] fetched 1 items
+2026-01-16 23:39:36,973 - INFO - Fetching Investing.com price: lithium
+2026-01-16 23:39:43,653 - ERROR - Failed to fetch Investing price from https://www.investing.com/commodities/lithium: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.investing.com/commodities/lithium", waiting until "load"
+
+2026-01-16 23:39:43,653 - INFO - [Investing:lithium] fetched 1 items
+2026-01-16 23:39:43,654 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-16 23:39:45,548 - INFO - [GoogleFinance:ENPH:NASDAQ] fetched 1 items
+2026-01-16 23:39:45,548 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-16 23:39:47,843 - INFO - [GoogleFinance:FSLR:NASDAQ] fetched 1 items
+2026-01-16 23:39:47,843 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-16 23:39:49,849 - INFO - [GoogleFinance:TSLA:NASDAQ] fetched 1 items
+2026-01-16 23:39:49,849 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-16 23:39:50,988 - INFO - [GoogleFinance:JKS:NYSE] fetched 1 items
+2026-01-16 23:39:50,988 - INFO - Total price entries: 9
+2026-01-16 23:39:50,988 - INFO - Fetching news data...
+2026-01-16 23:39:50,988 - INFO - Starting news fetch...
+2026-01-16 23:39:50,988 - INFO - Fetching news source: google_news
+2026-01-16 23:40:12,523 - INFO - Fetching news source: pv_tech
+2026-01-16 23:40:14,795 - INFO - Fetching news source: bess
+2026-01-16 23:40:15,584 - INFO - Fetching news source: policy
+2026-01-16 23:40:15,852 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-16 23:40:15,855 - INFO - Fetching news source: bjx_pv_news
+2026-01-16 23:40:42,549 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:40:42,549 - INFO - Fetching price data...
+2026-01-16 23:40:42,549 - INFO - Starting price data fetch...
+2026-01-16 23:40:42,549 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:40:59,334 - ERROR - JS fetch failed for https://guangfu.bjx.com.cn/topics/guangfujiage/: Page.goto: net::ERR_CONNECTION_RESET at https://guangfu.bjx.com.cn/topics/guangfujiage/
+Call log:
+  - navigating to "https://guangfu.bjx.com.cn/topics/guangfujiage/", waiting until "load"
+
+2026-01-16 23:40:59,335 - INFO - [bjx_storage] fetched 0 items
+2026-01-16 23:40:59,335 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:41:34,358 - ERROR - JS fetch failed for https://www.infolink-group.com/spot-price/cn: Timeout 30000ms exceeded.
+2026-01-16 23:41:34,359 - INFO - [infolink_pv] fetched 0 items
+2026-01-16 23:41:34,359 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-16 23:42:00,467 - INFO - [mysteel_metals] fetched 0 items
+2026-01-16 23:42:00,467 - INFO - Fetching domestic price source: glass_market
+2026-01-16 23:46:22,665 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-16 23:46:22,666 - INFO - Fetching price data...
+2026-01-16 23:46:22,667 - INFO - Starting price data fetch...
+2026-01-16 23:46:22,667 - INFO - Fetching domestic price source: bjx_storage
+2026-01-16 23:46:23,344 - INFO - [直连] 当前出口 IP: 143.20.38.233 | 国家: JP
+2026-01-16 23:46:50,779 - INFO - [bjx_storage] fetched 0 items
+2026-01-16 23:46:50,780 - INFO - Fetching domestic price source: infolink_pv
+2026-01-16 23:46:55,799 - WARNING - [直连] 无法获取 IP

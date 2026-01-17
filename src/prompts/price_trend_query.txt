@@ -1,0 +1,36 @@
+You are an expert energy market analyst. Please fetch the latest available spot prices (as of today, {{today}}) for the following key raw materials over the past 14 calendar days:
+
+**Photovoltaic (PV) Materials:**
+- Polysilicon (solar grade, RMB/kg)
+- Silver (industrial grade, RMB/kg)
+- Aluminum (for frames and structures, RMB/ton)
+
+**Energy Storage (BESS) Materials:**
+- Lithium carbonate (battery grade, RMB/ton)
+- Lithium hydroxide (battery grade, RMB/ton)
+- Nickel (LME, USD/ton)
+- Cobalt (LME, USD/ton)
+
+Return ONLY a valid JSON object with this exact structure:
+{
+  "dates": ["YYYY-MM-DD", ..., "YYYY-MM-DD"],  // exactly 14 dates
+  "pv": {
+    "polysilicon_rmb_per_kg": [number, ..., number],
+    "silver_rmb_per_kg": [number, ..., number],
+    "aluminum_rmb_per_ton": [number, ..., number]
+  },
+  "bess": {
+    "lithium_carbonate_rmb_per_ton": [number, ..., number],
+    "lithium_hydroxide_rmb_per_ton": [number, ..., number],
+    "nickel_usd_per_ton": [number, ..., number],
+    "cobalt_usd_per_ton": [number, ..., number]
+  }
+}
+
+Rules:
+1. Date range must be exactly the last 14 days ending today.
+2. If data is missing for a date, use the most recent available value (forward-fill).
+3. All values must be numeric (float or int). No strings, units, or nulls.
+4. Do NOT include any explanation, markdown, code block, or extra text — only pure JSON.
+5. Use real-time web search to get current market data from reliable sources like SMM, Argus, Bloomberg, LME.
+6. If no data found, return empty arrays but keep the structure.
