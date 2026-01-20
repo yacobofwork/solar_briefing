@@ -1,0 +1,50 @@
+2026-01-18 21:28:40,474 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-18 21:28:40,476 - INFO - Fetching price data...
+2026-01-18 21:28:40,476 - INFO - Starting price data fetch...
+2026-01-18 21:28:40,476 - INFO - Fetching domestic price source: bjx_storage
+2026-01-18 21:28:45,498 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-18 21:28:45,498 - INFO - Fetching domestic price source: infolink_pv
+2026-01-18 21:28:46,636 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-18 21:28:47,394 - INFO - Fetching domestic price source: glass_market
+2026-01-18 21:28:47,635 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-18 21:28:57,649 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/ENPH:NASDAQ: HTTPSConnectionPool(host='www.google.com', port=443): Read timed out. (read timeout=10)
+2026-01-18 21:28:57,649 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-18 21:29:07,668 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/FSLR:NASDAQ: HTTPSConnectionPool(host='www.google.com', port=443): Read timed out. (read timeout=10)
+2026-01-18 21:29:07,669 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-18 21:29:08,771 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-18 21:29:09,886 - INFO - Fetched 2 price entries in total.
+2026-01-18 21:29:09,887 - INFO - Fetching news data...
+2026-01-18 21:29:09,887 - INFO - Starting news fetch...
+2026-01-18 21:29:09,887 - INFO - Fetching news source: google_news
+2026-01-18 21:31:50,742 - INFO - Fetching news source: pv_tech
+2026-01-18 21:31:51,224 - INFO - Fetching news source: bess
+2026-01-18 21:31:53,471 - INFO - Fetching news source: policy
+2026-01-18 21:31:53,742 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-18 21:31:53,743 - INFO - Fetching news source: bjx_pv_news
+2026-01-18 21:31:58,753 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-18 21:31:58,754 - INFO - Fetching news source: bjx_storage_news
+2026-01-18 21:32:03,765 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-18 21:32:03,767 - INFO - Fetching news source: nairametrics_energy
+2026-01-18 21:32:05,923 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-18 21:32:05,925 - INFO - Fetching news source: thecable_energy
+2026-01-18 21:32:06,299 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-18 21:32:06,301 - INFO - Fetching news source: premiumtimes_energy
+2026-01-18 21:32:09,717 - INFO - Fetched 23 news items for today.
+2026-01-18 21:32:09,719 - INFO - Processing external URL queue for additional news...
+2026-01-18 21:32:09,720 - INFO - No pending URLs, skipping.
+2026-01-18 21:32:09,941 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 2 new records.
+2026-01-18 21:32:09,942 - INFO - Processing news with AI...
+2026-01-18 21:39:40,357 - INFO - Generating price chart...
+2026-01-18 21:39:41,270 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-18.png
+2026-01-18 21:39:41,272 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-18 21:39:57,635 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-18.pdf
+2026-01-18 21:39:57,637 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-18.pdf
+2026-01-18 21:39:57,663 - INFO - Attempting to send via primary SMTP...
+2026-01-18 21:39:57,663 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-18 21:40:01,253 - INFO - Email sent successfully via SMTP.
+2026-01-18 21:40:01,254 - INFO - Email sent successfully
+2026-01-18 21:40:01,258 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-18.json
+2026-01-18 21:40:01,260 - INFO - Index updated with date 2026-01-18
+2026-01-18 21:40:01,260 - INFO - Daily report exported for GitHub Pages.
+2026-01-18 21:40:07,005 - INFO - GitHub push completed.
+2026-01-18 21:40:07,005 - INFO - === Daily Solar Briefing finished ===

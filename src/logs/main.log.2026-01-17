@@ -1,0 +1,871 @@
+2026-01-17 12:25:06,620 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 12:25:06,621 - INFO - Fetching price data...
+2026-01-17 12:25:06,621 - INFO - Starting price data fetch...
+2026-01-17 12:25:06,621 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 12:25:11,650 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 12:25:11,650 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 12:25:13,444 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 12:25:14,418 - INFO - Fetching domestic price source: glass_market
+2026-01-17 12:25:14,604 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 12:25:16,367 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 12:25:17,958 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 12:25:19,660 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 12:25:21,121 - INFO - Fetched 4 price entries in total.
+2026-01-17 12:25:21,121 - INFO - Fetching news data...
+2026-01-17 12:25:21,121 - INFO - Starting news fetch...
+2026-01-17 12:25:21,121 - INFO - Fetching news source: google_news
+2026-01-17 12:25:37,674 - INFO - Fetching news source: pv_tech
+2026-01-17 12:25:39,284 - INFO - Fetching news source: bess
+2026-01-17 12:25:41,601 - INFO - Fetching news source: policy
+2026-01-17 12:25:41,865 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 12:25:41,867 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 12:25:43,982 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 12:25:43,984 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 12:25:45,105 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 12:25:45,107 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 12:25:47,969 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 12:25:47,971 - INFO - Fetching news source: thecable_energy
+2026-01-17 12:25:49,912 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 12:25:49,914 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 12:25:54,787 - INFO - Fetched 8 news items for today.
+2026-01-17 12:25:54,788 - INFO - Processing external URL queue for additional news...
+2026-01-17 12:25:54,789 - INFO - No pending URLs, skipping.
+2026-01-17 12:25:55,037 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 12:25:55,037 - INFO - Processing news with AI...
+2026-01-17 12:26:10,742 - WARNING - Qwen call failed (attempt 1): Qwen API error:  - 
+2026-01-17 12:26:23,955 - WARNING - Qwen call failed (attempt 2): Qwen API error:  - 
+2026-01-17 12:26:40,236 - WARNING - Qwen call failed (attempt 3): Qwen API error:  - 
+2026-01-17 12:26:40,236 - WARNING - Qwen network error (attempt 3): Qwen API error:  - 
+2026-01-17 12:34:14,587 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 12:34:14,588 - INFO - Fetching price data...
+2026-01-17 12:34:14,588 - INFO - Starting price data fetch...
+2026-01-17 12:34:14,588 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 12:34:17,780 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 12:34:17,785 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 12:34:19,120 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 12:34:19,974 - INFO - Fetching domestic price source: glass_market
+2026-01-17 12:34:20,145 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 12:34:21,775 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 12:34:23,763 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 12:34:25,596 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 12:34:27,041 - INFO - Fetched 4 price entries in total.
+2026-01-17 12:34:27,041 - INFO - Fetching news data...
+2026-01-17 12:34:27,041 - INFO - Starting news fetch...
+2026-01-17 12:34:27,041 - INFO - Fetching news source: google_news
+2026-01-17 12:35:59,808 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 12:35:59,809 - INFO - Fetching price data...
+2026-01-17 12:35:59,809 - INFO - Starting price data fetch...
+2026-01-17 12:35:59,809 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 12:36:04,836 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 12:36:04,836 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 12:36:06,436 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 12:36:06,931 - INFO - Fetching domestic price source: glass_market
+2026-01-17 12:36:07,061 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 12:36:08,527 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 12:36:10,250 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 12:36:11,980 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 12:36:13,675 - INFO - Fetched 4 price entries in total.
+2026-01-17 12:36:13,676 - INFO - Fetching news data...
+2026-01-17 12:36:13,676 - INFO - Starting news fetch...
+2026-01-17 12:36:13,676 - INFO - Fetching news source: google_news
+2026-01-17 12:36:31,325 - INFO - Fetching news source: pv_tech
+2026-01-17 12:36:33,310 - INFO - Fetching news source: bess
+2026-01-17 12:36:34,849 - INFO - Fetching news source: policy
+2026-01-17 12:36:35,017 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 12:36:35,019 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 12:36:39,134 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 12:36:39,136 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 12:36:40,309 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 12:36:40,311 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 12:36:42,853 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 12:36:42,855 - INFO - Fetching news source: thecable_energy
+2026-01-17 12:36:44,802 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 12:36:44,804 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 12:36:51,800 - INFO - Fetched 8 news items for today.
+2026-01-17 12:36:51,800 - INFO - Processing external URL queue for additional news...
+2026-01-17 12:36:51,801 - INFO - No pending URLs, skipping.
+2026-01-17 12:36:51,977 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 12:36:51,978 - INFO - Processing news with AI...
+2026-01-17 12:36:51,980 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2849
+2026-01-17 12:37:04,365 - WARNING - Qwen call failed (attempt 1): Qwen API error:  - 
+2026-01-17 12:37:23,920 - WARNING - Qwen call failed (attempt 2): Qwen API error:  - 
+2026-01-17 12:37:43,988 - WARNING - Qwen call failed (attempt 3): Qwen API error:  - 
+2026-01-17 12:37:43,990 - WARNING - Qwen network error (attempt 3): Qwen API error:  - 
+2026-01-17 12:43:06,999 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 12:43:06,999 - INFO - Fetching price data...
+2026-01-17 12:43:07,000 - INFO - Starting price data fetch...
+2026-01-17 12:43:07,000 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 12:43:10,154 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 12:43:10,156 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 12:43:12,609 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 12:43:13,614 - INFO - Fetching domestic price source: glass_market
+2026-01-17 12:43:13,814 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 12:43:33,828 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/ENPH:NASDAQ: HTTPSConnectionPool(host='www.google.com', port=443): Max retries exceeded with url: /finance/quote/ENPH:NASDAQ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.google.com', port=443) at 0x11e96d1d0>, 'Connection to www.google.com timed out. (connect timeout=10)'))
+2026-01-17 12:43:33,830 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 12:43:53,837 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/FSLR:NASDAQ: HTTPSConnectionPool(host='www.google.com', port=443): Max retries exceeded with url: /finance/quote/FSLR:NASDAQ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.google.com', port=443) at 0x11e96ed90>, 'Connection to www.google.com timed out. (connect timeout=10)'))
+2026-01-17 12:43:53,837 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 12:44:13,843 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/TSLA:NASDAQ: HTTPSConnectionPool(host='www.google.com', port=443): Max retries exceeded with url: /finance/quote/TSLA:NASDAQ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.google.com', port=443) at 0x11e93b6d0>, 'Connection to www.google.com timed out. (connect timeout=10)'))
+2026-01-17 12:44:13,843 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 12:44:33,860 - ERROR - Failed to fetch Google Finance price from https://www.google.com/finance/quote/JKS:NYSE: HTTPSConnectionPool(host='www.google.com', port=443): Max retries exceeded with url: /finance/quote/JKS:NYSE (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.google.com', port=443) at 0x11e938fd0>, 'Connection to www.google.com timed out. (connect timeout=10)'))
+2026-01-17 12:44:33,860 - INFO - Fetched 0 price entries in total.
+2026-01-17 12:44:33,860 - INFO - Fetching news data...
+2026-01-17 12:44:33,861 - INFO - Starting news fetch...
+2026-01-17 12:44:33,861 - INFO - Fetching news source: google_news
+2026-01-17 12:49:56,377 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 12:49:56,378 - INFO - Fetching price data...
+2026-01-17 12:49:56,378 - INFO - Starting price data fetch...
+2026-01-17 12:49:56,378 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 12:49:59,562 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 12:49:59,564 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 12:50:01,192 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 12:50:01,857 - INFO - Fetching domestic price source: glass_market
+2026-01-17 12:50:02,049 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 12:50:03,609 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 12:50:05,524 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 12:50:07,052 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 12:50:08,420 - INFO - Fetched 4 price entries in total.
+2026-01-17 12:50:08,420 - INFO - Fetching news data...
+2026-01-17 12:50:08,420 - INFO - Starting news fetch...
+2026-01-17 12:50:08,420 - INFO - Fetching news source: google_news
+2026-01-17 12:50:27,328 - INFO - Fetching news source: pv_tech
+2026-01-17 12:50:29,092 - INFO - Fetching news source: bess
+2026-01-17 12:50:30,710 - INFO - Fetching news source: policy
+2026-01-17 12:50:30,976 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 12:50:30,978 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 12:50:32,101 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 12:50:32,103 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 12:50:34,220 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 12:50:34,222 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 12:50:37,206 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 12:50:37,208 - INFO - Fetching news source: thecable_energy
+2026-01-17 12:50:38,223 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 12:50:38,224 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 12:50:43,158 - INFO - Fetched 8 news items for today.
+2026-01-17 12:50:43,158 - INFO - Processing external URL queue for additional news...
+2026-01-17 12:50:43,160 - INFO - No pending URLs, skipping.
+2026-01-17 12:50:43,266 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 12:50:43,267 - INFO - Processing news with AI...
+2026-01-17 12:50:43,269 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 12:50:56,358 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:50:56,359 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 12:51:08,233 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:51:08,234 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 12:51:18,986 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:51:18,987 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 12:51:26,768 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:51:26,769 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 12:51:44,176 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:51:44,179 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 12:51:55,036 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:51:55,038 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 12:52:11,824 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:52:11,827 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 12:52:24,418 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:52:24,428 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 12:52:31,054 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:52:31,054 - INFO - Generating price chart...
+2026-01-17 12:52:32,112 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 12:52:32,121 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 12:52:32,123 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 12:52:38,243 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 12:52:44,911 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 12:52:44,914 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 12:52:44,940 - INFO - Attempting to send via primary SMTP...
+2026-01-17 12:52:44,940 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 12:52:47,177 - INFO - Email sent successfully via SMTP.
+2026-01-17 12:52:47,178 - INFO - Email sent successfully
+2026-01-17 12:52:47,181 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 12:52:47,197 - INFO - Index updated with date 2026-01-17
+2026-01-17 12:52:47,197 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 12:52:51,972 - INFO - GitHub push completed.
+2026-01-17 12:52:51,972 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 13:00:10,502 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 13:00:10,503 - INFO - Fetching price data...
+2026-01-17 13:00:10,503 - INFO - Starting price data fetch...
+2026-01-17 13:00:10,503 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 13:00:14,331 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 13:00:14,334 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 13:00:15,937 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 13:00:16,565 - INFO - Fetching domestic price source: glass_market
+2026-01-17 13:00:16,727 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 13:00:20,234 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 13:00:22,249 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 13:00:23,936 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 13:00:25,393 - INFO - Fetched 4 price entries in total.
+2026-01-17 13:00:25,393 - INFO - Fetching news data...
+2026-01-17 13:00:25,393 - INFO - Starting news fetch...
+2026-01-17 13:00:25,393 - INFO - Fetching news source: google_news
+2026-01-17 13:00:43,531 - INFO - Fetching news source: pv_tech
+2026-01-17 13:00:44,744 - INFO - Fetching news source: bess
+2026-01-17 13:00:47,322 - INFO - Fetching news source: policy
+2026-01-17 13:00:47,597 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 13:00:47,599 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 13:00:51,711 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 13:00:51,713 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 13:00:56,726 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:00:56,726 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 13:00:59,690 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 13:00:59,694 - INFO - Fetching news source: thecable_energy
+2026-01-17 13:01:02,046 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 13:01:02,048 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 13:01:07,018 - INFO - Fetched 9 news items for today.
+2026-01-17 13:01:07,018 - INFO - Processing external URL queue for additional news...
+2026-01-17 13:01:07,020 - INFO - No pending URLs, skipping.
+2026-01-17 13:01:07,098 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 13:01:07,098 - INFO - Processing news with AI...
+2026-01-17 13:01:07,100 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 13:01:22,838 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:01:22,842 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 13:01:33,605 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:01:33,611 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 13:01:46,667 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:01:46,672 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 13:01:54,475 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:01:54,480 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 13:02:06,148 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:02:06,151 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:02:21,509 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:02:21,519 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2457
+2026-01-17 13:02:36,665 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:02:36,666 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 13:02:50,690 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:02:50,694 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 13:03:02,981 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:03:02,983 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 13:03:08,611 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:03:08,611 - INFO - Generating price chart...
+2026-01-17 13:03:09,467 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 13:03:09,476 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 13:03:09,478 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 13:03:13,022 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:03:15,619 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:03:15,622 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:03:15,649 - INFO - Attempting to send via primary SMTP...
+2026-01-17 13:03:15,649 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 13:03:18,261 - INFO - Email sent successfully via SMTP.
+2026-01-17 13:03:18,262 - INFO - Email sent successfully
+2026-01-17 13:03:18,263 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 13:03:18,282 - INFO - Index updated with date 2026-01-17
+2026-01-17 13:03:18,282 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 13:03:22,858 - INFO - GitHub push completed.
+2026-01-17 13:03:22,859 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 13:28:23,282 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 13:28:23,282 - INFO - Fetching price data...
+2026-01-17 13:28:23,283 - INFO - Starting price data fetch...
+2026-01-17 13:28:23,283 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 13:28:26,470 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 13:28:26,478 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 13:28:28,457 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 13:28:29,422 - INFO - Fetching domestic price source: glass_market
+2026-01-17 13:28:29,569 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 13:28:31,051 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 13:28:36,808 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 13:28:39,174 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 13:28:41,539 - INFO - Fetched 4 price entries in total.
+2026-01-17 13:28:41,539 - INFO - Fetching news data...
+2026-01-17 13:28:41,539 - INFO - Starting news fetch...
+2026-01-17 13:28:41,539 - INFO - Fetching news source: google_news
+2026-01-17 13:28:59,254 - INFO - Fetching news source: pv_tech
+2026-01-17 13:29:00,510 - INFO - Fetching news source: bess
+2026-01-17 13:29:03,997 - INFO - Fetching news source: policy
+2026-01-17 13:29:04,289 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 13:29:04,290 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 13:29:09,299 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:29:09,299 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 13:29:14,314 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:29:14,314 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 13:29:16,075 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 13:29:16,076 - INFO - Fetching news source: thecable_energy
+2026-01-17 13:29:17,889 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 13:29:17,892 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 13:29:26,218 - INFO - Fetched 10 news items for today.
+2026-01-17 13:29:26,218 - INFO - Processing external URL queue for additional news...
+2026-01-17 13:29:26,220 - INFO - No pending URLs, skipping.
+2026-01-17 13:29:26,351 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 13:29:26,351 - INFO - Processing news with AI...
+2026-01-17 13:29:26,353 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 13:29:44,000 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:29:44,002 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 13:29:59,255 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:29:59,258 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:30:12,056 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:30:12,057 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 13:30:22,705 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:30:22,706 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 13:30:32,638 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:30:32,639 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 13:30:46,973 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:30:46,974 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:30:56,984 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:30:57,004 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2684
+2026-01-17 13:31:12,135 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:31:12,145 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 13:31:31,385 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:31:31,396 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 13:31:44,083 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:31:44,093 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 13:31:50,636 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:31:50,637 - INFO - Generating price chart...
+2026-01-17 13:31:51,271 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 13:31:51,279 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 13:31:51,281 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 13:31:57,598 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:31:57,599 - INFO - Generating raw material price trend chart via AI web search...
+2026-01-17 13:31:57,601 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1326
+2026-01-17 13:32:13,267 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:32:13,747 - INFO - Raw material trend chart saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/raw_material_trend_2026-01-17.png
+2026-01-17 13:32:17,147 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:32:17,149 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:32:17,182 - INFO - Attempting to send via primary SMTP...
+2026-01-17 13:32:17,182 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 13:32:20,256 - INFO - Email sent successfully via SMTP.
+2026-01-17 13:32:20,257 - INFO - Email sent successfully
+2026-01-17 13:32:20,260 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 13:32:20,280 - INFO - Index updated with date 2026-01-17
+2026-01-17 13:32:20,280 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 13:32:25,045 - INFO - GitHub push completed.
+2026-01-17 13:32:25,046 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 13:39:11,313 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 13:39:11,314 - INFO - Fetching price data...
+2026-01-17 13:39:11,315 - INFO - Starting price data fetch...
+2026-01-17 13:39:11,315 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 13:39:15,454 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 13:39:15,457 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 13:39:17,397 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 13:39:17,990 - INFO - Fetching domestic price source: glass_market
+2026-01-17 13:39:18,130 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 13:39:19,721 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 13:39:22,652 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 13:39:27,086 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 13:39:28,639 - INFO - Fetched 4 price entries in total.
+2026-01-17 13:39:28,639 - INFO - Fetching news data...
+2026-01-17 13:39:28,639 - INFO - Starting news fetch...
+2026-01-17 13:39:28,639 - INFO - Fetching news source: google_news
+2026-01-17 13:39:47,083 - INFO - Fetching news source: pv_tech
+2026-01-17 13:39:48,515 - INFO - Fetching news source: bess
+2026-01-17 13:39:49,952 - INFO - Fetching news source: policy
+2026-01-17 13:39:50,230 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 13:39:50,232 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 13:39:55,240 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:39:55,240 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 13:39:58,365 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 13:39:58,367 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 13:40:00,924 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 13:40:00,925 - INFO - Fetching news source: thecable_energy
+2026-01-17 13:40:02,828 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 13:40:02,829 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 13:40:07,435 - INFO - Fetched 13 news items for today.
+2026-01-17 13:40:07,435 - INFO - Processing external URL queue for additional news...
+2026-01-17 13:40:07,444 - INFO - No pending URLs, skipping.
+2026-01-17 13:40:07,716 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 13:40:07,716 - INFO - Processing news with AI...
+2026-01-17 13:40:07,719 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 13:40:21,719 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:40:21,721 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 13:40:36,872 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:40:36,882 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:40:53,460 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:40:53,461 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 13:41:03,700 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:41:03,703 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 13:41:16,705 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:41:16,708 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 13:41:29,062 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:41:29,064 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:41:39,642 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:41:39,643 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2684
+2026-01-17 13:41:57,561 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:41:57,562 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2457
+2026-01-17 13:42:11,182 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:42:11,186 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2535
+2026-01-17 13:42:30,227 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:42:30,238 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2660
+2026-01-17 13:42:44,460 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:42:44,464 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 13:42:56,549 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:42:56,550 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 13:43:08,219 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:43:08,222 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 13:43:14,773 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:43:14,775 - INFO - Generating price chart...
+2026-01-17 13:43:15,314 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 13:43:15,324 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 13:43:15,326 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 13:43:19,482 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:43:19,482 - INFO - Generating raw material price trend chart via AI web search...
+2026-01-17 13:43:19,484 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1581
+2026-01-17 13:43:27,879 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:43:28,364 - INFO - Raw material trend chart saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/raw_material_trend_2026-01-17.png
+2026-01-17 13:43:28,364 - INFO - Base64 length: 117972
+2026-01-17 13:43:31,965 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:43:31,967 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:43:31,997 - INFO - Attempting to send via primary SMTP...
+2026-01-17 13:43:31,997 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 13:43:37,637 - INFO - Email sent successfully via SMTP.
+2026-01-17 13:43:37,638 - INFO - Email sent successfully
+2026-01-17 13:43:37,641 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 13:43:37,657 - INFO - Index updated with date 2026-01-17
+2026-01-17 13:43:37,657 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 13:43:42,017 - INFO - GitHub push completed.
+2026-01-17 13:43:42,017 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 13:47:59,983 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 13:47:59,983 - INFO - Fetching price data...
+2026-01-17 13:47:59,983 - INFO - Starting price data fetch...
+2026-01-17 13:47:59,984 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 13:48:05,016 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:48:05,016 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 13:48:07,463 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 13:48:08,163 - INFO - Fetching domestic price source: glass_market
+2026-01-17 13:48:08,314 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 13:48:09,924 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 13:48:11,843 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 13:48:13,480 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 13:48:15,177 - INFO - Fetched 4 price entries in total.
+2026-01-17 13:48:15,177 - INFO - Fetching news data...
+2026-01-17 13:48:15,177 - INFO - Starting news fetch...
+2026-01-17 13:48:15,178 - INFO - Fetching news source: google_news
+2026-01-17 13:48:35,811 - INFO - Fetching news source: pv_tech
+2026-01-17 13:48:37,226 - INFO - Fetching news source: bess
+2026-01-17 13:48:38,474 - INFO - Fetching news source: policy
+2026-01-17 13:48:38,751 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 13:48:38,753 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 13:48:40,866 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 13:48:40,867 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 13:48:43,004 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 13:48:43,007 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 13:48:46,036 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 13:48:46,038 - INFO - Fetching news source: thecable_energy
+2026-01-17 13:48:48,243 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 13:48:48,245 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 13:48:54,642 - INFO - Fetched 11 news items for today.
+2026-01-17 13:48:54,644 - INFO - Processing external URL queue for additional news...
+2026-01-17 13:48:54,645 - INFO - No pending URLs, skipping.
+2026-01-17 13:48:54,855 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 13:48:54,855 - INFO - Processing news with AI...
+2026-01-17 13:48:54,857 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 13:49:08,818 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:49:08,820 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:49:22,547 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:49:22,550 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 13:49:38,556 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:49:38,560 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 13:49:52,612 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:49:52,613 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 13:49:59,764 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:49:59,765 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 13:50:16,845 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:50:16,847 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:50:28,335 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:50:28,336 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2684
+2026-01-17 13:50:44,309 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:50:44,309 - ERROR - Failed to parse AI output for summarize_article: Expecting ',' delimiter: line 19 column 231 (char 1977)
+2026-01-17 13:50:44,310 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2535
+2026-01-17 13:50:56,289 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:50:56,291 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 13:51:11,203 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:51:11,204 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 13:51:27,113 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:51:27,116 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 13:51:31,720 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:51:31,720 - INFO - Generating price chart...
+2026-01-17 13:51:32,223 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 13:51:32,232 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 13:51:32,234 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 13:51:36,121 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:51:36,122 - INFO - Generating raw material price trend chart via AI web search...
+2026-01-17 13:51:36,130 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1581
+2026-01-17 13:51:48,002 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:51:48,569 - INFO - Raw material trend chart saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/raw_material_trend_2026-01-17.png
+2026-01-17 13:51:48,569 - INFO - Base64 length: 161060
+2026-01-17 13:51:51,414 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:51:51,418 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 13:51:51,451 - INFO - Attempting to send via primary SMTP...
+2026-01-17 13:51:51,451 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 13:51:55,611 - INFO - Email sent successfully via SMTP.
+2026-01-17 13:51:55,612 - INFO - Email sent successfully
+2026-01-17 13:51:55,616 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 13:51:55,626 - INFO - Index updated with date 2026-01-17
+2026-01-17 13:51:55,627 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 13:52:00,088 - INFO - GitHub push completed.
+2026-01-17 13:52:00,089 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 13:56:39,105 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 13:56:39,106 - INFO - Fetching price data...
+2026-01-17 13:56:39,107 - INFO - Starting price data fetch...
+2026-01-17 13:56:39,107 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 13:56:41,245 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 13:56:41,247 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 13:56:43,363 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 13:56:44,804 - INFO - Fetching domestic price source: glass_market
+2026-01-17 13:56:45,058 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 13:56:46,653 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 13:56:49,584 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 13:56:51,403 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 13:56:52,941 - INFO - Fetched 4 price entries in total.
+2026-01-17 13:56:52,941 - INFO - Fetching news data...
+2026-01-17 13:56:52,942 - INFO - Starting news fetch...
+2026-01-17 13:56:52,942 - INFO - Fetching news source: google_news
+2026-01-17 13:57:08,639 - INFO - Fetching news source: pv_tech
+2026-01-17 13:57:10,062 - INFO - Fetching news source: bess
+2026-01-17 13:57:11,803 - INFO - Fetching news source: policy
+2026-01-17 13:57:12,096 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 13:57:12,101 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 13:57:17,109 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:57:17,109 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 13:57:19,240 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 13:57:19,242 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 13:57:20,813 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 13:57:20,814 - INFO - Fetching news source: thecable_energy
+2026-01-17 13:57:21,927 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 13:57:21,929 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 13:57:27,861 - INFO - Fetched 12 news items for today.
+2026-01-17 13:57:27,864 - INFO - Processing external URL queue for additional news...
+2026-01-17 13:57:27,865 - INFO - No pending URLs, skipping.
+2026-01-17 13:57:27,985 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 13:57:27,985 - INFO - Processing news with AI...
+2026-01-17 13:57:27,987 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 13:58:29,017 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 13:58:29,035 - INFO - Fetching price data...
+2026-01-17 13:58:29,035 - INFO - Starting price data fetch...
+2026-01-17 13:58:29,036 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 13:58:34,086 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:58:34,086 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 13:58:35,473 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 13:58:36,233 - INFO - Fetching domestic price source: glass_market
+2026-01-17 13:58:36,378 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 13:58:37,899 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 13:58:39,588 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 13:58:41,034 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 13:58:42,954 - INFO - Fetched 4 price entries in total.
+2026-01-17 13:58:42,956 - INFO - Fetching news data...
+2026-01-17 13:58:42,956 - INFO - Starting news fetch...
+2026-01-17 13:58:42,956 - INFO - Fetching news source: google_news
+2026-01-17 13:58:58,930 - INFO - Fetching news source: pv_tech
+2026-01-17 13:59:00,307 - INFO - Fetching news source: bess
+2026-01-17 13:59:01,423 - INFO - Fetching news source: policy
+2026-01-17 13:59:01,689 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 13:59:01,690 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 13:59:06,697 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:59:06,699 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 13:59:11,709 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 13:59:11,709 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 13:59:14,350 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 13:59:14,367 - INFO - Fetching news source: thecable_energy
+2026-01-17 13:59:15,385 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 13:59:15,387 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 13:59:20,996 - INFO - Fetched 12 news items for today.
+2026-01-17 13:59:20,998 - INFO - Processing external URL queue for additional news...
+2026-01-17 13:59:20,999 - INFO - No pending URLs, skipping.
+2026-01-17 13:59:21,075 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 13:59:21,075 - INFO - Processing news with AI...
+2026-01-17 13:59:21,083 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 13:59:37,716 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:59:37,718 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 13:59:55,385 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 13:59:55,388 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 14:00:08,839 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:00:08,843 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 14:00:20,414 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:00:20,415 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2851
+2026-01-17 14:00:44,035 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:00:44,042 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 14:00:52,210 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:00:52,346 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 14:01:07,757 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:01:07,763 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 14:01:19,394 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:01:19,405 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2684
+2026-01-17 14:01:35,092 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:01:35,096 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2535
+2026-01-17 14:01:47,766 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:01:47,775 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 14:02:00,803 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:02:00,805 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 14:02:12,952 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:02:12,976 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 14:02:21,179 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:02:21,181 - INFO - Generating price chart...
+2026-01-17 14:02:22,192 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 14:02:22,217 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 14:02:22,229 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 14:02:27,603 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:02:27,608 - INFO - Generating raw material price trend chart via AI web search...
+2026-01-17 14:02:27,611 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1581
+2026-01-17 14:02:36,503 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:02:37,741 - INFO - Raw material trend chart saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/raw_material_trend_2026-01-17.png
+2026-01-17 14:02:37,741 - INFO - Base64 length: 171264
+2026-01-17 14:02:44,969 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:02:44,974 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:02:45,059 - INFO - Attempting to send via primary SMTP...
+2026-01-17 14:02:45,060 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 14:02:47,543 - INFO - Email sent successfully via SMTP.
+2026-01-17 14:02:47,544 - INFO - Email sent successfully
+2026-01-17 14:02:47,546 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 14:02:47,559 - INFO - Index updated with date 2026-01-17
+2026-01-17 14:02:47,559 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 14:02:51,407 - INFO - GitHub push completed.
+2026-01-17 14:02:51,407 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 14:12:55,188 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 14:12:55,189 - INFO - Fetching price data...
+2026-01-17 14:12:55,189 - INFO - Starting price data fetch...
+2026-01-17 14:12:55,189 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 14:12:56,331 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/topics/guangfujiage/
+2026-01-17 14:12:56,333 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 14:12:57,965 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 14:12:58,706 - INFO - Fetching domestic price source: glass_market
+2026-01-17 14:12:58,896 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 14:13:00,420 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 14:13:01,839 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 14:13:03,794 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 14:13:05,284 - INFO - Fetched 4 price entries in total.
+2026-01-17 14:13:05,284 - INFO - Fetching news data...
+2026-01-17 14:13:05,284 - INFO - Starting news fetch...
+2026-01-17 14:13:05,284 - INFO - Fetching news source: google_news
+2026-01-17 14:13:23,588 - INFO - Fetching news source: pv_tech
+2026-01-17 14:13:25,014 - INFO - Fetching news source: bess
+2026-01-17 14:13:27,293 - INFO - Fetching news source: policy
+2026-01-17 14:13:27,564 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 14:13:27,566 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 14:13:28,688 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 14:13:28,690 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 14:13:30,818 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 14:13:30,821 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 14:13:33,412 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 14:13:33,413 - INFO - Fetching news source: thecable_energy
+2026-01-17 14:13:36,327 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 14:13:36,329 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 14:13:41,003 - INFO - Fetched 13 news items for today.
+2026-01-17 14:13:41,003 - INFO - Processing external URL queue for additional news...
+2026-01-17 14:13:41,004 - INFO - No pending URLs, skipping.
+2026-01-17 14:13:41,073 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 14:13:41,073 - INFO - Processing news with AI...
+2026-01-17 14:13:41,076 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 14:13:58,506 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:13:58,507 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 14:14:24,905 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:14:24,908 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 14:14:40,368 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:14:40,373 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 14:14:51,939 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:14:51,942 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2851
+2026-01-17 14:15:11,336 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:15:11,339 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 14:15:24,558 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:15:24,559 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 14:15:38,612 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:15:38,614 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 14:15:52,764 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:15:52,767 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2684
+2026-01-17 14:16:12,527 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:16:12,531 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2535
+2026-01-17 14:16:27,903 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:16:27,917 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2660
+2026-01-17 14:16:46,729 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:16:46,733 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 14:16:58,813 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:16:58,814 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 14:17:15,893 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:17:15,896 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 14:17:20,604 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:17:20,604 - INFO - Generating price chart...
+2026-01-17 14:17:21,061 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 14:17:21,066 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 14:17:21,068 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 14:17:28,816 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:17:28,822 - INFO - Generating raw material price trend chart via AI web search...
+2026-01-17 14:17:28,824 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1534
+2026-01-17 14:17:46,634 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:17:47,271 - INFO - Raw material trend chart saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/raw_material_trend_2026-01-17.png
+2026-01-17 14:17:47,272 - INFO - Base64 length: 226536
+2026-01-17 14:17:50,625 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:17:50,629 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:17:50,665 - INFO - Attempting to send via primary SMTP...
+2026-01-17 14:17:50,665 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 14:17:53,411 - INFO - Email sent successfully via SMTP.
+2026-01-17 14:17:53,412 - INFO - Email sent successfully
+2026-01-17 14:17:53,416 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 14:17:53,424 - INFO - Index updated with date 2026-01-17
+2026-01-17 14:17:53,424 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 14:17:57,935 - INFO - GitHub push completed.
+2026-01-17 14:17:57,935 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 14:32:43,901 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 14:32:43,902 - INFO - Fetching price data...
+2026-01-17 14:32:43,902 - INFO - Starting price data fetch...
+2026-01-17 14:32:43,902 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 14:32:48,927 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 14:32:48,927 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 14:32:50,590 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 14:32:51,204 - INFO - Fetching domestic price source: glass_market
+2026-01-17 14:32:51,337 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 14:32:52,943 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 14:32:54,615 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 14:32:56,344 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 14:32:58,104 - INFO - Fetched 4 price entries in total.
+2026-01-17 14:32:58,104 - INFO - Fetching news data...
+2026-01-17 14:32:58,104 - INFO - Starting news fetch...
+2026-01-17 14:32:58,104 - INFO - Fetching news source: google_news
+2026-01-17 14:33:14,232 - INFO - Fetching news source: pv_tech
+2026-01-17 14:33:15,480 - INFO - Fetching news source: bess
+2026-01-17 14:33:17,456 - INFO - Fetching news source: policy
+2026-01-17 14:33:17,726 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 14:33:17,728 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 14:33:18,836 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 14:33:18,838 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 14:33:19,960 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://chuneng.bjx.com.cn/
+2026-01-17 14:33:19,961 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 14:33:21,444 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 14:33:21,448 - INFO - Fetching news source: thecable_energy
+2026-01-17 14:33:23,287 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 14:33:23,288 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 14:33:26,134 - INFO - Fetched 14 news items for today.
+2026-01-17 14:33:26,134 - INFO - Processing external URL queue for additional news...
+2026-01-17 14:33:26,136 - INFO - No pending URLs, skipping.
+2026-01-17 14:33:26,186 - INFO - Created new history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv
+2026-01-17 14:33:26,186 - INFO - Processing news with AI...
+2026-01-17 14:33:26,189 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2501
+2026-01-17 14:33:39,058 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:33:39,061 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 14:33:53,597 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:33:53,600 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2451
+2026-01-17 14:34:10,663 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:34:10,673 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2512
+2026-01-17 14:34:32,872 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:34:32,873 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2481
+2026-01-17 14:34:47,006 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:34:47,007 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2851
+2026-01-17 14:35:10,600 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:35:10,609 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2353
+2026-01-17 14:35:23,513 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:35:23,515 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2541
+2026-01-17 14:35:39,684 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:35:39,687 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2441
+2026-01-17 14:35:53,201 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:35:53,204 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2684
+2026-01-17 14:36:13,271 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:36:13,281 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2535
+2026-01-17 14:36:27,300 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:36:27,301 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2401
+2026-01-17 14:36:40,612 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:36:40,613 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2491
+2026-01-17 14:36:56,874 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:36:56,875 - DEBUG - Calling Qwen (model=qwen-plus, search=False) with prompt length: 2549
+2026-01-17 14:37:11,054 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:37:11,057 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1263
+2026-01-17 14:37:16,145 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:37:16,146 - INFO - Generating price chart...
+2026-01-17 14:37:16,572 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 14:37:16,575 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 14:37:16,576 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 620
+2026-01-17 14:37:21,879 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:37:21,882 - INFO - Generating raw material price trend chart via AI web search...
+2026-01-17 14:37:21,884 - DEBUG - Calling Qwen (model=qwen-plus, search=True) with prompt length: 1534
+2026-01-17 14:37:38,643 - DEBUG - Qwen call succeeded on attempt 1
+2026-01-17 14:37:39,271 - INFO - ✅ Price trend chart generated successfully.
+2026-01-17 14:37:39,280 - INFO - Raw material trend chart saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/raw_material_trend_2026-01-17.png
+2026-01-17 14:37:39,280 - INFO - Base64 length: 236856
+2026-01-17 14:37:43,817 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:37:43,821 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:37:43,855 - INFO - Attempting to send via primary SMTP...
+2026-01-17 14:37:43,855 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 14:37:48,325 - INFO - Email sent successfully via SMTP.
+2026-01-17 14:37:48,326 - INFO - Email sent successfully
+2026-01-17 14:37:48,330 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 14:37:48,335 - INFO - Index updated with date 2026-01-17
+2026-01-17 14:37:48,335 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 14:37:52,912 - INFO - GitHub push completed.
+2026-01-17 14:37:52,912 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 14:45:02,522 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 14:45:02,523 - INFO - Fetching price data...
+2026-01-17 14:45:02,523 - INFO - Starting price data fetch...
+2026-01-17 14:45:02,523 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 14:45:07,601 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 14:45:07,602 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 14:45:09,841 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 14:45:10,485 - INFO - Fetching domestic price source: glass_market
+2026-01-17 14:45:10,627 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 14:45:12,881 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 14:45:15,192 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 14:45:16,803 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 14:45:18,384 - INFO - Fetched 4 price entries in total.
+2026-01-17 14:45:18,384 - INFO - Fetching news data...
+2026-01-17 14:45:18,384 - INFO - Starting news fetch...
+2026-01-17 14:45:18,384 - INFO - Fetching news source: google_news
+2026-01-17 14:45:36,145 - INFO - Fetching news source: pv_tech
+2026-01-17 14:45:37,504 - INFO - Fetching news source: bess
+2026-01-17 14:45:38,949 - INFO - Fetching news source: policy
+2026-01-17 14:45:39,221 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 14:45:39,222 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 14:45:40,352 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | 403 Client Error: Forbidden for url: https://guangfu.bjx.com.cn/
+2026-01-17 14:45:40,354 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 14:45:45,366 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 14:45:45,368 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 14:45:49,704 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 14:45:49,706 - INFO - Fetching news source: thecable_energy
+2026-01-17 14:45:50,905 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 14:45:50,909 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 14:45:56,693 - INFO - Fetched 14 news items for today.
+2026-01-17 14:45:56,695 - INFO - Processing external URL queue for additional news...
+2026-01-17 14:45:56,697 - INFO - No pending URLs, skipping.
+2026-01-17 14:45:56,767 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 14:45:56,768 - INFO - Processing news with AI...
+2026-01-17 14:50:34,684 - INFO - Generating price chart...
+2026-01-17 14:50:35,571 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 14:50:35,573 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 14:50:49,795 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:50:49,797 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 14:50:49,821 - INFO - Attempting to send via primary SMTP...
+2026-01-17 14:50:49,821 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 14:50:52,229 - INFO - Email sent successfully via SMTP.
+2026-01-17 14:50:52,230 - INFO - Email sent successfully
+2026-01-17 14:50:52,232 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 14:50:52,233 - INFO - Index updated with date 2026-01-17
+2026-01-17 14:50:52,234 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 14:50:57,422 - INFO - GitHub push completed.
+2026-01-17 14:50:57,422 - INFO - === Daily Solar Briefing finished ===
+2026-01-17 21:46:36,879 - INFO - === Saba Energy Intelligence System starting ===
+2026-01-17 21:46:36,879 - INFO - Fetching price data...
+2026-01-17 21:46:36,880 - INFO - Starting price data fetch...
+2026-01-17 21:46:36,880 - INFO - Fetching domestic price source: bjx_storage
+2026-01-17 21:46:41,895 - ERROR - Failed to fetch HTML price from https://guangfu.bjx.com.cn/topics/guangfujiage/: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 21:46:41,896 - INFO - Fetching domestic price source: infolink_pv
+2026-01-17 21:46:48,554 - INFO - Fetching domestic price source: mysteel_metals
+2026-01-17 21:46:49,211 - INFO - Fetching domestic price source: glass_market
+2026-01-17 21:46:49,381 - INFO - Fetching Google Finance price: ENPH:NASDAQ
+2026-01-17 21:46:51,464 - INFO - Fetching Google Finance price: FSLR:NASDAQ
+2026-01-17 21:46:57,353 - INFO - Fetching Google Finance price: TSLA:NASDAQ
+2026-01-17 21:47:08,680 - INFO - Fetching Google Finance price: JKS:NYSE
+2026-01-17 21:47:11,867 - INFO - Fetched 4 price entries in total.
+2026-01-17 21:47:11,867 - INFO - Fetching news data...
+2026-01-17 21:47:11,867 - INFO - Starting news fetch...
+2026-01-17 21:47:11,867 - INFO - Fetching news source: google_news
+2026-01-17 21:47:32,745 - INFO - Fetching news source: pv_tech
+2026-01-17 21:47:34,271 - INFO - Fetching news source: bess
+2026-01-17 21:47:36,172 - INFO - Fetching news source: policy
+2026-01-17 21:47:36,438 - ERROR - Failed to fetch RSS: https://www.ne21.com/rss/ | Remote end closed connection without response
+2026-01-17 21:47:36,440 - INFO - Fetching news source: bjx_pv_news
+2026-01-17 21:47:41,449 - ERROR - Failed to fetch HTML: https://guangfu.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 21:47:41,449 - INFO - Fetching news source: bjx_storage_news
+2026-01-17 21:47:46,462 - ERROR - Failed to fetch HTML: https://chuneng.bjx.com.cn/ | ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-01-17 21:47:46,462 - INFO - Fetching news source: nairametrics_energy
+2026-01-17 21:47:49,571 - ERROR - Failed to fetch HTML: https://nairametrics.com/category/energy/ | 403 Client Error: Forbidden for url: https://nairametrics.com/category/energy/
+2026-01-17 21:47:49,574 - INFO - Fetching news source: thecable_energy
+2026-01-17 21:47:51,722 - ERROR - Failed to fetch HTML: https://www.thecable.ng/category/energy | 403 Client Error: Forbidden for url: https://www.thecable.ng/category/energy
+2026-01-17 21:47:51,723 - INFO - Fetching news source: premiumtimes_energy
+2026-01-17 21:47:53,874 - INFO - Fetched 30 news items for today.
+2026-01-17 21:47:53,874 - INFO - Processing external URL queue for additional news...
+2026-01-17 21:47:53,876 - INFO - No pending URLs, skipping.
+2026-01-17 21:47:54,060 - INFO - Updated history file: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/data/price_history.csv with 4 new records.
+2026-01-17 21:47:54,060 - INFO - Processing news with AI...
+2026-01-17 21:57:42,575 - INFO - Generating price chart...
+2026-01-17 21:57:43,300 - INFO - Price chart generated: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/charts/price_chart_2026-01-17.png
+2026-01-17 21:57:43,312 - INFO - Price chart copied to docs : /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/charts
+2026-01-17 21:57:58,584 - INFO - PDF generated successfully: /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 21:57:58,589 - INFO - PDF archiving successfully to : /Users/wangxiaohu/PycharmProjects/solar_briefing/src/runtime_output/pdf/daily_report_2026-01-17.pdf
+2026-01-17 21:57:58,623 - INFO - Attempting to send via primary SMTP...
+2026-01-17 21:57:58,623 - INFO - Trying SMTP send: smtp.163.com:465, user=yacobofwork@163.com
+2026-01-17 21:58:03,054 - INFO - Email sent successfully via SMTP.
+2026-01-17 21:58:03,057 - INFO - Email sent successfully
+2026-01-17 21:58:03,061 - INFO - Daily JSON saved: /Users/wangxiaohu/PycharmProjects/solar_briefing/docs/datas/2026-01-17.json
+2026-01-17 21:58:03,063 - INFO - Index updated with date 2026-01-17
+2026-01-17 21:58:03,063 - INFO - Daily report exported for GitHub Pages.
+2026-01-17 21:58:08,407 - INFO - GitHub push completed.
+2026-01-17 21:58:08,408 - INFO - === Daily Solar Briefing finished ===
