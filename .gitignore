@@ -17,6 +17,7 @@ venv/
 
 # --- 日志文件 ---
 *.log
+*/logs
 
 # --- PDF 归档目录（如果你不想提交历史 PDF）---
 archive_pdf/
