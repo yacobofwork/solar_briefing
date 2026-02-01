@@ -20,7 +20,7 @@ All three channels share the same data, insights, and visual identity.
 
 ---
 
-⚙️ Automated Daily Execution (New)
+## ⚙️ Automated Daily Execution (New)
 
 The entire intelligence pipeline runs automatically every day at 16:30, powered by a production‑grade execution script and a clean cron schedule.
 
