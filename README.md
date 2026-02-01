@@ -20,6 +20,54 @@ All three channels share the same data, insights, and visual identity.
 
 ---
 
+⚙️ Automated Daily Execution (New)
+
+The entire intelligence pipeline runs automatically every day at 16:30, powered by a production‑grade execution script and a clean cron schedule.
+
+1. Enhanced run_daily.sh
+
+The system includes a robust execution script that provides:
+
+* Auto‑detect project directory
+* Auto‑activate Python 3.11 virtual environment
+* Auto‑register symlink to /usr/local/bin/run_daily.sh
+* Lock file to prevent duplicate runs
+* Timeout protection
+* Daily log rotation
+* Cron schedule detection
+* Cross‑machine compatibility (no hardcoded paths)
+
+
+This ensures the pipeline runs reliably on any machine without manual setup.
+
+2. Cron Schedule
+
+To enable daily automation:
+
+```shell
+30 16 * * * run_daily.sh
+```
+
+
+Once the symlink is registered (automatically on first run), cron can trigger the entire workflow using a single clean command.
+
+3. Daily Workflow
+
+Every day at 16:30, the system automatically:
+
+1. Fetches global + Nigeria solar news
+2. Scrapes raw material prices (multi‑source fallback)
+3. Generates AI insights
+4. Builds PDF + Email + Web JSON snapshot
+5. Updates GitHub Pages (daily + archive)
+6. Writes logs and rotates them
+7. Prints execution metadata (PID, cron schedule, timestamps)
+
+
+No manual intervention is required.
+
+---
+
 ## 🚀 Key Features
 
 ### **1. Multi‑Channel Publishing**
